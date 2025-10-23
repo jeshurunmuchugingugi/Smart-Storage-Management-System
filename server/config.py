@@ -1,7 +1,7 @@
 # config.py
 import os
 
-basedir = os.path.abspath(os.path.dirname(_file_))
+# basedir = os.path.abspath(os.path.dirname(_file_))
 
 class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///storage.db'

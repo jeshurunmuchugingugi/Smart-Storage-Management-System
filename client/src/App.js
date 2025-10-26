@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import AdminLogin from './components/AdminLogin';
+import HeroSection from './components/HeroSection';
 import './App.css';
 
 const App = () => {
@@ -18,7 +19,7 @@ const App = () => {
           <Route path="/" element={
             <>
               <Header />
-              <div>Welcome to Storage System</div>
+              <HeroSection />
             </>
           } />
         </Routes>

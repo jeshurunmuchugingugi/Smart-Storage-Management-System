@@ -102,7 +102,7 @@ const styles = {
     color: '#37361aff',
     textDecorationColor: '#FC9E3B',  
     textUnderlineOffset: '9px',
-    textDecorationThickness: '0.15rem',
+    textDecorationThickness: '3px',
     fontWeight: '300',
     textDecoration:'underline'
   },

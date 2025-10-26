@@ -15,6 +15,7 @@ class FeatureSchema(SQLAlchemyAutoSchema):
 
 class StorageUnitSchema(SQLAlchemyAutoSchema):
     features = fields.Nested(FeatureSchema, many=True)
+    monthly_rate = fields.Float()
 
     class Meta:
         model = StorageUnit
@@ -23,6 +24,8 @@ class StorageUnitSchema(SQLAlchemyAutoSchema):
 
 
 class BookingSchema(SQLAlchemyAutoSchema):
+    total_cost = fields.Float()
+
     class Meta:
         model = Booking
         include_fk = True

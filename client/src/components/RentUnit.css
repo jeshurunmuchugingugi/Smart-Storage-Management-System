@@ -1,0 +1,116 @@
+.container {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #2D3748;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.125rem;
+  color: #4A5568;
+  margin-bottom: 3rem;
+}
+
+.unitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.unitCard {
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.unitHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.unitNumber {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2D3748;
+  margin: 0;
+}
+
+.availableBadge {
+  background-color: #D4EDDA;
+  color: #155724;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.unitDetails {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #F59E0B;
+  margin-left: 0.5rem;
+}
+
+.features {
+  margin-bottom: 2rem;
+}
+
+.featureTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.featureTag {
+  background-color: #E0E7FF;
+  color: #3730A3;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+.rentButton {
+  display: block;
+  width: 100%;
+  background-color: #F59E0B;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background-color 0.2s;
+}
+
+.noUnits {
+  text-align: center;
+  padding: 3rem;
+  color: #4A5568;
+  font-size: 1.125rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.2rem;
+  color: #4A5568;
+}

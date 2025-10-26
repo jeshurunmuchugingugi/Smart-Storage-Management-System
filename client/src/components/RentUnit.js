@@ -2,60 +2,75 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './RentUnit.css';
 
-const RentUnit = ({ units, loading }) => {
+const RentUnit = ({ units = [], loading = false, error = null }) => {
   const availableUnits = units.filter(unit => unit.status === 'available');
 
   if (loading) {
-    return <div className="loading">Loading available units...</div>;
+    return <div className="loading">Loading storage units...</div>;
+  }
+
+  if (error) {
+    return <div className="error">Error: {error}</div>;
   }
 
   return (
     <div className="container">
-      <h1 className="title">Rent A Storage Unit</h1>
+      <h1 className="title">Storage Unit Rentals</h1>
       <p className="subtitle">
-        Choose from {availableUnits.length} available storage units
+        {availableUnits.length} units ready for rent
       </p>
       
       {availableUnits.length === 0 ? (
         <div className="noUnits">
-          <p>No units available at the moment. Please check back later.</p>
+          <p>Currently no units available. Check back soon.</p>
         </div>
       ) : (
         <div className="unitsGrid">
           {availableUnits.map(unit => (
             <div key={unit.unit_id} className="unitCard">
               <div className="unitHeader">
-                <h3 className="unitNumber">{unit.unit_number}</h3>
+                <h3 className="unitNumber">Unit {unit.unit_number}</h3>
                 <span className="availableBadge">Available</span>
               </div>
               
               <div className="unitDetails">
-                <p><strong>Site:</strong> {unit.site}</p>
-                <p><strong>Location:</strong> {unit.location}</p>
-                <p><strong>Monthly Rate:</strong> 
+                <div className="detailRow">
+                  <span className="label">Site:</span>
+                  <span className="value">{unit.site}</span>
+                </div>
+                {unit.location && (
+                  <div className="detailRow">
+                    <span className="label">Location:</span>
+                    <span className="value">{unit.location}</span>
+                  </div>
+                )}
+                <div className="detailRow">
+                  <span className="label">Monthly Rate:</span>
                   <span className="price">${unit.monthly_rate}</span>
-                </p>
+                </div>
               </div>
               
-              {unit.features && unit.features.length > 0 && (
+              {unit.features && Array.isArray(unit.features) && unit.features.length > 0 && (
                 <div className="features">
-                  <strong>Features:</strong>
+                  <span className="featuresLabel">Features:</span>
                   <div className="featureTags">
-                    {unit.features.map(feature => (
-                      <span key={feature.feature_id} className="featureTag">
-                        {feature.name}
+                    {unit.features.map((feature, index) => (
+                      <span key={feature.feature_id || index} className="featureTag">
+                        {feature.name || 'Unknown Feature'}
                       </span>
                     ))}
                   </div>
                 </div>
               )}
               
-              <Link 
-                to={`/book/${unit.unit_id}`}
-                className="rentButton"
-              >
-                Rent This Unit
-              </Link>
+              <div className="cardActions">
+                <Link 
+                  to={`/book/${unit.unit_id}`}
+                  className="rentButton"
+                >
+                  Book Now
+                </Link>
+              </div>
             </div>
           ))}
         </div>
@@ -63,4 +78,5 @@ const RentUnit = ({ units, loading }) => {
     </div>
   );
 };
+
 export default RentUnit;

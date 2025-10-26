@@ -121,3 +121,36 @@ const createUnit = async (data) => {
   }
 };
 
+const handleEdit = (unit) => {
+  setEditingUnit(unit.unit_id);
+  setFormData({
+    unit_number: unit.unit_number,
+    site: unit.site,
+    monthly_rate: unit.monthly_rate,
+    status: unit.status,
+    location: unit.location
+  });
+};
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if (editingUnit) {
+    updateUnit(editingUnit, formData);
+  } else {
+    createUnit(formData);
+  }
+};
+
+const handleCancel = () => {
+  setEditingUnit(null);
+  setShowCreateForm(false);
+  setFormData({
+    unit_number: '',
+    site: '',
+    monthly_rate: '',
+    status: 'available',
+    location: ''
+  });
+};
+
+

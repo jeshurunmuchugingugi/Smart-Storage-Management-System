@@ -7,7 +7,7 @@ from models import db, User, Admin, StorageUnit, Booking, Feature
 from config import Config
 from schema import ma, storage_schema, storages_schema, feature_schema, features_schema, booking_schema, bookings_schema
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.config.from_object(Config)
 CORS(app)
 
@@ -156,7 +156,7 @@ def server_error(error):
     return jsonify({"error": "Internal server error"}), 500
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True)

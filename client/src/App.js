@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import AdminLogin from './components/AdminLogin';
+import HeroSection from './components/HeroSection';
 import BookingForm from './components/BookingForm';
 import BookingsList from './components/BookingsList';
 import './App.css';
@@ -22,7 +23,7 @@ const App = () => {
           <Route path="/" element={
             <>
               <Header />
-              <div>Welcome to Storage System</div>
+              <HeroSection />
             </>
           } />
         </Routes>

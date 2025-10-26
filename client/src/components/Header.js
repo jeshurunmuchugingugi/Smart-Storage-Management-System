@@ -1,37 +1,114 @@
 // src/components/Header.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 
 const Header = () => {
+  const [hoveredLink, setHoveredLink] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false);
+
   return (
     <header style={styles.header}>
       <div style={styles.nav}>
         <div style={styles.logo}>
           <Link to="/" style={styles.logoLink}>
             <div style={styles.logoIcon}>
-              <div style={styles.warehouse}>
-                <div style={styles.warehouseTop}></div>
-                <div style={styles.warehouseBody}>
-                  <div style={styles.box}></div>
-                  <div style={styles.box}></div>
-                  <div style={styles.box}></div>
-                </div>
-              </div>
+              <Icon icon="mdi:warehouse" style={styles.warehouseIcon} />
             </div>
             <div style={styles.logoText}>
-              <span style={styles.logisticsText}>LOGISTICS</span>
-              <span style={styles.storageText}>& STORAGE</span>
+              <span style={styles.logisticsText}>STORELINK</span>
+              <span style={styles.storageText}>LOGISTICS</span>
             </div>
           </Link>
         </div>
         <nav style={styles.centerNav}>
-          <Link to="/" style={styles.navLink}>Home</Link>
-          <Link to="/services" style={styles.navLink}>Services</Link>
-          <Link to="/storage" style={styles.navLink}>Storage</Link>
-          <Link to="/contact" style={styles.navLink}>Contact</Link>
+          <Link 
+            to="/" 
+            style={{
+              ...styles.navLink,
+              ...(hoveredLink === 0 ? styles.navLinkHover : {})
+            }}
+            onMouseEnter={() => setHoveredLink(0)}
+            onMouseLeave={() => setHoveredLink(null)}
+          >
+            Home
+          </Link>
+          
+          <div 
+            style={styles.dropdown}
+            onMouseEnter={() => {
+              setHoveredLink(1);
+              setShowDropdown(true);
+            }}
+            onMouseLeave={() => {
+              setHoveredLink(null);
+              setShowDropdown(false);
+            }}
+          >
+            <div style={{
+              ...styles.navLink,
+              ...(hoveredLink === 1 ? styles.navLinkHover : {}),
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              Services
+              <Icon icon="mdi:chevron-down" style={{
+                fontSize: '1.2rem',
+                transition: 'transform 0.3s ease',
+                transform: showDropdown ? 'rotate(180deg)' : 'rotate(0deg)'
+              }} />
+            </div>
+            
+            {showDropdown && (
+              <div style={styles.dropdownMenu}>
+                <Link to="/transport" style={styles.dropdownItem}>
+                  <Icon icon="mdi:truck" style={styles.dropdownIcon} />
+                  <div>
+                    <div style={styles.dropdownTitle}>Transport</div>
+                    <div style={styles.dropdownSubtitle}>Moving & Delivery</div>
+                  </div>
+                </Link>
+                <Link to="/storage" style={styles.dropdownItem}>
+                  <Icon icon="mdi:warehouse" style={styles.dropdownIcon} />
+                  <div>
+                    <div style={styles.dropdownTitle}>Storage</div>
+                    <div style={styles.dropdownSubtitle}>Secure Units</div>
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
+          
+          <Link 
+            to="/storage" 
+            style={{
+              ...styles.navLink,
+              ...(hoveredLink === 2 ? styles.navLinkHover : {})
+            }}
+            onMouseEnter={() => setHoveredLink(2)}
+            onMouseLeave={() => setHoveredLink(null)}
+          >
+            Storage
+          </Link>
+          
+          <Link 
+            to="/contact" 
+            style={{
+              ...styles.navLink,
+              ...(hoveredLink === 3 ? styles.navLinkHover : {})
+            }}
+            onMouseEnter={() => setHoveredLink(3)}
+            onMouseLeave={() => setHoveredLink(null)}
+          >
+            Contact
+          </Link>
         </nav>
         <div style={styles.rightSection}>
-          <Link to="/rent" style={styles.rentButton}>Rent A Unit</Link>
+          <Link to="/rent" style={styles.rentButton}>
+            <Icon icon="mdi:key" style={styles.buttonIcon} />
+            Rent A Unit
+          </Link>
         </div>
       </div>
     </header>
@@ -40,18 +117,20 @@ const Header = () => {
 
 const styles = {
   header: {
-    background: 'white',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+    background: 'rgba(255, 255, 255, 0.95)',
+    backdropFilter: 'blur(20px)',
+    borderBottom: '1px solid rgba(26, 38, 55, 0.08)',
     position: 'sticky',
     top: 0,
     zIndex: 1000,
+    transition: 'all 0.3s ease',
   },
   nav: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '1rem 2rem',
-    maxWidth: '1200px',
+    padding: '1.25rem 2rem',
+    maxWidth: '1400px',
     margin: '0 auto',
   },
   logo: {
@@ -60,98 +139,127 @@ const styles = {
   },
   logoLink: {
     display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
-    gap: '0.25rem',
+    gap: '0.75rem',
     textDecoration: 'none',
+    transition: 'transform 0.2s ease',
   },
   logoIcon: {
-    width: '32px',
-    height: '32px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  warehouse: {
-    position: 'relative',
-    width: '24px',
-    height: '20px',
-  },
-  warehouseTop: {
-    width: '24px',
-    height: '6px',
-    backgroundColor: '#1e3a8a',
-    borderRadius: '2px 2px 0 0',
-    position: 'absolute',
-    top: '0',
-  },
-  warehouseBody: {
-    width: '24px',
-    height: '14px',
-    border: '2px solid #1e3a8a',
-    borderTop: 'none',
-    position: 'absolute',
-    top: '6px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    padding: '1px',
-  },
-  box: {
-    width: '4px',
-    height: '4px',
-    backgroundColor: '#1e3a8a',
-    borderRadius: '1px',
+  warehouseIcon: {
+    fontSize: '2.5rem',
+    color: '#FC9E3B',
   },
   logoText: {
     display: 'flex',
     flexDirection: 'column',
     lineHeight: '1.1',
-    fontFamily: 'Inter, Poppins, Montserrat, sans-serif',
+    fontFamily: '"Roboto", sans-serif',
   },
   logisticsText: {
-    fontWeight: 'bold',
-    color: '#1e3a8a',
-    fontSize: '0.875rem',
+    fontWeight: '700',
+    color: '#1A2637',
+    fontSize: '1.1rem',
     letterSpacing: '0.5px',
   },
   storageText: {
-    color: '#1e3a8a',
-    fontSize: '0.75rem',
-    letterSpacing: '0.3px',
+    color: '#FC9E3B',
+    fontSize: '0.8rem',
+    letterSpacing: '0.8px',
+    fontWeight: '500',
   },
   centerNav: {
     display: 'flex',
     alignItems: 'center',
-    gap: '4rem',
+    gap: '3rem',
     position: 'absolute',
     left: '50%',
     transform: 'translateX(-50%)',
+  },
+  dropdown: {
+    position: 'relative',
+  },
+  dropdownMenu: {
+    position: 'absolute',
+    top: '100%',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    backdropFilter: 'blur(20px)',
+    borderRadius: '12px',
+    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.15)',
+    border: '1px solid rgba(252, 158, 59, 0.2)',
+    padding: '1rem 0',
+    minWidth: '220px',
+    zIndex: 1000,
+    marginTop: '0.5rem',
+  },
+  dropdownItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    padding: '1rem 1.5rem',
+    textDecoration: 'none',
+    color: '#1A2637',
+    transition: 'all 0.3s ease',
+    borderLeft: '3px solid transparent',
+  },
+  dropdownIcon: {
+    fontSize: '1.5rem',
+    color: '#FC9E3B',
+  },
+  dropdownTitle: {
+    fontSize: '1rem',
+    fontWeight: '600',
+    color: '#1A2637',
+    fontFamily: '"Roboto", sans-serif',
+  },
+  dropdownSubtitle: {
+    fontSize: '0.85rem',
+    color: '#666',
+    fontFamily: '"Roboto", sans-serif',
   },
   rightSection: {
     display: 'flex',
     alignItems: 'center',
   },
   navLink: {
-    color: '#333',
+    color: '#1A2637',
     textDecoration: 'none',
-    fontSize: '1.1rem',
+    fontSize: '1rem',
     fontWeight: '500',
-  },
-  dropdown: {
+    fontFamily: '"Roboto", sans-serif',
     position: 'relative',
-    cursor: 'pointer',
+    padding: '0.5rem 0',
+    transition: 'all 0.3s ease',
   },
+  navLinkHover: {
+    color: '#FC9E3B',
+  },
+
   rentButton: {
     background: '#FC9E3B',
     color: 'white',
     textDecoration: 'none',
-    padding: '0.5rem 1rem',
-    borderRadius: '5px',
-    fontSize: '0.85rem',
-    fontWeight: '500',
-    transition: 'background 0.2s',
-  }
+    padding: '0.875rem 1.5rem',
+    borderRadius: '0px',
+    fontSize: '0.95rem',
+    fontWeight: '600',
+    fontFamily: '"Roboto", sans-serif',
+    transition: 'all 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    textTransform: 'uppercase',
+    letterSpacing: '0.5px',
+    boxShadow: '0 4px 15px rgba(252, 158, 59, 0.3)',
+  },
+  buttonIcon: {
+    fontSize: '1.1rem',
+  },
 };
 
 export default Header;

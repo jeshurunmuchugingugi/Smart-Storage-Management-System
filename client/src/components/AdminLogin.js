@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 
 const AdminLogin = ({ onLogin }) => {
   const [credentials, setCredentials] = useState({
-    email: '',
+    username: '',
     password: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
 
   const handleChange = (e) => {
     setCredentials({
@@ -60,10 +58,10 @@ const AdminLogin = ({ onLogin }) => {
           <div style={styles.inputGroup}>
             <label style={styles.label}>Email Address</label>
             <input
-              type="email"
-              name="email"
-              placeholder="admin@storelink.com"
-              value={credentials.email}
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={credentials.username}
               onChange={handleChange}
               style={styles.input}
               required
@@ -74,7 +72,7 @@ const AdminLogin = ({ onLogin }) => {
             <label style={styles.label}>Password</label>
             <div style={styles.passwordContainer}>
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={'password'}
                 name="password"
                 placeholder="Enter your password"
                 value={credentials.password}
@@ -82,22 +80,15 @@ const AdminLogin = ({ onLogin }) => {
                 style={styles.passwordInput}
                 required
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                style={styles.eyeButton}
-              >
-                {showPassword ? '👁️' : '👁️‍🗨️'}
-              </button>
+
             </div>
           </div>
           
+
           <div style={styles.options}>
             <label style={styles.checkboxLabel}>
               <input
                 type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
                 style={styles.checkbox}
               />
               Remember me
@@ -106,7 +97,6 @@ const AdminLogin = ({ onLogin }) => {
           </div>
           
           {error && <div style={styles.error}>{error}</div>}
-          
           <button type="submit" disabled={loading} style={styles.signInButton}>
             {loading ? 'Signing in...' : 'Sign In'}
           </button>

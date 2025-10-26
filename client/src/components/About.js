@@ -5,9 +5,9 @@ const About = () => {
     <div style={styles.container}>
       {/* Hero Section */}
       <div style={styles.hero}>
-        <h1 style={styles.heroTitle}>Secure Storage Solutions</h1>
+        <h1 style={styles.heroTitle}>Smart Storage Management System</h1>
         <p style={styles.heroSubtitle}>
-          Modern, convenient, and reliable storage for all your needs
+          Intelligent, automated, and secure storage solutions for the modern world
         </p>
       </div>
 
@@ -16,24 +16,24 @@ const About = () => {
         <div style={styles.aboutContent}>
           <div style={styles.textContent}>
             <div style={styles.badge}>About us</div>
-            <h2 style={styles.sectionTitle}>Your Trusted Storage Partner</h2>
+            <h2 style={styles.sectionTitle}>Smart Storage, Smarter Solutions</h2>
             
             <p style={styles.paragraph}>
-              We are committed to providing top-tier storage solutions that combine 
-              security, convenience, and affordability. Our state-of-the-art facility is 
-              designed to give you peace of mind while storing your valuable belongings.
+              Our Smart Storage Management System revolutionizes how you store and manage 
+              your belongings. Using cutting-edge technology and intelligent automation, 
+              we provide secure, efficient, and user-friendly storage solutions.
             </p>
             
             <p style={styles.paragraph}>
-              With our comprehensive digital platform, managing your storage has 
-              never been easier. From real-time unit availability to seamless booking 
-              and payment, we've streamlined every step of the storage experience.
+              Experience seamless storage management with real-time monitoring, automated 
+              inventory tracking, and instant access control. Our digital-first approach 
+              ensures you have complete visibility and control over your stored items.
             </p>
             
             <p style={styles.paragraph}>
-              Whether you need short-term storage during a move or long-term 
-              solutions for your business, our flexible options and professional service 
-              ensure your items are always safe and accessible when you need them.
+              From personal belongings to business inventory, our smart system adapts 
+              to your needs with flexible storage options, climate control, and 24/7 
+              security monitoring for ultimate peace of mind.
             </p>
           </div>
           

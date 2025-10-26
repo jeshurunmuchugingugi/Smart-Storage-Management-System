@@ -44,3 +44,10 @@ const fetchData = async () => {
     setLoading(false);
   }
 };
+
+//logout functionality
+const handleLogout = () => {
+  localStorage.removeItem('admin_token');
+  localStorage.removeItem('admin_user');
+  onLogout();
+};

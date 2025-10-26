@@ -99,10 +99,10 @@ const styles = {
   },
   effortless: {
     fontStyle: 'italic',
-    color: '#1A2637',
+    color: '#37361aff',
     textDecorationColor: '#FC9E3B',  
-    textUnderlineOffset: '10px',
-  textDecorationThickness: '0.2rem',
+    textUnderlineOffset: '9px',
+    textDecorationThickness: '0.15rem',
     fontWeight: '300',
     textDecoration:'underline'
   },
@@ -189,7 +189,7 @@ const styles = {
     minWidth: '120px',
   },
   badge1: {
-    top: '-30px',
+    top: '-40px',
     right: '450px',
     zIndex: 2,
   },

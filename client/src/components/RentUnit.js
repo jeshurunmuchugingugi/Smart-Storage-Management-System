@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './RentUnit.css';
 
-const RentUnit = ({ units, loading, error }) => {
+const RentUnit = ({ units = [], loading = false, error = null }) => {
   const availableUnits = units.filter(unit => unit.status === 'available');
 
   if (loading) {
@@ -50,13 +50,13 @@ const RentUnit = ({ units, loading, error }) => {
                 </div>
               </div>
               
-              {unit.features && unit.features.length > 0 && (
+              {unit.features && Array.isArray(unit.features) && unit.features.length > 0 && (
                 <div className="features">
                   <span className="featuresLabel">Features:</span>
                   <div className="featureTags">
                     {unit.features.map((feature, index) => (
                       <span key={feature.feature_id || index} className="featureTag">
-                        {feature.name}
+                        {feature.name || 'Unknown Feature'}
                       </span>
                     ))}
                   </div>

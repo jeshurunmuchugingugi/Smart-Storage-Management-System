@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import AdminLogin from './components/AdminLogin';
 import HeroSection from './components/HeroSection';
 import BookingForm from './components/BookingForm';
@@ -22,6 +23,7 @@ const App = () => {
             <>
               <Header />
               <HeroSection />
+              <Footer />
             </>
           } />
         </Routes>

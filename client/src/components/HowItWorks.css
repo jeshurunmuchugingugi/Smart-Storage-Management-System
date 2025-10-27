@@ -67,6 +67,7 @@
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   transition: transform 0.3s ease;
   border: 1px solid #e2e8f0;
+  min-height: 400px;
 }
 
 .step:hover {
@@ -74,9 +75,9 @@
 }
 
 .step-image {
-  height: 180px;
+  height: 220px;
   overflow: hidden;
-  margin: 1rem;
+  margin: 1.5rem;
   border-radius: 12px;
 }
 
@@ -87,7 +88,7 @@
 }
 
 .step-content {
-  padding: 0 1.5rem 1.5rem 1.5rem;
+  padding: 0 2rem 2rem 2rem;
   text-align: left;
 }
 
@@ -103,6 +104,9 @@
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: #2d3748;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .step-description {

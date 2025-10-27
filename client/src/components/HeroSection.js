@@ -97,15 +97,15 @@ const styles = {
     letterSpacing: '-0.02em',
     textAlign: 'left',
   },
-  effortless: {
-    fontStyle: 'italic',
-    color: '#1A2637',
-    textDecorationColor: '#FC9E3B',  
-    textUnderlineOffset: '9px',
-    textDecorationThickness: '3px',
-    fontWeight: '300',
-    textDecoration:'underline'
-  },
+effortless: {
+  fontStyle: 'italic',
+  color: '#1A2637',
+  textDecorationLine: 'underline',      
+  textDecorationColor: '#FC9E3B',
+  textDecorationThickness: '2px',
+  textUnderlineOffset: '9px',
+  fontWeight: 300
+},
 
   subtext: {
     fontSize: '1.25rem',

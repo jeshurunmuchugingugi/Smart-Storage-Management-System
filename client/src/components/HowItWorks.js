@@ -5,12 +5,13 @@ const HowItWorks = () => {
   return (
     <section className="how-it-works-section">
       <div className="container">
+        <div className="badge">HOW IT WORKS</div>
         <h2 className="title">
           How Our <span className="accent">Logistics</span> Work
         </h2>
         <p className="subtitle">
-          We'll come, storage and transport anything from your doorstep to our
-          warehouse. Here's how we offer world-class service.
+          We've made storage and transport effortless. From your doorstep to our
+          secure units, here's how we take care of everything for you.
         </p>
         
         <div className="steps-grid">
@@ -23,11 +24,10 @@ const HowItWorks = () => {
               />
             </div>
             <div className="step-content">
-              <div className="step-icon"></div>
+              <div className="step-number">Step 1</div>
               <h3 className="step-title">Pick Up</h3>
               <p className="step-description">
-                We pick up your belongings, transport to a convenient store, and
-                confirm your new booking.
+                Enter your pickup location, select a convenient time, and confirm your booking.
               </p>
             </div>
           </div>
@@ -41,11 +41,10 @@ const HowItWorks = () => {
               />
             </div>
             <div className="step-content">
-              <div className="step-icon"></div>
+              <div className="step-number">Step 2</div>
               <h3 className="step-title">Transport</h3>
               <p className="step-description">
-                We pick up from your location, deliver to convenient store, and
-                confirm your new booking.
+                Enter your pickup location, select a convenient time, and confirm your booking.
               </p>
             </div>
           </div>
@@ -59,11 +58,10 @@ const HowItWorks = () => {
               />
             </div>
             <div className="step-content">
-              <div className="step-icon"></div>
+              <div className="step-number">Step 3</div>
               <h3 className="step-title">Store</h3>
               <p className="step-description">
-                Enjoy our pickup location, select a convenient store, and
-                confirm your new booking.
+                Enter your pickup location, select a convenient time, and confirm your booking.
               </p>
             </div>
           </div>

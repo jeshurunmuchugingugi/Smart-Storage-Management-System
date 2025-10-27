@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className="about-container">
       <div className="hero">
-        <h1 className="hero-title">Smart Storage Management System</h1>
+        <h1 className="hero-title">About Us</h1>
         <p className="hero-subtitle">
           Intelligent, automated, and secure storage solutions for the modern world
         </p>

@@ -19,7 +19,10 @@ const HowItWorks = () => {
               <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=300&h=200&fit=crop" alt="Pick Up" className='image' />
             </div>
             <div className='stepContent'>
-              <div className='stepIcon'></div>
+              <div className='stepIcon'> 
+                <span class="material-symbols-outline">home</span>
+
+              </div>
               <h3 className='stepTitle'>Pick Up</h3>
               <p className='stepDescription'>
                 We pick up your belongings, transport to a convenient store, and

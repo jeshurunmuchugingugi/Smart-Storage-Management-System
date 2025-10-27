@@ -9,6 +9,8 @@ import BookingsList from './components/BookingsList';
 import About from './components/About';
 import HowItWorks from './components/HowItWorks';
 import RentUnit from './components/RentUnit';
+import StorageUnits  from './components/StorageUnits';
+
 import './App.css';
 
 const App = () => {
@@ -24,6 +26,7 @@ const App = () => {
           <Route path="/book/:unitId" element={<BookingForm />} />
           <Route path="/bookings" element={<BookingsList />} />
           <Route path="/about" element={<About />} />
+          <Route path="/storage" element={<StorageUnits />} />
           <Route path="/rent-unit" element={<RentUnit />} />
           <Route path="/" element={
             <>

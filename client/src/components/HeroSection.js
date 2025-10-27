@@ -99,7 +99,7 @@ const styles = {
   },
   effortless: {
     fontStyle: 'italic',
-    color: '#37361aff',
+    color: '#1A2637',
     textDecorationColor: '#FC9E3B',  
     textUnderlineOffset: '9px',
     textDecorationThickness: '3px',

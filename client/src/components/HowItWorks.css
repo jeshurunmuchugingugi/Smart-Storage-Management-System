@@ -1,6 +1,6 @@
 .how-it-works-section {
   padding: 4rem 0;
-  background-color: #f8f9fa;
+  background-color: #fff8ed;
   width: 100vw;
   position: relative;
   left: 50%;
@@ -15,26 +15,42 @@
   padding: 0 2rem;
 }
 
+.badge {
+  display: inline-block;
+  background-color: #fff;
+  color: #ff8c00;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 auto 2rem auto;
+  display: block;
+  width: fit-content;
+  border: 1px solid #ff8c00;
+}
+
 .title {
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 1rem;
-  color: #333;
+  color: #2d3748;
   font-weight: 600;
 }
 
 .accent {
-  color: #007bff;
+  color: #ff8c00;
 }
 
 .subtitle {
-  font-size: 1.125rem;
+  font-size: 1rem;
   text-align: center;
-  color: #666;
+  color: #718096;
   margin-bottom: 3rem;
-  max-width: 600px;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.6;
 }
 
 .steps-grid {
@@ -46,10 +62,11 @@
 
 .step {
   background-color: white;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   transition: transform 0.3s ease;
+  border: 1px solid #e2e8f0;
 }
 
 .step:hover {
@@ -57,8 +74,10 @@
 }
 
 .step-image {
-  height: 200px;
+  height: 180px;
   overflow: hidden;
+  margin: 1rem;
+  border-radius: 12px;
 }
 
 .image {
@@ -68,21 +87,28 @@
 }
 
 .step-content {
-  padding: 1.5rem;
-  text-align: center;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  text-align: left;
+}
+
+.step-number {
+  color: #ff8c00;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .step-title {
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-size: 1.125rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: #2d3748;
 }
 
 .step-description {
-  color: #666;
+  color: #718096;
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 @media (max-width: 768px) {
@@ -97,5 +123,9 @@
   
   .container {
     padding: 0 1rem;
+  }
+  
+  .step-content {
+    text-align: center;
   }
 }

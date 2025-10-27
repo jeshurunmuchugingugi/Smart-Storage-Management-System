@@ -4,88 +4,68 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="content">
+      <div className="footer-container">
+        <div className="footer-content">
           {/* Company Info */}
-          <div className="section">
-            <h3 className="logo">LOGISTICS & STORAGE</h3>
-            <p className="description">
-              Secure Storage Solutions & Transport Services
+          <div className="footer-column company-info">
+            <h3 className="company-name">CONTACT US</h3>
+            <p className="company-description">
+              We offer clean, secure, and private self-storage spaces of all sizes to residential and business customers.We can pick up your items for convinience
             </p>
-            <p className="contact">
-              Call us: +2547 123-4567
+            <p className="company-tagline">
+              Westlands Common House off Waiyaki Way Nairobi, Kenya
+              Tel: +254 704 333777
+              Email: info@storagecentral-kenya.com
             </p>
           </div>
 
-          {/* Services */}
-          <div className="section">
-            <h4 className="section-title">Services</h4>
-            <ul className="link-list">
-              <li><a href="/storage" className="link">Storage Units</a></li>
-              <li><a href="/transport" className="link">Transportation</a></li>
-              <li><a href="/rent" className="link">Unit Rental</a></li>
-              <li><a href="/services" className="link">All Services</a></li>
+          {/* Shop Column */}
+          <div className="footer-column">
+            <h4 className="column-title">Services</h4>
+            <ul className="footer-links">
+              <li><a href="#storage">Storage Units</a></li>
+              <li><a href="#transport">Transportation</a></li>
+              <li><a href="#rent">Rent a Unit</a></li>
+              <li><a href="#services">All Services</a></li>
             </ul>
           </div>
 
-          {/* Quick Links */}
-          <div className="section">
-            <h4 className="section-title">Quick Links</h4>
-            <ul className="link-list">
-              <li><a href="/about" className="link">About Us</a></li>
-              <li><a href="/bookings" className="link">My Bookings</a></li>
-              <li><a href="/contact" className="link">Contact</a></li>
-              <li><a href="/support" className="link">Support</a></li>
+          {/* Quick Links Column */}
+          <div className="footer-column">
+            <h4 className="column-title">Quick Links</h4>
+            <ul className="footer-links">
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#bookings">My Bookings</a></li>
+              <li><a href="#calculator">Space Calculator</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
 
-          {/* Social Media */}
-          <div className="section">
-            <h4 className="section-title">Stay In Touch</h4>
-            <div className="social-links">
-              <a href="https://facebook.com" className="social-link" target="_blank" rel="noopener noreferrer">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12h24z"/>
-                </svg>
-                Facebook
-              </a>
-              <a href="https://instagram.com" className="social-link" target="_blank" rel="noopener noreferrer">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2z"/>
-                </svg>
-                Instagram
-              </a>
-              <a href="https://youtube.com" className="social-link" target="_blank" rel="noopener noreferrer">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12l9.5 3.6L15.8 12z"/>
-                </svg>
-                YouTube
-              </a>
-              <a href="https://twitter.com" className="social-link" target="_blank" rel="noopener noreferrer">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M24 4.6c-.9.4-1.8.7-2.8.8 1-.6 1.8-1.6 2.2-2.7z"/>
-                </svg>
-                Twitter
-              </a>
-            </div>
+          {/* Social media */}
+          <div className="footer-column">
+            <h4 className="column-title">Stay In Touch</h4>
+            <ul className="footer-links">
+              <li><a href="#facebook">Facebook</a></li>
+              <li><a href="#instagram">Instagram</a></li>
+              <li><a href="#youtube">YouTube</a></li>
+              <li><a href="#spotify">Spotify</a></li>
+            </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="bottom-bar">
+        <div className="footer-bottom">
           <p className="copyright">
-            Copyright © 2025 Logistics & Storage. All rights reserved.
+            Copyright © 2025. storelink logistics. All rights reserved.
           </p>
-          <div className="bottom-links">
-            <a href="/privacy" className="bottom-link">Privacy</a>
-            <a href="/terms" className="bottom-link">Terms</a>
+          <div className="footer-bottom-links">
+            <a href="#privacy">Privacy</a>
+            <a href="#terms">Terms</a>
           </div>
         </div>
       </div>
     </footer>
   );
 };
-
-
 
 export default Footer;

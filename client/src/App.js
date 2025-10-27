@@ -10,6 +10,7 @@ import BookingsList from './components/BookingsList';
 import About from './components/About';
 import HowItWorks from './components/HowItWorks';
 import RentUnit from './components/RentUnit';
+import Services from './components/Services';
 import './App.css';
 
 const App = () => {
@@ -27,11 +28,15 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/rent-unit" element={<RentUnit />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/" element={
             <>
               <Header />
               <HeroSection />
-              <Footer />
+              <Services />
+              <HowItWorks/>
+              <About />
+              < Footer />
             </>
           } />
         </Routes>

@@ -141,6 +141,19 @@ api.add_resource(StorageUnitResource, '/api/units/<int:unit_id>')
 api.add_resource(FeatureListResource, '/api/features')
 api.add_resource(BookingListResource, '/api/bookings')
 
+@app.route('/')
+def home():
+    return jsonify({
+        "message": "Smart Storage Management System API",
+        "status": "running",
+        "endpoints": {
+            "admin_login": "/api/admin/login",
+            "units": "/api/units",
+            "features": "/api/features",
+            "bookings": "/api/bookings"
+        }
+    })
+
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({"error": "Resource not found"}), 404

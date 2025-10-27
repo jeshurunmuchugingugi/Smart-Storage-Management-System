@@ -13,10 +13,11 @@ const BookingsList = () => {
     try {
       const response = await fetch('/api/bookings');
       const data = await response.json();
-      setBookings(data);
+      setBookings(Array.isArray(data) ? data : []);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching bookings:', error);
+      setBookings([]);
       setLoading(false);
     }
   };
@@ -26,6 +27,17 @@ const BookingsList = () => {
       <div style={styles.loading}>
         <div style={styles.spinner}></div>
         <p>Loading bookings...</p>
+      </div>
+    );
+  }
+
+  if (!Array.isArray(bookings)) {
+    return (
+      <div style={styles.container}>
+        <h2 style={styles.title}>Your Bookings</h2>
+        <div style={styles.emptyState}>
+          <p>Error loading bookings.</p>
+        </div>
       </div>
     );
   }

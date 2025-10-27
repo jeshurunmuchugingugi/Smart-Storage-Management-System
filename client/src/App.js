@@ -34,7 +34,9 @@ const App = () => {
               <Header />
               <HeroSection />
               <Services />
-              <Footer />
+              <HowItWorks/>
+              <About />
+              < Footer />
             </>
           } />
         </Routes>

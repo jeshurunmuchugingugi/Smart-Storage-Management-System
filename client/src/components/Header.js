@@ -76,6 +76,13 @@ const Header = () => {
                     <div style={styles.dropdownSubtitle}>Secure Units</div>
                   </div>
                 </Link>
+
+                <Link to="/about" style={styles.dropdownItem}>
+                  <Icon icon="mdi:warehouse" style={styles.dropdownIcon} />
+                  <div>
+                    <div style={styles.dropdownTitle}>About</div>
+                  </div>
+                </Link>
               </div>
             )}
           </div>

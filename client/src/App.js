@@ -24,12 +24,12 @@ const App = () => {
           <Route path="/book/:unitId" element={<BookingForm />} />
           <Route path="/bookings" element={<BookingsList />} />
           <Route path="/about" element={<About />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/rent-unit" element={<RentUnit />} />
           <Route path="/" element={
             <>
               <Header />
               <HeroSection />
+              <HowItWorks />
             </>
           } />
         </Routes>

@@ -1,128 +1,166 @@
-.section {
-  padding: 0rem 2rem;
+.howItWorksSection {
+  padding: 3rem 2rem;
   background-color: #F4F7FB;
+  position: relative;
 }
 
-.container {
+.howItWorksContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
 }
 
-.badge {
-  display: inline-block;
-  background-color: #fff;
-  color: #ff8c00;
-  padding: 0.5rem 1.5rem;
-  border-radius: 25px;
-  font-size: 0.875rem;
-  font-weight: 500;
+.howItWorksHeader {
   text-align: center;
-  margin: 0 auto 2rem auto;
-  display: block;
-  width: fit-content;
-  border: 1px solid #ff8c00;
+  margin-bottom: 1.5rem;
 }
 
-.title {
-  font-size: 2.5rem;
+.howItWorksTitle {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #1A2637;
+  margin-bottom: 1rem;
+  margin-top: 0px;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: -0.02em;
+}
+.howItBtn {
+  padding: 10px 15px;
+  background-color: white;
+  color: #FC9E3B;
+  font-size: 12px;
   text-align: center;
   margin-bottom: 1rem;
-  color: #2d3748;
-  font-weight: 600;
+  border-radius: 20px;
+  border: solid #FC9E3B;
 }
 
-.accent {
-  color: #ff8c00;
+.titleAccent {
+  color: #FC9E3B;
 }
 
-.subtitle {
-  font-size: 1rem;
-  text-align: center;
-  color: #718096;
-  margin-bottom: 3rem;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+.howItWorksSubtitle {
+  font-size: 1.125rem;
+  color: #6B7280;
+  max-width: 600px;
+  margin: 0 auto;
   line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
 }
 
-.stepsGrid {
-  display: flex;
-justify-content: center;  gap: 2rem;
-  margin-top: 3rem;
-  align-items: center;
-  margin: 3rem auto;
+.stepsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
 }
 
-.step {
-  padding: 20px;
-  background-color: #ffff;
-  width: 372px;
-  height: 459px;
+.stepCard {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
   text-align: center;
+  position: relative;
+  border: 1px solid #F3F4F6;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
 }
 
-.step:hover {
-  transform: translateY(-5px);
+.stepCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #FC9E3B;
 }
 
-.step-image {
-  height: 220px;
-  overflow: hidden;
-  margin: 1.5rem;
+.stepNumber {
+  position: absolute;
+  top: -15px;
+  left: 2rem;
+  background: #FC9E3B;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.stepImageContainer {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin: 0.2rem 0 2rem;
   border-radius: 12px;
+  overflow: hidden;
 }
 
-.image {
+.stepImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.step-content {
-  padding: 0 2rem 2rem 2rem;
-  text-align: left;
+.stepCard:hover .stepImage {
+  transform: scale(1.05);
 }
 
-.step-number {
-  color: #ff8c00;
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.step-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #2d3748;
+.stepIconOverlay {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #FC9E3B 0%, #F4A261 100%);
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(252, 158, 59, 0.3);
 }
 
-.step-description {
-  color: #718096;
-  line-height: 1.6;
-  font-size: 0.875rem;
+.stepIcon {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.stepTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1A2637;
+  margin-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.stepDescription {
+  color: #6B7280;
+  line-height: 1.7;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
 }
 
 @media (max-width: 768px) {
-  .steps-grid {
+  .howItWorksSection {
+    padding: 3rem 1rem;
+  }
+  
+  .howItWorksTitle {
+    font-size: 2.25rem;
+  }
+  
+  .stepsContainer {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
   }
   
-  .title {
-    font-size: 2rem;
+  .stepCard {
+    padding: 2rem 1.5rem;
   }
   
-  .container {
-    padding: 0 1rem;
-  }
-  
-  .step-content {
-    text-align: center;
+  .howItWorksSubtitle {
+    font-size: 1rem;
   }
 }

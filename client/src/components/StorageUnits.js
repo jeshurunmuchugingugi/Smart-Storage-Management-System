@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 
-const StorageUnitsPage = () => {
+const StorageUnitsPage = ({ units, loading, onRefresh }) => {
   const [filter, setFilter] = useState('All');
   const navigate = useNavigate();
 
-  const storageUnits = [
+  // Static fallback data when backend is not available
+  const staticUnits = [
     {
       id: 1,
       name: 'A10',
@@ -63,7 +64,33 @@ const StorageUnitsPage = () => {
     }
   ];
 
+  // Use backend data if available, otherwise use static data
+  const storageUnits = units && units.length > 0 ? units.map(unit => ({
+    id: unit.unit_id,
+    name: unit.unit_number,
+    area: `${unit.size}m2` || '10m2',
+    price: `Ksh. ${unit.monthly_rate}/month`,
+    location: `Location: ${unit.location}`,
+    site: `Site: ${unit.site}`,
+    insurance: 'Ksh. 50,000 insurance cover included. No deposit required',
+    image: 'https://www.sparefoot.com/blog/wp-content/uploads/2024/08/how-much-is-a-storage-unit-hero-1334x1334.jpg',
+    status: unit.status,
+    features: unit.features
+  })) : staticUnits;
+  console.log(storageUnits)
+
   const filteredUnits = filter === 'All' ? storageUnits : storageUnits.filter(unit => unit.area === filter);
+
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <div style={styles.container}>
+          <div style={styles.loading}>Loading storage units...</div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -84,7 +111,7 @@ const StorageUnitsPage = () => {
       </div>
 
       <div style={styles.grid}>
-        {filteredUnits.map((unit) => (
+        {filteredUnits && filteredUnits.length > 0 ? filteredUnits.map((unit) => (
           <div 
             key={unit.id} 
             style={styles.card}
@@ -98,31 +125,78 @@ const StorageUnitsPage = () => {
             }}
           >
             <div style={styles.badge}>{unit.name}</div>
+            {unit.status && (unit.status === 'available' || unit.status === 'booked') && (
+              <div style={{
+                ...styles.statusBadge,
+                backgroundColor: unit.status === 'booked' ? '#fecaca' : '#fef3c7' || unit.status === 'available' ? '#dcfce7' : '#f0fdf4',
+                color: unit.status === 'booked' ? '#dc2626' : '#d97706'
+              }}>
+                {unit.status.toUpperCase()}
+              </div>
+            )}
             <img src={unit.image} alt="Storage Unit" style={styles.image} />
             <div style={styles.cardContent}>
               <div style={styles.sizePrice}>
                 <span style={styles.size}>{unit.area}</span>
                 <span style={styles.price}>{unit.price}</span>
               </div>
-              <p style={styles.location}>{unit.location}</p>
+
+              <div style={styles.locandsite}>
+                 <p style={styles.location}>{unit.location}</p>
+              <p style={styles.site}>{unit.site}</p>
+              </div>
+
+              {unit.features && unit.features.length > 0 && (
+                <div style={styles.featuresSection}>
+                  <div style={styles.featuresList}>
+                    {unit.features.map((feature, index) => (
+                      <span key={index} style={styles.featureBadge}>
+                        {feature.name || feature}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
               <p style={styles.insurance}>{unit.insurance}</p>
-              <button 
-                style={styles.bookButton}
-                onClick={() => navigate(`/book/${unit.id}`)}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = '#e6941a';
-                  e.target.style.transform = 'translateY(-1px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = '#F5A623';
-                  e.target.style.transform = 'translateY(0)';
-                }}
-              >
-                BOOK AND PAY NOW
-              </button>
+              {(!unit.status || unit.status === 'available') ? (
+                <button 
+                  style={styles.bookButton}
+                  onClick={() => navigate(`/book/${unit.id}`)}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#e6941a';
+                    e.target.style.transform = 'translateY(-1px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#F5A623';
+                    e.target.style.transform = 'translateY(0)';
+                  }}
+                >
+                  BOOK AND PAY NOW
+                </button>
+              ) : (
+                <button 
+                  style={{
+                    ...styles.bookButton,
+                    backgroundColor: '#9CA3AF',
+                    cursor: 'not-allowed'
+                  }}
+                  disabled
+                >
+                  NOT AVAILABLE
+                </button>
+              )}
             </div>
           </div>
-        ))}
+        )) : (
+          <div style={styles.noUnits}>
+            <p style={styles.noUnitsText}>No storage units available at the moment.</p>
+            {onRefresh && (
+              <button style={styles.refreshButton} onClick={onRefresh}>
+                Refresh
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
     </>
@@ -144,6 +218,11 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     gap: '1rem'
+  },
+  locandsite:{
+    marginTop:'0px',
+    display:'flex',
+    justifyContent:'space-between'
   },
   filterLabel: {
     fontSize: '1rem',
@@ -178,6 +257,7 @@ const styles = {
     transition: 'all 0.3s ease',
     cursor: 'pointer'
   },
+
   badge: {
     position: 'absolute',
     top: '1rem',
@@ -216,15 +296,22 @@ const styles = {
   },
   location: {
     fontSize: '0.9rem',
-    color: '#666',
+    color: '#1A2637',
+    marginBottom: '0.5rem',
+    lineHeight: '1.4'
+  },
+    site: {
+    fontSize: '0.9rem',
+    color: '#1A2637',
     marginBottom: '0.5rem',
     lineHeight: '1.4'
   },
   insurance: {
-    fontSize: '0.85rem',
+    fontSize: '0.95rem',
     color: '#888',
     marginBottom: '1.5rem',
-    lineHeight: '1.4'
+    lineHeight: '1.4',
+    textAlign:'left',
   },
   bookButton: {
     width: '100%',
@@ -239,6 +326,59 @@ const styles = {
     transition: 'all 0.2s ease',
     textTransform: 'uppercase',
     letterSpacing: '0.5px'
+  },
+  loading: {
+    textAlign: 'center',
+    fontSize: '1.1rem',
+    color: '#64748b',
+    padding: '2rem'
+  },
+  statusBadge: {
+    position: 'absolute',
+    top: '1rem',
+    right: '1rem',
+    padding: '0.25rem 0.5rem',
+    borderRadius: '4px',
+    fontSize: '0.75rem',
+    fontWeight: '500',
+    zIndex: 2
+  },
+  featuresSection: {
+    marginBottom: '1rem'
+  },
+  featuresList: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '0.5rem',
+    marginBottom: '0.5rem'
+  },
+  featureBadge: {
+    backgroundColor: '#dbeafe',
+    color: '#1e40af',
+    padding: '0.25rem 0.5rem',
+    borderRadius: '4px',
+    fontSize: '0.75rem'
+  },
+  noUnits: {
+    gridColumn: '1 / -1',
+    textAlign: 'center',
+    padding: '2rem'
+  },
+  noUnitsText: {
+    color: '#64748b',
+    fontSize: '1.1rem',
+    marginBottom: '1rem'
+  },
+  refreshButton: {
+    backgroundColor: '#F5A623',
+    color: 'white',
+    padding: '0.75rem 1.5rem',
+    border: 'none',
+    borderRadius: '6px',
+    fontSize: '0.9rem',
+    fontWeight: '500',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s'
   }
 };
 

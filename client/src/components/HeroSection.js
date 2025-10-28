@@ -1,6 +1,7 @@
 // src/components/HeroSection.js
 import React from 'react';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -14,10 +15,12 @@ const HeroSection = () => {
             Our Smart Quote System Instantly Calculates Transport Costs And Storage Size Once You Enter Your Pickup Location — No Calls, No Guesswork, Just Instant Pricing.
           </p>
           <div style={styles.buttonGroup}>
-            <button style={styles.primaryButton}>
-              <Icon icon="mdi:key" style={styles.buttonIcon} />
-              Rent A Unit
-            </button>
+            <Link to="/storage" style={{textDecoration: 'none'}}>
+              <button style={styles.primaryButton}>
+                <Icon icon="mdi:key" style={styles.buttonIcon} />
+                Rent A Unit
+              </button>
+            </Link>
             <button style={styles.secondaryButton}>
               <Icon icon="mdi:truck" style={styles.buttonIcon} />
               Book Transport
@@ -97,15 +100,15 @@ const styles = {
     letterSpacing: '-0.02em',
     textAlign: 'left',
   },
-  effortless: {
-    fontStyle: 'italic',
-    color: '#37361aff',
-    textDecorationColor: '#FC9E3B',  
-    textUnderlineOffset: '9px',
-    textDecorationThickness: '3px',
-    fontWeight: '300',
-    textDecoration:'underline'
-  },
+effortless: {
+  fontStyle: 'italic',
+  color: '#1A2637',
+  textDecorationLine: 'underline',      
+  textDecorationColor: '#FC9E3B',
+  textDecorationThickness: '2px',
+  textUnderlineOffset: '9px',
+  fontWeight: 300
+},
 
   subtext: {
     fontSize: '1.25rem',

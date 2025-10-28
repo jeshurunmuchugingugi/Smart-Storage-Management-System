@@ -21,6 +21,7 @@ const Header = () => {
             </div>
           </Link>
         </div>
+
         <nav style={styles.centerNav}>
           <Link 
             to="/" 
@@ -33,7 +34,6 @@ const Header = () => {
           >
             Home
           </Link>
-          
           <div 
             style={styles.dropdown}
             onMouseEnter={() => {
@@ -78,8 +78,13 @@ const Header = () => {
                 </Link>
               </div>
             )}
+
           </div>
+
+        
           
+
+
           <Link 
             to="/storage" 
             style={{
@@ -103,9 +108,21 @@ const Header = () => {
           >
             Contact
           </Link>
+          <Link 
+            to="/about" 
+            style={{
+              ...styles.navLink,
+              ...(hoveredLink === 0 ? styles.navLinkHover : {})
+            }}
+            onMouseEnter={() => setHoveredLink(0)}
+            onMouseLeave={() => setHoveredLink(null)}
+          >
+            About
+          </Link>
+          
         </nav>
         <div style={styles.rightSection}>
-          <Link to="/rent" style={styles.rentButton}>
+          <Link to="/storage" style={styles.rentButton}>
             <Icon icon="mdi:key" style={styles.buttonIcon} />
             Rent A Unit
           </Link>

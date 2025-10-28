@@ -2,16 +2,19 @@
 import React, { useState, useEffect } from 'react';
 import './AdminDashboard.css';
 import UnitsTab from './UnitsTab';
+import CustomersTab from './CustomersTab';
+
 
 const AdminDashboard = ({ admin, onLogout }) => {
   const [bookings, setBookings] = useState([]);
   const [features, setFeatures] = useState([]);
   const [transports, setTransports] = useState([]);
   const [units, setUnits] = useState([]);
+  const [customers, setCustomers] = useState([]);
   const [activeTab, setActiveTab] = useState('units'); // default to units
   const [loading, setLoading] = useState(true);
 
-  // Robust API call with token handling
+  
   const apiCall = async (url, options = {}) => {
     const token = localStorage.getItem('admin_token');
     const headers = {
@@ -106,7 +109,6 @@ const AdminDashboard = ({ admin, onLogout }) => {
 
   return (
     <div className="admin-dashboard">
-      {/* Header */}
       <div className="admin-header">
         <div className="header-left">
           <h1 className="admin-title">Admin Dashboard</h1>
@@ -120,7 +122,6 @@ const AdminDashboard = ({ admin, onLogout }) => {
         </div>
       </div>
 
-      {/* Tabs */}
       <div className="admin-tabs">
         <button
           onClick={() => setActiveTab('units')}
@@ -148,7 +149,6 @@ const AdminDashboard = ({ admin, onLogout }) => {
         </button>
       </div>
 
-      {/* Tab Content */}
       <div className="admin-content">
         {activeTab === 'units' && (
           <UnitsTab

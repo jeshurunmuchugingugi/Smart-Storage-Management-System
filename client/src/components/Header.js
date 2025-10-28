@@ -122,7 +122,7 @@ const Header = () => {
           
         </nav>
         <div style={styles.rightSection}>
-          <Link to="/rent" style={styles.rentButton}>
+          <Link to="/storage" style={styles.rentButton}>
             <Icon icon="mdi:key" style={styles.buttonIcon} />
             Rent A Unit
           </Link>

@@ -1,5 +1,5 @@
 import React from 'react';
-import    './HowItWorks.css';
+import './HowItWorks.css';
 
 const HowItWorks = () => {
   return (
@@ -63,4 +63,5 @@ const HowItWorks = () => {
     </section>
   );
 };
+
 export default HowItWorks;

@@ -1,5 +1,6 @@
 import React from 'react';
 import './About.css';
+
 const About = () => {
   return (
     <div className='container'>
@@ -49,4 +50,5 @@ const About = () => {
     </div>
   );
 };
+
 export default About;

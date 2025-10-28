@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import AdminLogin from './components/AdminLogin';
 import HeroSection from './components/HeroSection';
 import BookingForm from './components/BookingForm';
@@ -9,8 +10,7 @@ import BookingsList from './components/BookingsList';
 import About from './components/About';
 import HowItWorks from './components/HowItWorks';
 import RentUnit from './components/RentUnit';
-import StorageUnits  from './components/StorageUnits';
-
+import Services from './components/Services';
 import './App.css';
 
 const App = () => {
@@ -28,11 +28,16 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/storage" element={<StorageUnits />} />
           <Route path="/rent-unit" element={<RentUnit />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/" element={
             <>
               <Header />
               <HeroSection />
               <HowItWorks />
+              <Services />
+              <HowItWorks/>
+              <About />
+              < Footer />
             </>
           } />
         </Routes>

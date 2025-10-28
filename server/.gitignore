@@ -1,1 +1,24 @@
-**db
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+instance/
+
+# Pipenv
+Pipfile.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Flask
+.env
+.flaskenv

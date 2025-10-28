@@ -1,53 +1,93 @@
 import React from 'react';
+import { Icon } from '@iconify/react';
 import './About.css';
 
 const About = () => {
-  return (
-    <div className='container'>
-      {/* Hero Section */}
-      <div className='hero'>
-        <h1 className='heroTitle'>Smart Storage Management System</h1>
-        <p className='heroSubtitle'>
-          Intelligent, automated, and secure storage solutions for the modern world
-        </p>
-      </div>
+  const stats = [
+    { number: '500+', label: 'Storage Units' },
+    { number: '24/7', label: 'Security Monitoring' },
+    { number: '99.9%', label: 'Uptime Guarantee' },
+    { number: '1000+', label: 'Happy Customers' }
+  ];
 
-      {/* About Section */}
-      <div className='aboutSection'>
+  const features = [
+    {
+      icon: 'mdi:shield-check',
+      title: 'Secure & Safe',
+      description: '24/7 surveillance and climate-controlled environment'
+    },
+    {
+      icon: 'mdi:clock-fast',
+      title: 'Real-Time Access',
+      description: 'Instant access to your storage units anytime'
+    },
+    {
+      icon: 'mdi:phone-in-talk',
+      title: 'Expert Support',
+      description: 'Professional customer service when you need it'
+    }
+  ];
+
+  return (
+    <section className='aboutSection'>
+      <div className='aboutContainer'>
+        {/* Main About Content */}
         <div className='aboutContent'>
           <div className='textContent'>
-            <div className='badge'>About us</div>
-            <h2 className='sectionTitle'>Smart Storage, Smarter Solutions</h2>
+            <h2 className='aboutTitle'>
+              About <span className='titleAccent'>Our Company</span>
+            </h2>
             
-            <p className='paragraph'>
-              Our Smart Storage Management System revolutionizes how you store and manage 
-              your belongings. Using cutting-edge technology and intelligent automation, 
-              we provide secure, efficient, and user-friendly storage solutions.
+            <p className='aboutDescription'>
+              We revolutionize storage management with cutting-edge technology and intelligent automation. 
+              Our platform provides secure, efficient, and user-friendly storage solutions for modern needs.
             </p>
             
-            <p className='paragraph'>
-              Experience seamless storage management with real-time monitoring, automated 
-              inventory tracking, and instant access control. Our digital-first approach 
-              ensures you have complete visibility and control over your stored items.
+            <p className='aboutDescription'>
+              Experience seamless storage with real-time monitoring, automated inventory tracking, 
+              and instant access control. Our digital-first approach ensures complete visibility 
+              and control over your stored items.
             </p>
-            
-            <p className='paragraph'>
-              From personal belongings to business inventory, our smart system adapts 
-              to your needs with flexible storage options, climate control, and 24/7 
-              security monitoring for ultimate peace of mind.
-            </p>
+
+            {/* Stats */}
+            <div className='statsGrid'>
+              {stats.map((stat, index) => (
+                <div key={index} className='statItem'>
+                  <div className='statNumber'>{stat.number}</div>
+                  <div className='statLabel'>{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
           
-          <div className='imageContainer'>
-            <img 
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" 
-              alt="Storage facility" 
-              className='aboutImage'
-            />
+          <div className='imageContent'>
+            <div className='imageWrapper'>
+              <img 
+                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=500&fit=crop&crop=center" 
+                alt="Modern storage facility" 
+                className='aboutImage'
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className='featuresSection'>
+          <h3 className='featuresTitle'>Why Choose Us</h3>
+          <div className='featuresGrid'>
+            {features.map((feature, index) => (
+              <div key={index} className='featureCard'>
+                <div className='featureIcon'>
+                  <Icon icon={feature.icon} />
+                </div>
+                <h4 className='featureTitle'>{feature.title}</h4>
+                <p className='featureDescription'>{feature.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

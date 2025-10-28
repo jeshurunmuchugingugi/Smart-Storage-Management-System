@@ -11,6 +11,9 @@ import About from './components/About';
 import HowItWorks from './components/HowItWorks';
 import RentUnit from './components/RentUnit';
 import Services from './components/Services';
+import StorageUnits from './components/StorageUnits'
+import Testimonials  from './components/Testimonials';
+import FAQ from './components/FAQ';
 import './App.css';
 
 const App = () => {
@@ -35,8 +38,8 @@ const App = () => {
               <HeroSection />
               <HowItWorks />
               <Services />
-              <HowItWorks/>
-              <About />
+              <Testimonials/>
+              <FAQ/>
               < Footer />
             </>
           } />

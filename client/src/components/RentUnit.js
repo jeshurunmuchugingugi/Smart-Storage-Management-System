@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './RentUnit.css';
 
-const RentUnit = ({ units, loading, error }) => {
+const RentUnit = ({ units = [], loading, error }) => {
   const availableUnits = units.filter(unit => unit.status === 'available');
 
   if (loading) {

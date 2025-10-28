@@ -1,0 +1,137 @@
+.whyChooseUsSection {
+  padding: 1rem 2rem 3rem 2rem;
+  background-color: #FFF8ED;
+}
+
+.whyChooseUsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.whyChooseUsContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.whyChooseUsTitle {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #1A2637;
+  margin-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.whyChooseUsSubtitle {
+  font-size: 1.125rem;
+  color: #6B7280;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
+}
+
+.featuresGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.featureCard {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  padding-bottom: 0px;
+  background: #F8FAFC;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover {
+  background: #FFF7ED;
+  border-color: #FC9E3B;
+  transform: translateX(8px);
+}
+
+.featureIcon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #FC9E3B 0%, #F4A261 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.featureIcon svg {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.featureContent {
+  margin-top: 0px;
+  flex: 1;
+}
+
+.featureTitle {
+  font-size: 1.25rem;
+  margin-top: 0px;
+  text-align: left;
+  font-weight: 600;
+  color: #1A2637;
+  margin-bottom: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.featureDescription {
+  color: #6B7280;
+  line-height: 1.5;
+  text-align: left;
+  margin-top: 0px;
+  font-size: 0.95rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.whyChooseUsImage {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.whyChooseUsImage img {
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.whyChooseUsImage:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .whyChooseUsSection {
+    padding: 3rem 1rem;
+  }
+  
+  .whyChooseUsContent {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .whyChooseUsTitle {
+    font-size: 2.25rem;
+  }
+  
+  .whyChooseUsImage img {
+    height: 400px;
+  }
+  
+  .featureCard {
+    padding: 1.25rem;
+  }
+}

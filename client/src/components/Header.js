@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react';
 
 const Header = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
-  const [showDropdown, setShowDropdown] = useState(false);
+
 
   return (
     <header style={styles.header}>
@@ -34,52 +34,17 @@ const Header = () => {
           >
             Home
           </Link>
-          <div 
-            style={styles.dropdown}
-            onMouseEnter={() => {
-              setHoveredLink(1);
-              setShowDropdown(true);
-            }}
-            onMouseLeave={() => {
-              setHoveredLink(null);
-              setShowDropdown(false);
-            }}
-          >
-            <div style={{
+          <Link 
+            to="/services" 
+            style={{
               ...styles.navLink,
-              ...(hoveredLink === 1 ? styles.navLinkHover : {}),
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem'
-            }}>
-              Services
-              <Icon icon="mdi:chevron-down" style={{
-                fontSize: '1.2rem',
-                transition: 'transform 0.3s ease',
-                transform: showDropdown ? 'rotate(180deg)' : 'rotate(0deg)'
-              }} />
-            </div>
-            
-            {showDropdown && (
-              <div style={styles.dropdownMenu}>
-                <Link to="/transport" style={styles.dropdownItem}>
-                  <Icon icon="mdi:truck" style={styles.dropdownIcon} />
-                  <div>
-                    <div style={styles.dropdownTitle}>Transport</div>
-                    <div style={styles.dropdownSubtitle}>Moving & Delivery</div>
-                  </div>
-                </Link>
-                <Link to="/storage" style={styles.dropdownItem}>
-                  <Icon icon="mdi:warehouse" style={styles.dropdownIcon} />
-                  <div>
-                    <div style={styles.dropdownTitle}>Storage</div>
-                    <div style={styles.dropdownSubtitle}>Secure Units</div>
-                  </div>
-                </Link>
-              </div>
-            )}
-
-          </div>
+              ...(hoveredLink === 1 ? styles.navLinkHover : {})
+            }}
+            onMouseEnter={() => setHoveredLink(1)}
+            onMouseLeave={() => setHoveredLink(null)}
+          >
+            Services
+          </Link>
 
         
           

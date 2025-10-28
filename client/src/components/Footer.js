@@ -47,8 +47,7 @@ const Footer = () => {
             <ul className="footer-links">
               <li><a href="#facebook">Facebook</a></li>
               <li><a href="#instagram">Instagram</a></li>
-              <li><a href="#youtube">YouTube</a></li>
-              <li><a href="#spotify">Spotify</a></li>
+              <li><a href="#tiktok">Tiktok</a></li>
             </ul>
           </div>
         </div>

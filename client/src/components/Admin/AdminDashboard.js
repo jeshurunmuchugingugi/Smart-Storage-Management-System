@@ -3,6 +3,7 @@ import { Search, User, Home, Package, Calendar, CreditCard, Users, FileText, Set
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 import Customers from './Customers';
 import Payments from './Payments';
+import Reservations from './Reservations';
 
 const AdminDashboard = ({ onLogout }) => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -87,6 +88,8 @@ const AdminDashboard = ({ onLogout }) => {
             <Customers />
           ) : activeTab === 'payments' ? (
             <Payments />
+          ) : activeTab === 'reservations' ? (
+            <Reservations />
           ) : (
             <>
               <div className="stats-grid">

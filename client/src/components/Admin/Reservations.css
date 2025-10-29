@@ -1,0 +1,162 @@
+.reservations-page {
+  padding: 2rem;
+  background-color: #e9dfde;
+  min-height: 100vh;
+  color: #1a1a1a;
+  font-family: "Inter", sans-serif;
+}
+
+.reservations-header h2 {
+  font-weight: 600;
+  color: #333;
+}
+
+.reservations-header p {
+  margin-top: 4px;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.reservations-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.summary-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.summary-card h4 {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.summary-card .number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #640029;
+  margin: 6px 0;
+}
+
+.summary-card .revenue {
+  color: #8b0000;
+}
+
+.summary-card span {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.reservations-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.8rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: #555;
+  padding-bottom: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  color: #8b0000;
+  border-bottom: 2px solid #8b0000;
+}
+
+.actions {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.calendar-btn {
+  background: #f1f1f1;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.new-btn {
+  background: #8b0000;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.reservations-table {
+  margin-top: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.reservations-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reservations-table th,
+.reservations-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.reservations-table th {
+  background: #fafafa;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status.active {
+  background: #e8f8ea;
+  color: #2b8a3e;
+}
+
+.status.upcoming {
+  background: #fff6e5;
+  color: #d88b00;
+}
+
+.status.expiring {
+  background: #f9e5e5;
+  color: #b3261e;
+}
+
+.view-btn {
+  background: #f2f2f2;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+}

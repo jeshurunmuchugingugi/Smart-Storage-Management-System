@@ -74,14 +74,15 @@ const Payment = () => {
               
               if (payment && payment.status === 'completed') {
                 clearInterval(pollStatus);
+                setProcessing(false);
                 setShowPaymentSuccess(true);
                 setTimeout(() => {
                   navigate('/');
                 }, 3000);
               } else if (payment && payment.status === 'failed') {
                 clearInterval(pollStatus);
-                alert('Payment failed. Please try again.');
                 setProcessing(false);
+                alert('Payment failed. Please try again.');
               } else if (attempts >= maxAttempts) {
                 clearInterval(pollStatus);
                 alert('Payment timeout. Please check your M-Pesa messages.');
@@ -90,7 +91,7 @@ const Payment = () => {
             } catch (error) {
               console.error('Error checking payment status:', error);
             }
-          }, 2000); // Check every 2 seconds
+          }, 1000); // Check every 1 second for faster detection
         } else {
           alert(result.error || 'Payment failed. Please try again.');
           setProcessing(false);

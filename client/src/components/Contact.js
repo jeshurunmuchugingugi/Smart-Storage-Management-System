@@ -29,20 +29,20 @@ const Contact = () => {
     {
       icon: 'mdi:phone',
       title: 'Phone',
-      details: '+1 (555) 123-4567',
+      details: '+254 0192666555',
       subtitle: 'Mon-Fri 9AM-6PM'
     },
     {
       icon: 'mdi:email',
       title: 'Email',
-      details: 'support@smartstorage.com',
+      details: 'jmovers@gmail.com',
       subtitle: 'We reply within 24 hours'
     },
     {
       icon: 'mdi:map-marker',
       title: 'Address',
-      details: '123 Storage Street',
-      subtitle: 'New York, NY 10001'
+      details: 'Kiambu, Juja',
+      subtitle: 'Kenya'
     }
   ];
 

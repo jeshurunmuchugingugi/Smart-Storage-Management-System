@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import AdminLogin from './components/AdminLogin';
+import AdminLogin from './components/Admin/AdminLogin';
 import HeroSection from './components/HeroSection';
 import BookingForm from './components/BookingForm';
 import BookingsList from './components/BookingsList';
@@ -15,7 +15,7 @@ import RentUnit from './components/RentUnit';
 import Services from './components/Services';
 import StorageUnits from './components/StorageUnits'
 import Testimonials  from './components/Testimonials';
-import AdminDashboard from './components/AdminDashboard';
+import AdminDashboard from './components/Admin/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';

@@ -1,6 +1,7 @@
 // src/App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AdminLogin from './components/AdminLogin';
@@ -14,19 +15,23 @@ import RentUnit from './components/RentUnit';
 import Services from './components/Services';
 import StorageUnits from './components/StorageUnits'
 import Testimonials  from './components/Testimonials';
+import AdminDashboard from './components/AdminDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Pricing from './components/Pricing';
+import Payment from './components/Payment';
 import './App.css';
 
 const App = () => {
   const [units, setUnits] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   const fetchUnits = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/units');
+      const response = await fetch('http://localhost:5001/api/units');
       if (response.ok) {
         const data = await response.json();
         setUnits(data);
@@ -38,20 +43,27 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    fetchUnits();
-  }, []);
-
-  const handleAdminLogin = (admin) => {
-    console.log('Admin logged in:', admin);
+  const triggerRefresh = () => {
+    setRefreshTrigger(prev => prev + 1);
   };
 
+  useEffect(() => {
+    fetchUnits();
+  }, [refreshTrigger]);
+
   return (
-    <Router>
-      <div className="App">
+    <AuthProvider>
+      <Router>
+        <div className="App">
         <Routes>
-          <Route path="/admin" element={<AdminLogin onLogin={handleAdminLogin} />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={
+            <ProtectedRoute>
+              <AdminDashboard onDataChange={triggerRefresh} />
+            </ProtectedRoute>
+          } />
           <Route path="/book/:unitId" element={<BookingForm />} />
+          <Route path="/payment/:bookingId" element={<Payment />} />
           <Route path="/bookings" element={<BookingsList />} />
           <Route path="/about" element={<About />} />
           <Route path="/storage" element={<StorageUnits units={units} loading={loading} onRefresh={fetchUnits} />} />
@@ -71,8 +83,9 @@ const App = () => {
             </>
           } />
         </Routes>
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 };
 

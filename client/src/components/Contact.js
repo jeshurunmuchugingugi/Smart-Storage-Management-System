@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
+import Header from './Header';
 import './Contact.css';
 
 const Contact = () => {
@@ -9,11 +10,6 @@ const Contact = () => {
     subject: '',
     message: ''
   });
-
-  const [chatMessage, setChatMessage] = useState('');
-  const [chatMessages, setChatMessages] = useState([
-    { id: 1, text: 'Hello! How can we help you today?', sender: 'support', time: '10:30 AM' }
-  ]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -25,21 +21,8 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Handle form submission here
-  };
-
-  const handleChatSubmit = (e) => {
-    e.preventDefault();
-    if (chatMessage.trim()) {
-      const newMessage = {
-        id: chatMessages.length + 1,
-        text: chatMessage,
-        sender: 'user',
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      };
-      setChatMessages([...chatMessages, newMessage]);
-      setChatMessage('');
-    }
+    alert('Thank you for contacting us! We will get back to you soon.');
+    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   const contactInfo = [
@@ -64,19 +47,19 @@ const Contact = () => {
   ];
 
   return (
+    <>
+    <Header/>
     <div className="contactPage">
       <div className="contactContainer">
-        {/* Header */}
         <div className="contactHeader">
           <h1 className="contactTitle">
-            Get In <span className="titleAccent">Touch</span>
+            Contact <span className="titleAccent">Us</span>
           </h1>
           <p className="contactSubtitle">
             Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
           </p>
         </div>
 
-        {/* Contact Info Cards */}
         <div className="contactInfoGrid">
           {contactInfo.map((info, index) => (
             <div key={index} className="contactInfoCard">
@@ -90,100 +73,72 @@ const Contact = () => {
           ))}
         </div>
 
-        {/* Main Content */}
-        <div className="contactContent">
-          {/* Contact Form */}
-          <div className="contactFormSection">
-            <h2 className="sectionTitle">Send us a Message</h2>
-            <form onSubmit={handleSubmit} className="contactForm">
-              <div className="formRow">
-                <div className="formGroup">
-                  <label htmlFor="name" className="formLabel">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="formInput"
-                    required
-                  />
-                </div>
-                <div className="formGroup">
-                  <label htmlFor="email" className="formLabel">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="formInput"
-                    required
-                  />
-                </div>
-              </div>
+        <div className="contactFormSection">
+          <h2 className="sectionTitle">Send us a Message</h2>
+          <form onSubmit={handleSubmit} className="contactForm">
+            <div className="formRow">
               <div className="formGroup">
-                <label htmlFor="subject" className="formLabel">Subject</label>
+                <label htmlFor="name" className="formLabel">Name</label>
                 <input
                   type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
+                  id="name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleInputChange}
                   className="formInput"
+                  placeholder="Your name"
                   required
                 />
               </div>
               <div className="formGroup">
-                <label htmlFor="message" className="formLabel">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  className="formTextarea"
-                  rows="5"
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" className="submitButton">
-                <Icon icon="mdi:send" className="buttonIcon" />
-                Send Message
-              </button>
-            </form>
-          </div>
-
-          {/* Chat Section */}
-          <div className="chatSection">
-            <h2 className="sectionTitle">Live Chat</h2>
-            <div className="chatContainer">
-              <div className="chatMessages">
-                {chatMessages.map((msg) => (
-                  <div key={msg.id} className={`chatMessage ${msg.sender}`}>
-                    <div className="messageContent">
-                      <p className="messageText">{msg.text}</p>
-                      <span className="messageTime">{msg.time}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <form onSubmit={handleChatSubmit} className="chatForm">
+                <label htmlFor="email" className="formLabel">Email</label>
                 <input
-                  type="text"
-                  value={chatMessage}
-                  onChange={(e) => setChatMessage(e.target.value)}
-                  placeholder="Type your message..."
-                  className="chatInput"
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="formInput"
+                  placeholder="your.email@example.com"
+                  required
                 />
-                <button type="submit" className="chatSendButton">
-                  <Icon icon="mdi:send" />
-                </button>
-              </form>
+              </div>
             </div>
-          </div>
+            <div className="formGroup">
+              <label htmlFor="subject" className="formLabel">Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleInputChange}
+                className="formInput"
+                placeholder="How can we help?"
+                required
+              />
+            </div>
+            <div className="formGroup">
+              <label htmlFor="message" className="formLabel">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                className="formTextarea"
+                rows="6"
+                placeholder="Tell us more about your inquiry..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" className="submitButton">
+              <Icon icon="mdi:send" className="buttonIcon" />
+              Send Message
+            </button>
+          </form>
         </div>
       </div>
     </div>
+    </>
   );
 };
 

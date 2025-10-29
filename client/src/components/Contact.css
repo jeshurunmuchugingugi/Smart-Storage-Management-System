@@ -1,7 +1,7 @@
 .contactPage {
   min-height: 100vh;
   background: #F8FAFC;
-  padding: 2rem 0;
+  padding: 6rem 0 2rem;
 }
 
 .contactContainer {
@@ -86,19 +86,14 @@
   color: #6B7280;
 }
 
-.contactContent {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-}
-
-.contactFormSection,
-.chatSection {
+.contactFormSection {
   background: #FFFFFF;
-  padding: 2.5rem;
+  padding: 3rem;
   border-radius: 16px;
   border: 1px solid #E5E7EB;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .sectionTitle {
@@ -171,106 +166,21 @@
   justify-content: center;
   gap: 0.5rem;
   font-family: 'Roboto', sans-serif;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(252, 158, 59, 0.3);
 }
 
 .buttonIcon {
   font-size: 1.25rem;
 }
 
-.chatContainer {
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-}
-
-.chatMessages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1rem;
-  background: #F9FAFB;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  border: 1px solid #E5E7EB;
-}
-
-.chatMessage {
-  margin-bottom: 1rem;
-  display: flex;
-}
-
-.chatMessage.user {
-  justify-content: flex-end;
-}
-
-.chatMessage.support {
-  justify-content: flex-start;
-}
-
-.messageContent {
-  max-width: 70%;
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  position: relative;
-}
-
-.chatMessage.user .messageContent {
-  background: linear-gradient(135deg, #FC9E3B 0%, #F4A261 100%);
-  color: white;
-}
-
-.chatMessage.support .messageContent {
-  background: #FFFFFF;
-  color: #374151;
-  border: 1px solid #E5E7EB;
-}
-
-.messageText {
-  margin: 0 0 0.25rem 0;
-  font-size: 0.875rem;
-  line-height: 1.4;
-}
-
-.messageTime {
-  font-size: 0.75rem;
-  opacity: 0.7;
-}
-
-.chatForm {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.chatInput {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border: 1px solid #D1D5DB;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-family: 'Roboto', sans-serif;
-}
-
-.chatInput:focus {
-  outline: none;
-  border-color: #FC9E3B;
-  box-shadow: 0 0 0 3px rgba(252, 158, 59, 0.1);
-}
-
-.chatSendButton {
-  background: linear-gradient(135deg, #FC9E3B 0%, #F4A261 100%);
-  color: white;
-  border: none;
-  padding: 0.75rem;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-}
-
 @media (max-width: 768px) {
   .contactPage {
-    padding: 1rem 0;
+    padding: 5rem 0 1rem;
   }
   
   .contactContainer {
@@ -286,21 +196,11 @@
     gap: 1rem;
   }
   
-  .contactContent {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .contactFormSection,
-  .chatSection {
-    padding: 1.5rem;
+  .contactFormSection {
+    padding: 2rem 1.5rem;
   }
   
   .formRow {
     grid-template-columns: 1fr;
-  }
-  
-  .chatContainer {
-    height: 300px;
   }
 }

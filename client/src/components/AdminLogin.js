@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
-const AdminLogin = ({ onLogin }) => {
+const AdminLogin = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [credentials, setCredentials] = useState({
     username: '',
     password: ''
@@ -21,30 +25,47 @@ const AdminLogin = ({ onLogin }) => {
     setError('');
 
     try {
-      const response = await fetch('/api/admin/login', {
+      // Validate input
+      if (!credentials.username.trim() || !credentials.password.trim()) {
+        setError('Please enter both username and password');
+        return;
+      }
+
+      const response = await fetch('http://localhost:5001/api/admin/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(credentials),
+        body: JSON.stringify({
+          username: credentials.username.trim(),
+          password: credentials.password
+        }),
       });
 
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch (jsonError) {
+        console.error('JSON parsing error:', jsonError);
+        setError('Server response error. Please try again.');
+        return;
+      }
 
-      if (response.ok) {
+      if (response.ok && data.access_token) {
         localStorage.setItem('admin_token', data.access_token);
         localStorage.setItem('admin_user', JSON.stringify(data.admin));
-        onLogin(data.admin);
+        login(data.admin);
+        navigate('/admin/dashboard');
       } else {
-        setError(data.error || 'Login failed');
+        setError(data.error || 'Invalid credentials. Please try again.');
       }
     } catch (error) {
-      setError('Network error. Please try again.');
+      console.error('Login error:', error);
+      setError('Network error. Please check your connection and try again.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
-
-
 
   return (
     <div style={styles.container}>

@@ -21,4 +21,13 @@ venv.bak/
 
 # Flask
 .env
+.env.local
+.env.*.local
 .flaskenv
+
+# Logs
+*.log
+server.log
+
+# M-Pesa
+mpesa_logs/

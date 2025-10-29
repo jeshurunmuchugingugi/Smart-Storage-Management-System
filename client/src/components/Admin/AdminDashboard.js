@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Search, User, Home, Package, Calendar, CreditCard, Users, FileText, Settings } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 import Customers from './Customers';
+import Payments from './Payments';
 
 const AdminDashboard = ({ onLogout }) => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -49,7 +50,7 @@ const AdminDashboard = ({ onLogout }) => {
             <Calendar size={18} />
             <span>Reservations</span>
           </div>
-          <div className="nav-item" onClick={() => setActiveTab('payments')}>
+          <div className={`nav-item ${activeTab === 'payments' ? 'active' : ''}`} onClick={() => setActiveTab('payments')}>
             <CreditCard size={18} />
             <span>Payments</span>
           </div>
@@ -84,6 +85,8 @@ const AdminDashboard = ({ onLogout }) => {
         <div className="dashboard-content">
           {activeTab === 'customers' ? (
             <Customers />
+          ) : activeTab === 'payments' ? (
+            <Payments />
           ) : (
             <>
               <div className="stats-grid">

@@ -106,16 +106,7 @@ def seed_data():
             db.session.add(booking)
 
         db.session.commit()
-        # Create Payment
-        for booking in bookings:
-            payment = Payment(
-                booking_id=booking.booking_id,
-                user_id=None,  # No user_id needed for direct bookings
-                amount=booking.total_cost,
-                payment_method=random.choice(["card", "mobile_money", "paypal"]),
-                status=random.choice(["pending", "completed", "failed"])
-            )
-            db.session.add(payment)
+        # No seeded payments - only real payments will appear
 
         # Create Transportation Requests
         for _ in range(5):

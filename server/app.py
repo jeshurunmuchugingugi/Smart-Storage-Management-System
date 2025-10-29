@@ -303,9 +303,9 @@ class PaymentListResource(Resource):
                 status=data.get('status', 'pending')
             )
             
-            # Update booking status if payment is completed
+            # Update booking status to 'paid' when payment is completed
             if data.get('status') == 'completed':
-                booking.status = 'active'
+                booking.status = 'paid'
             
             db.session.add(payment)
             db.session.commit()
@@ -454,10 +454,10 @@ class MpesaCallbackResource(Resource):
                     payment.mpesa_receipt_number = mpesa_receipt
                     payment.transaction_id = mpesa_receipt
                     
-                    # Update booking status
+                    # Update booking status to 'paid' when payment is confirmed
                     booking = Booking.query.get(payment.booking_id)
                     if booking:
-                        booking.status = 'active'
+                        booking.status = 'paid'
                 else:
                     # Payment failed
                     payment.status = 'failed'

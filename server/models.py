@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
-booking_status_enum = Enum("pending", "active", "completed", "cancelled", name="booking_status")
+booking_status_enum = Enum("pending", "paid", "active", "completed", "cancelled", name="booking_status")
 approval_status_enum = Enum("pending_approval", "approved", "rejected", name="approval_status")
 payment_status_enum = Enum("pending", "completed", "failed", name="payment_status")
 transport_status_enum = Enum("pending", "scheduled", "completed", "cancelled", name="transport_status")

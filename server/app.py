@@ -596,8 +596,8 @@ if __name__ == '__main__':
         with app.app_context():
             db.create_all()
             print("Database initialized successfully")
-        print("Starting server on http://localhost:5001")
-        app.run(debug=True, port=5001, host='0.0.0.0')
+        print("Starting server on http://localhost:5000")
+        app.run(debug=True, port=5000, host='0.0.0.0')
     except Exception as e:
         print(f"Failed to start server: {str(e)}")
         exit(1)

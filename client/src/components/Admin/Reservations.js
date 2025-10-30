@@ -6,6 +6,7 @@ const Reservations = () => {
   const [payments, setPayments] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
   const [loading, setLoading] = useState(true);
+  const [showNewForm, setShowNewForm] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -112,9 +113,19 @@ const Reservations = () => {
           ))}
         </div>
         <div className="actions">
-          <button className="new-btn">+ New Reservation</button>
+          <button className="new-btn" onClick={() => setShowNewForm(true)}>+ New Reservation</button>
         </div>
       </div>
+
+      {showNewForm && (
+        <div className="modal-overlay" onClick={() => setShowNewForm(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3>New Reservation</h3>
+            <p>Redirect to booking page or add form here</p>
+            <button onClick={() => setShowNewForm(false)}>Close</button>
+          </div>
+        </div>
+      )}
 
       <div className="reservations-table">
         <table>

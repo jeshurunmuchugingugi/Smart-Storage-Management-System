@@ -17,6 +17,7 @@ import Testimonials  from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Pricing from './components/Pricing';
+
 import './App.css';
 
 const App = () => {
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/rent-unit" element={<RentUnit />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+
           <Route path="/" element={
             <>
               <Header />
@@ -68,6 +70,8 @@ const App = () => {
               <Pricing />
               <FAQ/>
               < Footer />
+              
+
             </>
           } />
         </Routes>

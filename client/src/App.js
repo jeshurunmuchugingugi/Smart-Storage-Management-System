@@ -78,22 +78,20 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
 
-          {/* Home page */}
-          <Route
-            path="/"
-            element={
-              <>
-                <Header />
-                <HeroSection />
-                <HowItWorks />
-                <WhyChooseUs />
-                <Testimonials />
-                <Pricing />
-                <FAQ />
-                <Footer />
-              </>
-            }
-          />
+          <Route path="/" element={
+            <>
+              <Header />
+              <HeroSection />
+              <HowItWorks />
+              <WhyChooseUs />
+              <Testimonials/>
+              <Pricing />
+              <FAQ/>
+              < Footer />
+              
+
+            </>
+          } />
         </Routes>
       </div>
     </Router>

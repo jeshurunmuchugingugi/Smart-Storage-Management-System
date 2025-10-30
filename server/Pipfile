@@ -10,11 +10,13 @@ flask-migrate = "*"
 flask-bcrypt = "*"
 flask-cors = "*"
 flask-jwt-extended = "*"
-python-dotenv = "*"
 flask-marshmallow = "*"
 marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 flask-restful = "*"
+sendgrid = "==6.11.0"
+python-dotenv = "*"
+faker = "*"
 
 [dev-packages]
 

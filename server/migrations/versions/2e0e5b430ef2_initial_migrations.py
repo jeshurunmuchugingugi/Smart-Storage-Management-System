@@ -1,8 +1,8 @@
-"""create database
+"""initial migrations
 
-Revision ID: b74410a60863
+Revision ID: 2e0e5b430ef2
 Revises: 
-Create Date: 2025-10-23 14:19:37.041903
+Create Date: 2025-10-30 20:53:14.748066
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b74410a60863'
+revision = '2e0e5b430ef2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,6 +26,18 @@ def upgrade():
     sa.Column('role', sa.String(length=20), nullable=True),
     sa.PrimaryKeyConstraint('admin_id')
     )
+    op.create_table('customer',
+    sa.Column('customer_id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=100), nullable=False),
+    sa.Column('email', sa.String(length=100), nullable=False),
+    sa.Column('phone', sa.String(length=20), nullable=False),
+    sa.Column('national_id', sa.String(length=50), nullable=True),
+    sa.Column('address', sa.String(length=250), nullable=True),
+    sa.Column('city', sa.String(length=100), nullable=True),
+    sa.Column('postal_code', sa.String(length=20), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.PrimaryKeyConstraint('customer_id')
+    )
     op.create_table('feature',
     sa.Column('feature_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
@@ -36,6 +48,7 @@ def upgrade():
     sa.Column('unit_id', sa.Integer(), nullable=False),
     sa.Column('unit_number', sa.String(length=20), nullable=False),
     sa.Column('site', sa.String(length=50), nullable=False),
+    sa.Column('size', sa.Numeric(precision=5, scale=2), nullable=True),
     sa.Column('monthly_rate', sa.Numeric(precision=8, scale=2), nullable=False),
     sa.Column('status', sa.Enum('available', 'booked', name='unit_status'), nullable=False),
     sa.Column('location', sa.String(length=100), nullable=True),
@@ -48,6 +61,7 @@ def upgrade():
     sa.Column('phone_number', sa.String(length=20), nullable=True),
     sa.Column('registration_date', sa.Date(), nullable=True),
     sa.Column('password_hash', sa.String(length=200), nullable=False),
+    sa.Column('role', sa.String(length=20), nullable=True),
     sa.PrimaryKeyConstraint('user_id'),
     sa.UniqueConstraint('email')
     )
@@ -55,11 +69,17 @@ def upgrade():
     sa.Column('booking_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('unit_id', sa.Integer(), nullable=True),
+    sa.Column('customer_id', sa.Integer(), nullable=True),
+    sa.Column('customer_name', sa.String(length=100), nullable=True),
+    sa.Column('customer_email', sa.String(length=100), nullable=True),
+    sa.Column('customer_phone', sa.String(length=20), nullable=True),
     sa.Column('start_date', sa.Date(), nullable=False),
     sa.Column('end_date', sa.Date(), nullable=False),
-    sa.Column('status', sa.Enum('pending', 'active', 'completed', 'cancelled', name='booking_status'), nullable=False),
+    sa.Column('status', sa.Enum('pending', 'paid', 'active', 'completed', 'cancelled', name='booking_status'), nullable=False),
+    sa.Column('approval_status', sa.Enum('pending_approval', 'approved', 'rejected', name='approval_status'), nullable=False),
     sa.Column('total_cost', sa.Numeric(precision=8, scale=2), nullable=False),
     sa.Column('booking_date', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['customer_id'], ['customer.customer_id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['unit_id'], ['storageunit.unit_id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['user.user_id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('booking_id')
@@ -80,6 +100,10 @@ def upgrade():
     sa.Column('payment_date', sa.DateTime(), nullable=True),
     sa.Column('status', sa.Enum('pending', 'completed', 'failed', name='payment_status'), nullable=True),
     sa.Column('transaction_id', sa.String(length=200), nullable=True),
+    sa.Column('mpesa_receipt_number', sa.String(length=100), nullable=True),
+    sa.Column('checkout_request_id', sa.String(length=100), nullable=True),
+    sa.Column('merchant_request_id', sa.String(length=100), nullable=True),
+    sa.Column('phone_number', sa.String(length=20), nullable=True),
     sa.ForeignKeyConstraint(['booking_id'], ['booking.booking_id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['user.user_id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('payment_id')
@@ -88,6 +112,8 @@ def upgrade():
     sa.Column('request_id', sa.Integer(), nullable=False),
     sa.Column('booking_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('customer_id', sa.Integer(), nullable=True),
+    sa.Column('customer_name', sa.String(length=100), nullable=True),
     sa.Column('pickup_address', sa.String(length=250), nullable=False),
     sa.Column('pickup_date', sa.Date(), nullable=False),
     sa.Column('pickup_time', sa.Time(), nullable=False),
@@ -95,6 +121,7 @@ def upgrade():
     sa.Column('status', sa.Enum('pending', 'scheduled', 'completed', 'cancelled', name='transport_status'), nullable=True),
     sa.Column('special_instructions', sa.Text(), nullable=True),
     sa.ForeignKeyConstraint(['booking_id'], ['booking.booking_id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['customer_id'], ['customer.customer_id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['user.user_id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('request_id')
     )
@@ -110,5 +137,6 @@ def downgrade():
     op.drop_table('user')
     op.drop_table('storageunit')
     op.drop_table('feature')
+    op.drop_table('customer')
     op.drop_table('admin')
     # ### end Alembic commands ###

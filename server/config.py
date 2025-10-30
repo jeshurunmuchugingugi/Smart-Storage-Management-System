@@ -5,7 +5,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+basedir = os.path.abspath(os.path.dirname(__file__),)
+instance_path = os.path.join(basedir, "instance")
+os.makedirs(instance_path, exist_ok=True)
+
 
 class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or f'sqlite:///{os.path.join(basedir, "instance", "storage.db")}'

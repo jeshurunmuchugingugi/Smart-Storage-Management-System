@@ -24,10 +24,12 @@ import Payment from './components/Payment';
 import './App.css';
 
 const App = () => {
+  const [admin, setAdmin] = useState(null); // <-- Admin login state
   const [units, setUnits] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
+  // Fetch storage units from backend
   const fetchUnits = async () => {
     setLoading(true);
     try {
@@ -71,6 +73,7 @@ const App = () => {
           <Route path="/rent-unit" element={<RentUnit />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+
           <Route path="/" element={
             <>
               <Header />
@@ -81,6 +84,8 @@ const App = () => {
               <Pricing />
               <FAQ/>
               < Footer />
+              
+
             </>
           } />
         </Routes>

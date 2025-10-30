@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
@@ -23,10 +24,10 @@ const Footer = () => {
           <div className="footer-column">
             <h4 className="column-title">Services</h4>
             <ul className="footer-links">
-              <li><a href="#storage">Storage Units</a></li>
+              <li><Link to="/storage">Storage Units</Link></li>
               <li><a href="#transport">Transportation</a></li>
-              <li><a href="#rent">Rent a Unit</a></li>
-              <li><a href="#services">All Services</a></li>
+              <li><Link to="/rent-unit">Rent a Unit</Link></li>
+              <li><Link to="/services">All Services</Link></li>
             </ul>
           </div>
 
@@ -34,8 +35,8 @@ const Footer = () => {
           <div className="footer-column">
             <h4 className="column-title">Quick Links</h4>
             <ul className="footer-links">
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#bookings">My Bookings</a></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/bookings">My Bookings</Link></li>
               <li><a href="#calculator">Space Calculator</a></li>
               <li><a href="#contact">Contact</a></li>
               <li><a href="/admin/login">Admin Portal</a></li>
@@ -49,8 +50,7 @@ const Footer = () => {
             <ul className="footer-links">
               <li><a href="#facebook">Facebook</a></li>
               <li><a href="#instagram">Instagram</a></li>
-              <li><a href="#youtube">YouTube</a></li>
-              <li><a href="#spotify">Spotify</a></li>
+              <li><a href="#tiktok">Tiktok</a></li>
             </ul>
           </div>
         </div>

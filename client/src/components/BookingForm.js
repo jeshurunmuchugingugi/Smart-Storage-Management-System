@@ -1,6 +1,7 @@
 // src/components/BookingForm.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './BookingForm.css';
 
 const BookingForm = ({ units = [] }) => {
   const { unitId } = useParams();
@@ -115,249 +116,146 @@ const BookingForm = ({ units = [] }) => {
     }
   };
 
-  if (loading) return <div style={styles.loading}>Loading...</div>;
-  if (!unit) return <div style={styles.error}>Unit not found</div>;
+  if (loading) return <div className="loading">Loading...</div>;
+  if (!unit) return <div className="error">Unit not found</div>;
 
   return (
-    <div style={styles.container}>
-      <div style={styles.formContainer}>
-        <h2 style={styles.title}>Book Storage Unit</h2>
-        <div style={styles.unitInfo}>
+    <div className="container">
+      <div className="form-container">
+        <h2 className="title">Book Storage Unit</h2>
+        <div className="unit-info">
           <h3>{unit.unit_number} - {unit.site}</h3>
           <p>Monthly Rate: ${unit.monthly_rate}</p>
           <p>Location: {unit.location}</p>
-          <div style={styles.features}>
+          <div className="features">
             {unit.features && unit.features.map(feature => (
-              <span key={feature.feature_id} style={styles.featureTag}>
+              <span key={feature.feature_id} className="feature-tag">
                 {feature.name}
               </span>
             ))}
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.formGroup}>
-            <label style={styles.label}>User ID:</label>
+        <form onSubmit={handleSubmit} className="form">
+          <div className="form-group">
+            <label className="label">User ID:</label>
             <input
               type="number"
               name="user_id"
               value={formData.user_id}
               onChange={handleChange}
-              style={styles.input}
+              className="input"
               required
             />
           </div>
 
-          <div style={styles.formRow}>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Start Date:</label>
+          <div className="form-row">
+            <div className="form-group">
+              <label className="label">Start Date:</label>
               <input
                 type="date"
                 name="start_date"
                 value={formData.start_date}
                 onChange={handleChange}
-                style={styles.input}
+                className="input"
                 required
               />
             </div>
 
-            <div style={styles.formGroup}>
-              <label style={styles.label}>End Date:</label>
+            <div className="form-group">
+              <label className="label">End Date:</label>
               <input
                 type="date"
                 name="end_date"
                 value={formData.end_date}
                 onChange={handleChange}
-                style={styles.input}
+                className="input"
                 required
               />
             </div>
           </div>
 
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Estimated Total Cost:</label>
+          <div className="form-group">
+            <label className="label">Estimated Total Cost:</label>
             <input
               type="number"
               name="total_cost"
               value={calculateTotalCost()}
-              style={styles.input}
+              className="input"
               readOnly
             />
           </div>
 
-          <div style={styles.sectionTitle}>Transportation Details (Optional)</div>
+          <div className="section-title">Transportation Details (Optional)</div>
 
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Pickup Address:</label>
+          <div className="form-group">
+            <label className="label">Pickup Address:</label>
             <textarea
               name="pickup_address"
               value={formData.pickup_address}
               onChange={handleChange}
-              style={styles.textarea}
+              className="textarea"
               rows="3"
               placeholder="Enter your pickup address"
             />
           </div>
 
-          <div style={styles.formRow}>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Pickup Date:</label>
+          <div className="form-row">
+            <div className="form-group">
+              <label className="label">Pickup Date:</label>
               <input
                 type="date"
                 name="pickup_date"
                 value={formData.pickup_date}
                 onChange={handleChange}
-                style={styles.input}
+                className="input"
               />
             </div>
 
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Pickup Time:</label>
+            <div className="form-group">
+              <label className="label">Pickup Time:</label>
               <input
                 type="time"
                 name="pickup_time"
                 value={formData.pickup_time}
                 onChange={handleChange}
-                style={styles.input}
+                className="input"
               />
             </div>
           </div>
 
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Distance (miles):</label>
+          <div className="form-group">
+            <label className="label">Distance (miles):</label>
             <input
               type="number"
               name="distance"
               value={formData.distance}
               onChange={handleChange}
-              style={styles.input}
+              className="input"
               step="0.1"
               placeholder="Optional"
             />
           </div>
 
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Special Instructions:</label>
+          <div className="form-group">
+            <label className="label">Special Instructions:</label>
             <textarea
               name="special_instructions"
               value={formData.special_instructions}
               onChange={handleChange}
-              style={styles.textarea}
+              className="textarea"
               rows="3"
               placeholder="Any special instructions for pickup"
             />
           </div>
 
-          <button type="submit" style={styles.submitButton}>
+          <button type="submit" className="submit-button">
             Confirm Booking
           </button>
         </form>
       </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    padding: '2rem',
-    maxWidth: '800px',
-    margin: '0 auto',
-  },
-  formContainer: {
-    background: 'white',
-    borderRadius: '10px',
-    padding: '2rem',
-    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-  },
-  title: {
-    fontSize: '2rem',
-    marginBottom: '2rem',
-    color: '#333',
-    textAlign: 'center',
-  },
-  unitInfo: {
-    background: '#f8f9fa',
-    padding: '1.5rem',
-    borderRadius: '5px',
-    marginBottom: '2rem',
-  },
-  features: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '0.5rem',
-    marginTop: '1rem',
-  },
-  featureTag: {
-    background: '#e9ecef',
-    color: '#495057',
-    padding: '0.25rem 0.5rem',
-    borderRadius: '15px',
-    fontSize: '0.75rem',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1.5rem',
-  },
-  formRow: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '1rem',
-  },
-  formGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  label: {
-    marginBottom: '0.5rem',
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  input: {
-    padding: '0.75rem',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-    fontSize: '1rem',
-  },
-  textarea: {
-    padding: '0.75rem',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-    fontSize: '1rem',
-    resize: 'vertical',
-    fontFamily: 'inherit',
-  },
-  sectionTitle: {
-    fontSize: '1.25rem',
-    fontWeight: 'bold',
-    margin: '1rem 0',
-    color: '#667eea',
-    borderBottom: '2px solid #667eea',
-    paddingBottom: '0.5rem',
-  },
-  submitButton: {
-    background: '#667eea',
-    color: 'white',
-    padding: '1rem 2rem',
-    border: 'none',
-    borderRadius: '5px',
-    fontSize: '1.1rem',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    marginTop: '1rem',
-    transition: 'background 0.2s',
-  },
-  loading: {
-    textAlign: 'center',
-    padding: '2rem',
-    fontSize: '1.2rem',
-  },
-  error: {
-    textAlign: 'center',
-    padding: '2rem',
-    color: 'red',
-    fontSize: '1.2rem',
-  },
 };
 
 export default BookingForm;

@@ -29,6 +29,21 @@ ma.init_app(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
 api = Api(app)
+email_service = EmailService()
+
+# Role-based access control decorator
+def role_required(allowed_roles):
+    def decorator(fn):
+        @wraps(fn)
+        @jwt_required()
+        def wrapper(*args, **kwargs):
+            admin_id = get_jwt_identity()
+            admin = Admin.query.get(admin_id)
+            if not admin or admin.role not in allowed_roles:
+                return {'error': 'Access denied. Insufficient permissions.'}, 403
+            return fn(*args, **kwargs)
+        return wrapper
+    return decorator
 
 # Role-based access control decorator
 def role_required(allowed_roles):

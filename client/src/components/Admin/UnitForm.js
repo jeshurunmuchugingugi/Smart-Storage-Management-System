@@ -84,11 +84,11 @@ const UnitForm = ({ editingUnit, setEditingUnit, setShowCreateForm, fetchData })
       }
 
       if (response.ok) {
+        alert(editingUnit ? 'Unit updated successfully!' : 'Unit created successfully!');
         fetchData();
         setShowCreateForm(false);
         setEditingUnit(null);
-        setFormData({ unit_number: '', site: '', monthly_rate: '', status: 'available', location: '' });
-        alert(editingUnit ? 'Unit updated successfully!' : 'Unit created successfully!');
+        setFormData({ unit_number: '', site: '', size: '', monthly_rate: '', status: 'available', location: '' });
       } else {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
         alert(`Error: ${errorData.error || 'Failed to submit unit'}`);
@@ -149,7 +149,7 @@ const UnitForm = ({ editingUnit, setEditingUnit, setShowCreateForm, fetchData })
           <button type="button" className="cancel-btn" onClick={() => {
             setShowCreateForm(false);
             setEditingUnit(null);
-            setFormData({ unit_number: '', site: '', monthly_rate: '', status: 'available', location: '' });
+            setFormData({ unit_number: '', site: '', size: '', monthly_rate: '', status: 'available', location: '' });
           }}>Cancel</button>
         </div>
       </form>

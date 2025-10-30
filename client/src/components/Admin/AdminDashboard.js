@@ -17,6 +17,13 @@ const AdminDashboard = () => {
   const [bookings, setBookings] = useState([]);
   const [payments, setPayments] = useState([]);
 
+  useEffect(() => {
+    const token = localStorage.getItem('admin_token');
+    if (!token || !admin) {
+      navigate('/admin/login');
+    }
+  }, [admin, navigate]);
+
   const fetchData = async () => {
     try {
       const [unitsRes, bookingsRes, paymentsRes] = await Promise.all([

@@ -1,0 +1,1233 @@
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.100.10:5001
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/mpesa_service.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+127.0.0.1 - - [29/Oct/2025 21:03:37] "OPTIONS /api/mpesa/stkpush HTTP/1.1" 200 -
+/Users/jeshurun/Documents/Smart-Storage-Management-System/server/app.py:378: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  booking = Booking.query.get(data['booking_id'])
+127.0.0.1 - - [29/Oct/2025 21:03:39] "POST /api/mpesa/stkpush HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:03:53] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:03:55] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:03:57] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:03:59] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:01] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:03] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:05] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:07] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:09] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:11] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:13] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:15] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:17] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:19] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:21] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:23] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:25] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:27] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:29] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:31] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:33] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:35] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:38] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:39] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:41] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:43] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:45] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:47] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:49] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:04:51] "GET /api/payments HTTP/1.1" 200 -
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/mpesa_service.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/app.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/models.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/app.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+127.0.0.1 - - [29/Oct/2025 21:16:31] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:31] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:32] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "OPTIONS /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:16:38] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:18:04] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:18:04] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:18:04] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:18:04] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:18:04] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:18:04] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:18:04] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:18:04] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:16] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:16] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:17] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 21:20:20] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:20] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:20] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:20] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:25] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:25] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:25] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:25] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:25] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:25] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:25] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:25] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:30] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:30] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:30] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:30] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:35] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:35] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:35] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:35] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:35] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:35] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:35] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:35] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:46] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:46] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:46] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:46] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:46] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:46] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:46] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:46] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:50] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:50] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:50] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:50] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:55] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:55] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:55] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:55] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:55] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:55] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:55] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:20:55] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:00] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:00] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:00] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:00] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:05] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:05] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:05] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:05] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:05] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:05] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:05] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:05] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:10] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:10] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:10] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:10] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:15] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:15] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:15] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:15] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:15] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:15] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:15] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:15] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:21] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:21] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:21] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:21] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:21] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:21] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:21] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:21] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:25] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:25] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:25] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:25] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:30] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:30] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:30] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:30] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:30] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:30] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:30] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:30] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:35] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:35] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:35] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:35] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:43] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:43] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:43] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:43] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:43] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:43] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:43] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:43] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:48] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:48] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:48] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:48] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:51] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:51] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:51] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:51] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:51] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:51] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:51] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:51] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:55] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:55] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:55] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:21:55] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:01] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:01] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:01] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:01] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:01] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:01] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:01] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:01] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:06] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:06] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:06] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:06] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:10] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:10] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:10] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:10] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:10] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:10] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:10] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:10] "GET /api/units HTTP/1.1" 200 -
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/seed.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+127.0.0.1 - - [29/Oct/2025 21:22:17] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:17] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:17] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:17] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:20] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:20] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:20] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:20] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:20] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:20] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:20] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:20] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:27] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:27] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:27] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:27] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:27] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:27] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:27] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:27] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:38] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:38] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:38] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:38] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:38] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:38] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:38] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:38] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:41] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:41] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:41] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:41] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:48] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:48] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:48] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:48] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:48] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:48] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:48] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:48] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:51] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:51] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:51] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:51] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:57] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:57] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:57] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:57] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:57] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:57] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:57] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:22:57] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:24:23] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:24:23] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:24:23] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:24:23] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:24:23] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:24:23] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:24:23] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:24:23] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:25:23] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:25:23] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:25:23] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:25:23] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:25:23] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:25:23] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:25:23] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:25:23] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:19] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:19] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:19] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:19] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:19] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:19] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:19] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:19] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:20] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:20] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:20] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:20] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:22] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:22] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:22] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:22] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:22] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:22] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:22] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:22] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:22] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:22] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:23] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 21:26:25] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:25] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:25] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:25] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:25] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:25] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:25] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:25] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:30] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:30] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:30] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:30] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:35] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:35] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:35] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:35] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:35] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:35] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:35] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:35] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:43] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:43] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:43] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:43] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:43] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:43] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:43] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:43] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:52] "OPTIONS /api/units/1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:52] "PUT /api/units/1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:52] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:52] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:52] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:52] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:52] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:52] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:52] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:52] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:53] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:55] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:55] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:55] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:26:55] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:00] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:00] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:00] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:00] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:00] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:00] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:00] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:00] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:05] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:05] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:05] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:05] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:10] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:10] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:10] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:10] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:10] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:10] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:10] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:10] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:15] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:15] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:15] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:15] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:21] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:21] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:21] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:21] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:21] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:21] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:21] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:21] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:26] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:26] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:26] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:26] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:30] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:30] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:30] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:30] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:30] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:30] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:30] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:30] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:36] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:36] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:36] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:36] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:36] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:36] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:36] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:36] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:51] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:51] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:51] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:51] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:51] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:51] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:51] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:27:51] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:24] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:24] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:24] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:24] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:24] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:24] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:24] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:24] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:25] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:25] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:25] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:25] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:30] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:30] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:30] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:30] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:30] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:30] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:30] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:30] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:35] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:35] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:35] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:35] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:45] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:45] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:45] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:45] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:50] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:50] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:50] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:50] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:50] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:50] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:50] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:50] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:55] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:55] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:55] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:29:55] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:00] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:00] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:00] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:00] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:00] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:00] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:00] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:00] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:05] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:05] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:05] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:05] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:09] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:09] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:09] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:09] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:10] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:10] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:10] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:10] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:10] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:10] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:10] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:10] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:11] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:11] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:11] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:11] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:12] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:12] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:12] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:12] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:15] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:15] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:15] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:15] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:15] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:15] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:15] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:15] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:16] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:16] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:16] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:16] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:21] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:21] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:21] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:21] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:21] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:21] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:21] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:21] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:26] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:26] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:26] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:26] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:32] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:32] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:32] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:32] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:32] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:32] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:32] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:32] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:36] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:36] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:36] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:36] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:41] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:41] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:41] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:41] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:41] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:41] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:41] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:41] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:46] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:46] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:46] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:46] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:46] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:46] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:46] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:46] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:52] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:52] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:52] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:52] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:52] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:52] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:52] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:30:52] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:30] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:30] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:30] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:30] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:30] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:30] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:30] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:30] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:31] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:31] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:31] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:31] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:32] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:32] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:32] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:32] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:35] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:35] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:35] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:31:35] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:35:52] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:35:52] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:35:52] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:35:52] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:35:52] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:35:52] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:35:52] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:35:52] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:36:39] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:36:39] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 21:36:40] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/seed.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+127.0.0.1 - - [29/Oct/2025 22:34:28] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:34:28] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:34:28] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:34:28] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:34:28] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 22:34:29] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 22:36:01] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:01] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:03] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:03] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:04] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 22:36:09] "OPTIONS /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:10] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:15] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:15] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:15] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:15] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:15] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:15] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:15] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:15] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:19] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:19] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:19] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:19] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:20] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:20] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:20] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:20] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:20] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:20] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:20] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:20] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:21] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:21] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:21] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:21] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:26] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:26] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:26] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:26] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:26] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:26] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:26] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:26] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:31] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:31] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:31] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:31] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:36] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:36] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:36] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:36] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:36] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:36] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:36] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:36] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:41] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:41] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:41] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:41] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:46] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:46] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:46] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:46] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:46] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:46] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:46] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:46] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:51] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:51] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:51] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:51] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:56] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:56] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:56] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:56] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:56] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:56] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:56] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:36:56] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:01] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:01] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:01] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:01] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:06] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:06] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:06] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:06] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:06] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:06] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:06] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:06] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:11] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:11] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:11] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:11] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:16] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:16] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:16] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:16] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:16] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:16] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:16] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:16] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:21] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:21] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:21] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:21] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:26] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:26] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:26] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:26] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:26] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:26] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:26] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:26] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:31] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:31] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:31] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:31] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:37] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:37] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:37] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:37] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:37] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:37] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:37] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:37] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:42] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:42] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:42] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:42] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:42] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:42] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:42] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:42] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:47] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:47] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:47] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:47] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:52] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:52] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:52] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:52] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:52] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:52] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:52] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:52] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:57] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:57] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:57] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:57] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:57] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:57] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:57] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:37:57] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:02] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:02] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:02] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:02] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:07] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:07] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:07] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:07] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:07] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:07] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:07] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:07] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:12] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:12] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:12] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:12] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:17] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:17] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:17] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:17] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:17] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:17] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:17] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:17] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:22] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:22] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:22] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:22] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:22] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:22] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:22] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:22] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:27] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:27] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:27] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:27] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:32] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:32] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:32] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:32] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:32] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:32] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:32] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:32] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:38:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:39:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:39:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:39:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:39:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:39:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:39:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:39:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:39:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:40:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:40:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:40:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:40:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:40:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:40:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:40:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:40:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:41:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:41:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:41:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:41:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:41:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:41:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:41:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:41:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:42:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:42:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:42:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:42:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:42:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:42:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:42:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:42:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:43:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:43:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:43:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:43:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:43:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:43:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:43:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:43:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:44:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:44:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:44:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:44:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:44:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:44:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:44:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:44:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:45:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:45:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:45:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:45:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:45:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:45:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:45:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:45:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:46:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:46:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:46:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:46:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:46:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:46:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:46:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:46:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:47:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:47:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:47:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:47:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:47:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:47:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:47:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:47:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:48:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:48:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:48:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:48:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:48:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:48:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:48:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:48:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:49:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:49:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:49:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:49:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:49:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:49:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:49:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:49:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:50:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:50:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:50:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:50:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:50:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:50:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:50:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:50:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:51:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:51:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:51:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:51:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:51:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:51:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:51:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:51:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:12] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:12] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:12] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:12] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:12] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:12] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:12] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:12] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:16] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:16] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:16] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:16] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:21] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:21] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:21] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:21] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:21] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:21] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:21] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:21] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:27] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:27] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:27] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:27] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:27] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:27] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:27] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:27] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:32] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:32] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:32] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:32] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:37] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:37] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:37] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:37] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:37] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:37] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:37] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:37] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:42] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:42] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:42] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:42] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:42] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:42] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:42] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:42] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:47] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:47] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:47] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:47] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:52] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:52] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:52] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:52] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:52] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:52] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:52] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:52] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:57] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:57] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:57] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:52:57] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:02] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:02] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:02] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:02] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:02] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:02] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:02] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:02] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:07] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:07] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:07] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:07] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:12] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:12] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:12] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:12] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:12] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:12] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:12] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:12] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:17] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:17] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:17] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:17] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:23] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:23] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:23] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:23] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:23] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:23] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:23] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:23] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:53:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:54:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:54:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:54:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:54:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:54:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:54:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:54:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:54:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:55:40] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:55:40] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:55:40] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:55:40] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:55:40] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:55:40] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:55:40] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:55:40] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:22] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:22] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:22] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:22] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:22] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:22] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:22] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:22] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:26] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:26] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:26] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:26] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:32] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:32] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:32] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:32] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:32] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:32] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:32] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:32] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:38] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:38] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:38] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:38] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:38] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:38] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:38] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:38] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:43] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:43] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:43] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:43] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:47] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:47] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:47] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:47] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:47] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:47] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:47] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:56:47] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:57:03] "OPTIONS /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:57:03] "OPTIONS /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:57:03] "OPTIONS /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:57:03] "OPTIONS /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:57:03] "GET /api/features HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:57:03] "GET /api/payments HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:57:03] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:57:03] "GET /api/bookings HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:57:06] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 22:58:51] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:58:51] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 22:58:52] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 22:58:59] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:00:05] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:00:06] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:01:50] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:03:04] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:03:04] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:03:05] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 23:03:11] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:03:11] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:03:11] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 23:03:24] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:04:28] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:04:28] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:04:30] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:04:30] "GET /api/units HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:04:30] "[33mGET /logo192.png HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 23:04:37] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:05:02] "POST /api/admin/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 23:05:03] "POST /api/admin/login HTTP/1.1" 200 -
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/models.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/schema.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/migrate_to_2nf.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/migrate_to_2nf.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/models.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/app.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/app.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/app.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/seed.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 499-068-860
+ * Detected change in '/Users/jeshurun/Documents/Smart-Storage-Management-System/server/app.py', reloading
+Database initialized successfully
+Starting server on http://localhost:5001
+ * Restarting with stat
+Traceback (most recent call last):
+  File "/Users/jeshurun/Documents/Smart-Storage-Management-System/server/app.py", line 13, in <module>
+    from email_service import EmailService
+  File "/Users/jeshurun/Documents/Smart-Storage-Management-System/server/email_service.py", line 2, in <module>
+    from sendgrid import SendGridAPIClient
+ModuleNotFoundError: No module named 'sendgrid'

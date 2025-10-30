@@ -99,10 +99,18 @@ class StorageUnitListResource(Resource):
                 if field not in data:
                     return {'error': f'Missing required field: {field}'}, 400
 
+            # Convert size to float if provided, otherwise None
+            size_value = None
+            if data.get('size'):
+                try:
+                    size_value = float(data['size'])
+                except (ValueError, TypeError):
+                    size_value = None
+            
             unit = StorageUnit(
                 unit_number=data['unit_number'],
                 site=data['site'],
-                size=data.get('size'),
+                size=size_value,
                 monthly_rate=data['monthly_rate'],
                 status=data.get('status', 'available'),
                 location=data.get('location'),
@@ -145,7 +153,14 @@ class StorageUnitResource(Resource):
 
             unit.unit_number = data.get('unit_number', unit.unit_number)
             unit.site = data.get('site', unit.site)
-            unit.size = data.get('size', unit.size)
+            
+            # Convert size to float if provided
+            if 'size' in data:
+                try:
+                    unit.size = float(data['size']) if data['size'] else None
+                except (ValueError, TypeError):
+                    unit.size = None
+            
             unit.monthly_rate = data.get('monthly_rate', unit.monthly_rate)
             unit.status = data.get('status', unit.status)
             unit.location = data.get('location', unit.location)

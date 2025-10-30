@@ -5,7 +5,6 @@ const Reservations = () => {
   const [reservationsData, setReservationsData] = useState([]);
   const [payments, setPayments] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
-  const [viewMode, setViewMode] = useState("table");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,8 +16,8 @@ const Reservations = () => {
   const fetchData = async () => {
     try {
       const [bookingsRes, paymentsRes] = await Promise.all([
-        fetch('http://localhost:5000/api/bookings'),
-        fetch('http://localhost:5000/api/payments')
+        fetch('http://localhost:5001/api/bookings'),
+        fetch('http://localhost:5001/api/payments')
       ]);
       
       if (bookingsRes.ok) {
@@ -113,12 +112,6 @@ const Reservations = () => {
           ))}
         </div>
         <div className="actions">
-          <button 
-            className="calendar-btn" 
-            onClick={() => setViewMode(viewMode === 'table' ? 'calendar' : 'table')}
-          >
-            {viewMode === 'table' ? '📅 Calendar View' : '📋 Table View'}
-          </button>
           <button className="new-btn">+ New Reservation</button>
         </div>
       </div>

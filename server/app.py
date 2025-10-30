@@ -9,16 +9,17 @@ from schema import ma, storage_schema, storages_schema, feature_schema, features
 from datetime import datetime, date
 import logging
 import uuid
+import os
 from mpesa_service import MpesaService
-from email_service import EmailService
 from functools import wraps
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
 # Configure CORS properly
+allowed_origins = os.getenv('CORS_ORIGINS', 'http://localhost:3000,http://127.0.0.1:3000').split(',')
 CORS(app, 
-     origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+     origins=allowed_origins,
      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
      allow_headers=["Content-Type", "Authorization", "X-CSRF-Token"],
      supports_credentials=True)
@@ -29,6 +30,20 @@ migrate = Migrate(app, db)
 jwt = JWTManager(app)
 api = Api(app)
 email_service = EmailService()
+
+# Role-based access control decorator
+def role_required(allowed_roles):
+    def decorator(fn):
+        @wraps(fn)
+        @jwt_required()
+        def wrapper(*args, **kwargs):
+            admin_id = get_jwt_identity()
+            admin = Admin.query.get(admin_id)
+            if not admin or admin.role not in allowed_roles:
+                return {'error': 'Access denied. Insufficient permissions.'}, 403
+            return fn(*args, **kwargs)
+        return wrapper
+    return decorator
 
 # Role-based access control decorator
 def role_required(allowed_roles):
@@ -90,7 +105,10 @@ class StorageUnitListResource(Resource):
     @role_required(['admin'])
     def post(self):
         try:
+            logging.info("POST /api/units - Creating new storage unit")
             data = request.get_json()
+            logging.info(f"Received data: {data}")
+            
             if not data:
                 return {'error': 'No data provided'}, 400
 
@@ -99,10 +117,18 @@ class StorageUnitListResource(Resource):
                 if field not in data:
                     return {'error': f'Missing required field: {field}'}, 400
 
+            # Convert size to float if provided, otherwise None
+            size_value = None
+            if data.get('size'):
+                try:
+                    size_value = float(data['size'])
+                except (ValueError, TypeError):
+                    size_value = None
+            
             unit = StorageUnit(
                 unit_number=data['unit_number'],
                 site=data['site'],
-                size=data.get('size'),
+                size=size_value,
                 monthly_rate=data['monthly_rate'],
                 status=data.get('status', 'available'),
                 location=data.get('location')
@@ -117,11 +143,13 @@ class StorageUnitListResource(Resource):
 
             db.session.add(unit)
             db.session.commit()
+            logging.info(f"Successfully created unit: {unit.unit_id}")
             return storage_schema.dump(unit), 201
         except Exception as e:
             db.session.rollback()
             logging.error(f"Error creating storage unit: {str(e)}")
-            return {'error': 'Failed to create storage unit'}, 500
+            logging.exception("Full traceback:")
+            return {'error': f'Failed to create storage unit: {str(e)}'}, 500
 
 
 class StorageUnitResource(Resource):
@@ -143,7 +171,14 @@ class StorageUnitResource(Resource):
 
             unit.unit_number = data.get('unit_number', unit.unit_number)
             unit.site = data.get('site', unit.site)
-            unit.size = data.get('size', unit.size)
+            
+            # Convert size to float if provided
+            if 'size' in data:
+                try:
+                    unit.size = float(data['size']) if data['size'] else None
+                except (ValueError, TypeError):
+                    unit.size = None
+            
             unit.monthly_rate = data.get('monthly_rate', unit.monthly_rate)
             unit.status = data.get('status', unit.status)
             unit.location = data.get('location', unit.location)
@@ -274,18 +309,6 @@ class BookingListResource(Resource):
             }
             
             db.session.commit()
-            
-            # Send booking confirmation email
-            email_data = {
-                'booking_id': booking.booking_id,
-                'customer_name': booking.customer_name,
-                'customer_email': booking.customer_email,
-                'unit_number': unit.unit_number,
-                'start_date': booking.start_date.isoformat(),
-                'end_date': booking.end_date.isoformat(),
-                'total_cost': float(booking.total_cost)
-            }
-            email_service.send_booking_confirmation(email_data)
             
             return result, 201
         except Exception as e:
@@ -491,17 +514,6 @@ class MpesaCallbackResource(Resource):
                     booking = Booking.query.get(payment.booking_id)
                     if booking:
                         booking.status = 'paid'
-                        
-                        # Send payment receipt email
-                        email_data = {
-                            'booking_id': booking.booking_id,
-                            'customer_name': booking.customer_name,
-                            'customer_email': booking.customer_email,
-                            'amount': float(payment.amount),
-                            'payment_method': 'M-Pesa',
-                            'receipt_number': mpesa_receipt
-                        }
-                        email_service.send_payment_receipt(email_data)
                 else:
                     # Payment failed
                     payment.status = 'failed'
@@ -596,8 +608,12 @@ if __name__ == '__main__':
         with app.app_context():
             db.create_all()
             print("Database initialized successfully")
-        print("Starting server on http://localhost:5000")
-        app.run(debug=True, port=5000, host='0.0.0.0')
+        
+        port = int(os.getenv('FLASK_PORT', 5001))
+        host = os.getenv('FLASK_HOST', '0.0.0.0')
+        print(f"Starting server on http://localhost:{port}")
+        print(f"Make sure frontend is configured to connect to port {port}")
+        app.run(debug=True, port=port, host=host)
     except Exception as e:
         print(f"Failed to start server: {str(e)}")
         exit(1)

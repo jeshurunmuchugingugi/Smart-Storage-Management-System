@@ -18,8 +18,8 @@ const Payments = () => {
   const fetchPayments = async () => {
     try {
       const [paymentsRes, bookingsRes] = await Promise.all([
-        fetch('http://localhost:5000/api/payments'),
-        fetch('http://localhost:5000/api/bookings')
+        fetch('http://localhost:5001/api/payments'),
+        fetch('http://localhost:5001/api/bookings')
       ]);
       
       if (paymentsRes.ok && bookingsRes.ok) {
@@ -161,7 +161,6 @@ const Payments = () => {
           <p>Manage all payment transactions and billing</p>
         </div>
         <div className="actions">
-          <input type="text" placeholder="Search payments..." />
           <button className="record-btn" onClick={() => setShowForm(!showForm)}>+ Record Payment</button>
         </div>
       </div>

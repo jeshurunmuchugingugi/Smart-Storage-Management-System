@@ -19,7 +19,7 @@ const Payment = () => {
 
   const fetchBooking = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/bookings/${bookingId}`);
+      const response = await fetch(`http://localhost:5001/api/bookings/${bookingId}`);
       if (response.ok) {
         const data = await response.json();
         setBooking(data);
@@ -42,7 +42,7 @@ const Payment = () => {
         }
 
         // Initiate M-Pesa STK Push
-        const response = await fetch('http://localhost:5000/api/mpesa/stkpush', {
+        const response = await fetch('http://localhost:5001/api/mpesa/stkpush', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ const Payment = () => {
             attempts++;
             
             try {
-              const statusResponse = await fetch('http://localhost:5000/api/payments');
+              const statusResponse = await fetch('http://localhost:5001/api/payments');
               const payments = await statusResponse.json();
               const payment = payments.find(p => p.checkout_request_id === checkoutRequestId);
               
@@ -98,7 +98,7 @@ const Payment = () => {
         }
       } else {
         // Card payment (existing logic)
-        const response = await fetch('http://localhost:5000/api/payments', {
+        const response = await fetch('http://localhost:5001/api/payments', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

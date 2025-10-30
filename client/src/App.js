@@ -33,7 +33,7 @@ const App = () => {
   const fetchUnits = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/units');
+      const response = await fetch('http://localhost:5001/api/units');
       if (response.ok) {
         const data = await response.json();
         setUnits(data);

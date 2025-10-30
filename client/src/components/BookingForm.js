@@ -36,7 +36,7 @@ const BookingForm = ({ units = [] }) => {
 
   const fetchCsrfToken = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/csrf-token', {
+      const response = await fetch('http://localhost:5001/api/csrf-token', {
         credentials: 'include'
       });
       if (response.ok) {
@@ -50,7 +50,7 @@ const BookingForm = ({ units = [] }) => {
 
   const fetchUnit = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/units/${unitId}`);
+      const response = await fetch(`http://localhost:5001/api/units/${unitId}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -130,7 +130,7 @@ const BookingForm = ({ units = [] }) => {
         status: 'pending'
       };
 
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch('http://localhost:5001/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ const BookingForm = ({ units = [] }) => {
         
         // Create pending payment record
         try {
-          await fetch('http://localhost:5000/api/payments', {
+          await fetch('http://localhost:5001/api/payments', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ const BookingForm = ({ units = [] }) => {
         // Create transportation request if pickup details are provided
         if (formData.pickup_address && formData.pickup_address.trim()) {
           try {
-            await fetch('http://localhost:5000/api/transportation', {
+            await fetch('http://localhost:5001/api/transportation', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -203,7 +203,7 @@ const BookingForm = ({ units = [] }) => {
           const error = await response.json();
           errorMessage = error.error || 'Unknown error';
         } catch {
-          errorMessage = `Server error (${response.status}). Please ensure the server is running on port 5000.`;
+          errorMessage = `Server error (${response.status}). Please ensure the server is running on port 5001.`;
         }
         alert(`Error creating booking: ${errorMessage}`);
       }

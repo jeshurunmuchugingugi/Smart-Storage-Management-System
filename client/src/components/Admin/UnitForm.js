@@ -12,7 +12,7 @@ const UnitForm = ({ editingUnit, setEditingUnit, setShowCreateForm, fetchData })
   });
 
   useEffect(() => {
-    if (editingUnit) {
+    if (editingUnit && editingUnit.unit_id) {
       setFormData({
         unit_number: editingUnit.unit_number,
         site: editingUnit.site,
@@ -71,24 +71,24 @@ const UnitForm = ({ editingUnit, setEditingUnit, setShowCreateForm, fetchData })
 
     try {
       let response;
-      if (editingUnit) {
-        response = await apiCall(`/api/units/${editingUnit.unit_id}`, {
+      if (editingUnit && editingUnit.unit_id) {
+        response = await apiCall(`http://localhost:5001/api/units/${editingUnit.unit_id}`, {
           method: 'PUT',
           body: JSON.stringify(unitData)
         });
       } else {
-        response = await apiCall('/api/units', {
+        response = await apiCall('http://localhost:5001/api/units', {
           method: 'POST',
           body: JSON.stringify(unitData)
         });
       }
 
       if (response.ok) {
+        alert(editingUnit ? 'Unit updated successfully!' : 'Unit created successfully!');
         fetchData();
         setShowCreateForm(false);
         setEditingUnit(null);
-        setFormData({ unit_number: '', site: '', monthly_rate: '', status: 'available', location: '' });
-        alert(editingUnit ? 'Unit updated successfully!' : 'Unit created successfully!');
+        setFormData({ unit_number: '', site: '', size: '', monthly_rate: '', status: 'available', location: '' });
       } else {
         const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
         alert(`Error: ${errorData.error || 'Failed to submit unit'}`);
@@ -149,7 +149,7 @@ const UnitForm = ({ editingUnit, setEditingUnit, setShowCreateForm, fetchData })
           <button type="button" className="cancel-btn" onClick={() => {
             setShowCreateForm(false);
             setEditingUnit(null);
-            setFormData({ unit_number: '', site: '', monthly_rate: '', status: 'available', location: '' });
+            setFormData({ unit_number: '', site: '', size: '', monthly_rate: '', status: 'available', location: '' });
           }}>Cancel</button>
         </div>
       </form>

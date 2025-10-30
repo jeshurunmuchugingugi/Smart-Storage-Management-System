@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_restful import Api, Resource
-from models import db, User, Admin, StorageUnit, Booking, Feature, Payment, TransportationRequest
+from models import db, User, Admin, StorageUnit, Booking, Feature, Payment, TransportationRequest, Customer
 from config import Config
 from schema import ma, storage_schema, storages_schema, feature_schema, features_schema, booking_schema, bookings_schema, payment_schema, payments_schema
 from datetime import datetime, date
@@ -547,6 +547,79 @@ class MpesaQueryResource(Resource):
             return {'error': str(e)}, 500
 
 
+class CustomerListResource(Resource):
+    def get(self):
+        try:
+            customers = Customer.query.all()
+            return [{
+                'customer_id': c.customer_id,
+                'name': c.name,
+                'email': c.email,
+                'phone': c.phone,
+                'national_id': c.national_id,
+                'address': c.address,
+                'city': c.city,
+                'postal_code': c.postal_code,
+                'created_at': c.created_at.isoformat()
+            } for c in customers], 200
+        except Exception as e:
+            logging.error(f"Error fetching customers: {str(e)}")
+            return {'error': 'Failed to fetch customers'}, 500
+
+    def post(self):
+        try:
+            data = request.get_json()
+            if not data:
+                return {'error': 'No data provided'}, 400
+
+            required_fields = ['name', 'email', 'phone']
+            for field in required_fields:
+                if field not in data or not data[field].strip():
+                    return {'error': f'Missing required field: {field}'}, 400
+
+            customer = Customer(
+                name=data['name'].strip(),
+                email=data['email'].strip(),
+                phone=data['phone'].strip(),
+                national_id=data.get('national_id', '').strip(),
+                address=data.get('address', '').strip(),
+                city=data.get('city', '').strip(),
+                postal_code=data.get('postal_code', '').strip()
+            )
+
+            db.session.add(customer)
+            db.session.commit()
+            
+            return {
+                'customer_id': customer.customer_id,
+                'name': customer.name,
+                'email': customer.email,
+                'phone': customer.phone,
+                'national_id': customer.national_id,
+                'address': customer.address,
+                'city': customer.city,
+                'postal_code': customer.postal_code,
+                'created_at': customer.created_at.isoformat()
+            }, 201
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f"Error creating customer: {str(e)}")
+            return {'error': f'Failed to create customer: {str(e)}'}, 500
+
+
+class CustomerResource(Resource):
+    def delete(self, customer_id):
+        try:
+            customer = Customer.query.get_or_404(customer_id)
+            db.session.delete(customer)
+            db.session.commit()
+            return {'message': 'Customer deleted successfully'}, 200
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f"Error deleting customer {customer_id}: {str(e)}")
+            return {'error': 'Failed to delete customer'}, 500
+
+
 api.add_resource(AdminLoginResource, '/api/admin/login')
 api.add_resource(StorageUnitListResource, '/api/units')
 api.add_resource(StorageUnitResource, '/api/units/<int:unit_id>')
@@ -558,6 +631,8 @@ api.add_resource(TransportationResource, '/api/transportation')
 api.add_resource(MpesaSTKPushResource, '/api/mpesa/stkpush')
 api.add_resource(MpesaCallbackResource, '/api/mpesa/callback')
 api.add_resource(MpesaQueryResource, '/api/mpesa/query')
+api.add_resource(CustomerListResource, '/api/customers')
+api.add_resource(CustomerResource, '/api/customers/<int:customer_id>')
 
 @app.before_request
 def handle_preflight():

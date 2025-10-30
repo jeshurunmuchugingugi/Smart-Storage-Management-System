@@ -22,6 +22,7 @@ class User(db.Model):
     phone_number = db.Column(db.String(20))
     registration_date = db.Column(db.Date, default=date.today)
     password_hash = db.Column(db.String(200), nullable=False)
+    role = db.Column(db.String(20), default="user")
 
     bookings = db.relationship("Booking", back_populates="user", cascade="all, delete-orphan")
     payments = db.relationship("Payment", back_populates="user", cascade="all, delete-orphan")
@@ -62,6 +63,26 @@ class Admin(db.Model):
 
     def __repr__(self):
         return f"<Admin {self.username}>"
+
+
+class Customer(db.Model):
+    __tablename__ = "customer"
+
+    customer_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    national_id = db.Column(db.String(50))
+    address = db.Column(db.String(250))
+    city = db.Column(db.String(100))
+    postal_code = db.Column(db.String(20))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    bookings = db.relationship("Booking", back_populates="customer", cascade="all, delete-orphan")
+    transport_requests = db.relationship("TransportationRequest", back_populates="customer", cascade="all, delete-orphan")
+
+    def __repr__(self):
+        return f"<Customer {self.name}>"
 
 
 class Feature(db.Model):
@@ -118,10 +139,11 @@ class Booking(db.Model):
     booking_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.user_id", ondelete="CASCADE"), nullable=True)
     unit_id = db.Column(db.Integer, db.ForeignKey("storageunit.unit_id", ondelete="CASCADE"))
-    # Customer details
-    customer_name = db.Column(db.String(100), nullable=False)
-    customer_email = db.Column(db.String(100), nullable=False)
-    customer_phone = db.Column(db.String(20), nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey("customer.customer_id", ondelete="CASCADE"), nullable=True)
+    # Legacy customer details (kept for backward compatibility)
+    customer_name = db.Column(db.String(100))
+    customer_email = db.Column(db.String(100))
+    customer_phone = db.Column(db.String(20))
     # Booking details
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)
@@ -132,6 +154,7 @@ class Booking(db.Model):
 
     user = db.relationship("User", back_populates="bookings")
     unit = db.relationship("StorageUnit", back_populates="bookings")
+    customer = db.relationship("Customer", back_populates="bookings")
     payment = db.relationship("Payment", back_populates="booking", uselist=False, cascade="all, delete-orphan")
     transport_requests = db.relationship("TransportationRequest", back_populates="booking", cascade="all, delete-orphan")
 
@@ -187,7 +210,8 @@ class TransportationRequest(db.Model):
     request_id = db.Column(db.Integer, primary_key=True)
     booking_id = db.Column(db.Integer, db.ForeignKey("booking.booking_id", ondelete="CASCADE"))
     user_id = db.Column(db.Integer, db.ForeignKey("user.user_id", ondelete="CASCADE"), nullable=True)
-    customer_name = db.Column(db.String(100), nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey("customer.customer_id", ondelete="CASCADE"), nullable=True)
+    customer_name = db.Column(db.String(100))  # Legacy field
     pickup_address = db.Column(db.String(250), nullable=False)
     pickup_date = db.Column(db.Date, nullable=False)
     pickup_time = db.Column(db.Time, nullable=False)
@@ -197,6 +221,7 @@ class TransportationRequest(db.Model):
 
     booking = db.relationship("Booking", back_populates="transport_requests")
     user = db.relationship("User", back_populates="transport_requests")
+    customer = db.relationship("Customer", back_populates="transport_requests")
 
     def validate_pickup_details(self):
         try:

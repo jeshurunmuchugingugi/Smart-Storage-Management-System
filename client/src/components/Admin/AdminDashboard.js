@@ -11,8 +11,9 @@ import Reports from './Reports';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const { logout } = useAuth();
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const { logout, admin } = useAuth();
+  const isManager = admin?.role === 'manager';
+  const [activeTab, setActiveTab] = useState(isManager ? 'reports' : 'dashboard');
   const [units, setUnits] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [payments, setPayments] = useState([]);
@@ -130,29 +131,33 @@ const AdminDashboard = () => {
           <h2>STORELINK<br />LOGISTICS</h2>
         </div>
         <nav className="nav-menu">
-          <div className={`nav-item ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>
-            <Icon icon="mdi:home" style={{fontSize: '18px'}} />
-            <span>Dashboard</span>
-          </div>
-          <div className={`nav-item ${activeTab === 'units' ? 'active' : ''}`} onClick={() => setActiveTab('units')}>
-            <Icon icon="mdi:package-variant" style={{fontSize: '18px'}} />
-            <span>Units / Storage</span>
-          </div>
-          <div className={`nav-item ${activeTab === 'reservations' ? 'active' : ''}`} onClick={() => setActiveTab('reservations')}>
-            <Icon icon="mdi:calendar" style={{fontSize: '18px'}} />
-            <span>Reservations</span>
-          </div>
-          <div className={`nav-item ${activeTab === 'payments' ? 'active' : ''}`} onClick={() => setActiveTab('payments')}>
-            <Icon icon="mdi:credit-card" style={{fontSize: '18px'}} />
-            <span>Payments</span>
-          </div>
-          <div className={`nav-item ${activeTab === 'customers' ? 'active' : ''}`} onClick={() => setActiveTab('customers')}>
-            <Icon icon="mdi:account-group" style={{fontSize: '18px'}} />
-            <span>Customers</span>
-          </div>
-          <div className="nav-item" onClick={() => setActiveTab('reports')}>
-            <Icon icon="mdi:file-document" style={{fontSize: '18px'}} />
-            <span>Reports</span>
+          {!isManager && (
+            <>
+              <div className={`nav-item ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>
+                <Icon icon="mdi:home" style={{fontSize: '18px'}} />
+                <span>Dashboard</span>
+              </div>
+              <div className={`nav-item ${activeTab === 'units' ? 'active' : ''}`} onClick={() => setActiveTab('units')}>
+                <Icon icon="mdi:package-variant" style={{fontSize: '18px'}} />
+                <span>Units / Storage</span>
+              </div>
+              <div className={`nav-item ${activeTab === 'reservations' ? 'active' : ''}`} onClick={() => setActiveTab('reservations')}>
+                <Icon icon="mdi:calendar" style={{fontSize: '18px'}} />
+                <span>Reservations</span>
+              </div>
+              <div className={`nav-item ${activeTab === 'payments' ? 'active' : ''}`} onClick={() => setActiveTab('payments')}>
+                <Icon icon="mdi:credit-card" style={{fontSize: '18px'}} />
+                <span>Payments</span>
+              </div>
+              <div className={`nav-item ${activeTab === 'customers' ? 'active' : ''}`} onClick={() => setActiveTab('customers')}>
+                <Icon icon="mdi:account-group" style={{fontSize: '18px'}} />
+                <span>Customers</span>
+              </div>
+            </>
+          )}
+          <div className={`nav-item ${activeTab === 'reports' ? 'active' : ''}`} onClick={() => setActiveTab('reports')}>
+            <Icon icon="mdi:chart-bar" style={{fontSize: '18px'}} />
+            <span>{isManager ? 'Analytics Dashboard' : 'Reports'}</span>
           </div>
         </nav>
       </div>
@@ -248,7 +253,7 @@ const AdminDashboard = () => {
                         />
                         <Bar dataKey="value" radius={[8, 8, 0, 0]} isAnimationActive={false}>
                           <Cell fill="#10b981" />
-                          <Cell fill="#8B0000" />
+                          <Cell fill="#FC9E3B" />
                         </Bar>
                       </BarChart>
                     </ResponsiveContainer>
@@ -295,8 +300,8 @@ const AdminDashboard = () => {
                           formatter={(value) => [`${value} customers`, 'Count']}
                         />
                         <Bar dataKey="customers" radius={[0, 8, 8, 0]} isAnimationActive={false}>
-                          <Cell fill="#8B0000" />
-                          <Cell fill="#1e3a8a" />
+                          <Cell fill="#FC9E3B" />
+                          <Cell fill="#1A2637" />
                           <Cell fill="#10b981" />
                         </Bar>
                       </BarChart>
@@ -325,14 +330,14 @@ const AdminDashboard = () => {
                             padding: '8px 12px'
                           }}
                           labelStyle={{ color: '#1f2937', fontWeight: 600 }}
-                          itemStyle={{ color: '#8B0000' }}
+                          itemStyle={{ color: '#FC9E3B' }}
                         />
                         <Line 
                           type="monotone" 
                           dataKey="value" 
-                          stroke="#8B0000" 
+                          stroke="#FC9E3B" 
                           strokeWidth={3} 
-                          dot={{ fill: '#8B0000', r: 5 }}
+                          dot={{ fill: '#FC9E3B', r: 5 }}
                           activeDot={{ r: 7 }}
                           isAnimationActive={false}
                         />
@@ -357,12 +362,12 @@ const AdminDashboard = () => {
           display: flex;
           height: 100vh;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-          background: #f6f0ef;
+          background: #FDF8F3;
         }
 
         .sidebar {
           width: 250px;
-          background: #1e3a8a;
+          background: #1A2637;
           color: white;
           padding: 0;
           display: flex;
@@ -408,9 +413,9 @@ const AdminDashboard = () => {
         }
 
         .nav-item.active {
-          background: #8B0000;
+          background: #FC9E3B;
           color: white;
-          border-right: 3px solid #DC2626;
+          border-right: 3px solid #F4A261;
         }
 
         .main-content {
@@ -458,7 +463,7 @@ const AdminDashboard = () => {
         }
 
         .logout-btn {
-          background: #8B0000;
+          background: #FC9E3B;
           color: white;
           border: none;
           padding: 10px 20px;
@@ -472,9 +477,9 @@ const AdminDashboard = () => {
         }
 
         .logout-btn:hover {
-          background: #6B0000;
+          background: #F4A261;
           transform: translateY(-1px);
-          box-shadow: 0 4px 8px rgba(139, 0, 0, 0.3);
+          box-shadow: 0 4px 8px rgba(252, 158, 59, 0.3);
         }
 
         .dashboard-content {
@@ -501,7 +506,7 @@ const AdminDashboard = () => {
         .stat-value {
           font-size: 32px;
           font-weight: 700;
-          color: #8B0000;
+          color: #FC9E3B;
           margin-bottom: 8px;
         }
 
@@ -630,7 +635,7 @@ const AdminDashboard = () => {
         }
 
         .create-btn {
-          background: #8B0000;
+          background: #FC9E3B;
           color: white;
           border: none;
           padding: 10px 20px;
@@ -644,7 +649,7 @@ const AdminDashboard = () => {
         }
 
         .create-btn:hover {
-          background: #6B0000;
+          background: #F4A261;
         }
 
         .btn-icon {
@@ -684,7 +689,7 @@ const AdminDashboard = () => {
 
         .admin-form input:focus,
         .admin-form select:focus {
-          border-color: #8B0000;
+          border-color: #FC9E3B;
         }
 
         .form-actions {
@@ -706,12 +711,12 @@ const AdminDashboard = () => {
         }
 
         .save-btn {
-          background: #8B0000;
+          background: #FC9E3B;
           color: white;
         }
 
         .save-btn:hover {
-          background: #6B0000;
+          background: #F4A261;
         }
 
         .cancel-btn {

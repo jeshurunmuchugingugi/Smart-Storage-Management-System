@@ -38,6 +38,8 @@ const Footer = () => {
               <li><a href="#bookings">My Bookings</a></li>
               <li><a href="#calculator">Space Calculator</a></li>
               <li><a href="#contact">Contact</a></li>
+              <li><a href="/admin/login">Admin Portal</a></li>
+              <li><a href="/manager/login">Manager Portal</a></li>
             </ul>
           </div>
 

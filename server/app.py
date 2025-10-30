@@ -10,6 +10,8 @@ from datetime import datetime, date
 import logging
 import uuid
 from mpesa_service import MpesaService
+from email_service import EmailService
+from functools import wraps
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -26,6 +28,21 @@ ma.init_app(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
 api = Api(app)
+email_service = EmailService()
+
+# Role-based access control decorator
+def role_required(allowed_roles):
+    def decorator(fn):
+        @wraps(fn)
+        @jwt_required()
+        def wrapper(*args, **kwargs):
+            admin_id = get_jwt_identity()
+            admin = Admin.query.get(admin_id)
+            if not admin or admin.role not in allowed_roles:
+                return {'error': 'Access denied. Insufficient permissions.'}, 403
+            return fn(*args, **kwargs)
+        return wrapper
+    return decorator
 
 class AdminLoginResource(Resource):
     def post(self):
@@ -43,7 +60,10 @@ class AdminLoginResource(Resource):
             admin = Admin.query.filter_by(username=username).first()
 
             if admin and admin.check_password(password):
-                access_token = create_access_token(identity=str(admin.admin_id))
+                access_token = create_access_token(
+                    identity=str(admin.admin_id),
+                    additional_claims={'role': admin.role}
+                )
                 return {
                     'access_token': access_token,
                     'admin': {
@@ -67,7 +87,7 @@ class StorageUnitListResource(Resource):
             logging.error(f"Error fetching storage units: {str(e)}")
             return {'error': 'Failed to fetch storage units'}, 500
 
-    @jwt_required()
+    @role_required(['admin'])
     def post(self):
         try:
             data = request.get_json()
@@ -113,7 +133,7 @@ class StorageUnitResource(Resource):
             logging.error(f"Error fetching storage unit {unit_id}: {str(e)}")
             return {'error': 'Storage unit not found'}, 404
 
-    @jwt_required()
+    @role_required(['admin'])
     def put(self, unit_id):
         try:
             unit = StorageUnit.query.get_or_404(unit_id)
@@ -143,7 +163,7 @@ class StorageUnitResource(Resource):
             logging.error(f"Error updating storage unit {unit_id}: {str(e)}")
             return {'error': 'Failed to update storage unit'}, 500
 
-    @jwt_required()
+    @role_required(['admin'])
     def delete(self, unit_id):
         try:
             unit = StorageUnit.query.get_or_404(unit_id)
@@ -254,6 +274,19 @@ class BookingListResource(Resource):
             }
             
             db.session.commit()
+            
+            # Send booking confirmation email
+            email_data = {
+                'booking_id': booking.booking_id,
+                'customer_name': booking.customer_name,
+                'customer_email': booking.customer_email,
+                'unit_number': unit.unit_number,
+                'start_date': booking.start_date.isoformat(),
+                'end_date': booking.end_date.isoformat(),
+                'total_cost': float(booking.total_cost)
+            }
+            email_service.send_booking_confirmation(email_data)
+            
             return result, 201
         except Exception as e:
             db.session.rollback()
@@ -458,6 +491,17 @@ class MpesaCallbackResource(Resource):
                     booking = Booking.query.get(payment.booking_id)
                     if booking:
                         booking.status = 'paid'
+                        
+                        # Send payment receipt email
+                        email_data = {
+                            'booking_id': booking.booking_id,
+                            'customer_name': booking.customer_name,
+                            'customer_email': booking.customer_email,
+                            'amount': float(payment.amount),
+                            'payment_method': 'M-Pesa',
+                            'receipt_number': mpesa_receipt
+                        }
+                        email_service.send_payment_receipt(email_data)
                 else:
                     # Payment failed
                     payment.status = 'failed'

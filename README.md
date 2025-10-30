@@ -63,3 +63,23 @@ npm start
 4. Test admin login at http://localhost:3000/admin/login
 5. Test storage units page at http://localhost:3000/storage
 6. Test booking functionality by clicking "BOOK AND PAY NOW"
+
+## 📧 Email Integration (SendGrid)
+
+### Quick Setup
+1. Get SendGrid API key from https://sendgrid.com (free tier: 100 emails/day)
+2. Verify your sender email in SendGrid dashboard
+3. Add to `server/.env`:
+   ```
+   SENDGRID_API_KEY=your_api_key_here
+   SENDGRID_FROM_EMAIL=your_verified_email@domain.com
+   ```
+4. Install: `pip install -r requirements.txt`
+5. Restart server
+
+### Features
+- ✅ Booking confirmation emails
+- ✅ Payment receipt emails (M-Pesa)
+- ✅ Works without SendGrid (graceful degradation)
+
+**Full documentation**: See [EMAIL_INTEGRATION.md](EMAIL_INTEGRATION.md)

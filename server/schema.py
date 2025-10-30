@@ -1,9 +1,15 @@
 from flask_marshmallow import Marshmallow
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from marshmallow import fields
-from models import Feature, StorageUnit, Booking, Payment, TransportationRequest
+from models import Customer, Feature, StorageUnit, Booking, Payment, TransportationRequest
 
 ma = Marshmallow()
+
+
+class CustomerSchema(SQLAlchemyAutoSchema):
+    class Meta:
+        model = Customer
+        load_instance = True
 
 
 
@@ -26,6 +32,7 @@ class StorageUnitSchema(SQLAlchemyAutoSchema):
 
 class BookingSchema(SQLAlchemyAutoSchema):
     total_cost = fields.Float()
+    customer = fields.Nested(CustomerSchema, only=['customer_id', 'name', 'email', 'phone'])
     customer_name = fields.Str()
     customer_email = fields.Str() 
     customer_phone = fields.Str()
@@ -52,6 +59,8 @@ class PaymentSchema(SQLAlchemyAutoSchema):
 
 
 class TransportationSchema(SQLAlchemyAutoSchema):
+    customer = fields.Nested(CustomerSchema, only=['customer_id', 'name', 'phone'])
+    
     class Meta:
         model = TransportationRequest
         include_fk = True
@@ -61,6 +70,8 @@ class TransportationSchema(SQLAlchemyAutoSchema):
 # ------------------------------------------------------
 # INITIALIZE SCHEMAS
 # ------------------------------------------------------
+customer_schema = CustomerSchema()
+customers_schema = CustomerSchema(many=True)
 storage_schema = StorageUnitSchema()
 storages_schema = StorageUnitSchema(many=True)
 feature_schema = FeatureSchema()

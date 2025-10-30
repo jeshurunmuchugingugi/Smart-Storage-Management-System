@@ -31,10 +31,22 @@ def seed_data():
         db.session.add(admin)
         print("Created admin user: username='admin', password='admin123'")
         
+        # Create manager user
+        manager = Admin(
+            username='manager',
+            email='manager@storage.com',
+            role='manager'
+        )
+        manager.set_password('manager123')
+        admins.append(manager)
+        db.session.add(manager)
+        print("Created manager user: username='manager', password='manager123'")
+        
         # Create additional admin
         admin2 = Admin(
             username=fake.user_name(),
-            email=fake.email()
+            email=fake.email(),
+            role='admin'
         )
         admin2.set_password(fake.password(length=10))
         admins.append(admin2)

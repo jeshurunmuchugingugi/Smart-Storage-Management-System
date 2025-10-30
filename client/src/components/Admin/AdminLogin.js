@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuth();
   const [credentials, setCredentials] = useState({
     username: '',
@@ -11,6 +12,10 @@ const AdminLogin = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
+  const isManagerLogin = location.pathname.includes('manager');
+  const portalTitle = isManagerLogin ? 'Manager Portal' : 'Admin Portal';
+  const portalSubtitle = isManagerLogin ? 'Sign in to view analytics' : 'Sign in to access the dashboard';
 
   const handleChange = (e) => {
     setCredentials({
@@ -58,13 +63,13 @@ const AdminLogin = () => {
     <div style={styles.container}>
       <div style={styles.loginCard}>
         <div style={styles.header}>
-          <h1 style={styles.title}>Admin Portal</h1>
-          <p style={styles.subtitle}>Sign in to access the dashboard</p>
+          <h1 style={styles.title}>{portalTitle}</h1>
+          <p style={styles.subtitle}>{portalSubtitle}</p>
         </div>
         
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.inputGroup}>
-            <label style={styles.label}>Email Address</label>
+            <label style={styles.label}>Username</label>
             <input
               type="text"
               name="username"

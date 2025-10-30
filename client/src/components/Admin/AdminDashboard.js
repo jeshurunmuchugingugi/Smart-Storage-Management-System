@@ -580,6 +580,187 @@ const AdminDashboard = () => {
           .stat-value { font-size: 24px; }
           .card, .stat-card { padding: 16px; }
         }
+
+        /* Units Tab Styles */
+        .section-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+          font-size: 24px;
+          font-weight: 600;
+          color: #1f2937;
+        }
+
+        .create-btn {
+          background: #FC9E3B;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: background 0.2s;
+        }
+
+        .create-btn:hover {
+          background: #F4A261;
+        }
+
+        .btn-icon {
+          font-size: 18px;
+        }
+
+        .form-container {
+          background: white;
+          padding: 24px;
+          border-radius: 16px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          margin-bottom: 24px;
+        }
+
+        .form-title {
+          font-size: 20px;
+          font-weight: 600;
+          color: #1f2937;
+          margin-bottom: 20px;
+        }
+
+        .admin-form {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+
+        .admin-form input,
+        .admin-form select {
+          padding: 12px;
+          border: 1px solid #e5e7eb;
+          border-radius: 8px;
+          font-size: 14px;
+          outline: none;
+          transition: border-color 0.2s;
+        }
+
+        .admin-form input:focus,
+        .admin-form select:focus {
+          border-color: #FC9E3B;
+        }
+
+        .form-actions {
+          grid-column: 1 / -1;
+          display: flex;
+          gap: 12px;
+          justify-content: flex-end;
+          margin-top: 8px;
+        }
+
+        .save-btn,
+        .cancel-btn {
+          padding: 10px 24px;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: all 0.2s;
+        }
+
+        .save-btn {
+          background: #FC9E3B;
+          color: white;
+        }
+
+        .save-btn:hover {
+          background: #F4A261;
+        }
+
+        .cancel-btn {
+          background: #f3f4f6;
+          color: #374151;
+        }
+
+        .cancel-btn:hover {
+          background: #e5e7eb;
+        }
+
+        .admin-table {
+          background: white;
+          border-radius: 16px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          overflow: hidden;
+        }
+
+        .table-header,
+        .table-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
+          gap: 16px;
+          padding: 16px 24px;
+          align-items: center;
+        }
+
+        .table-header {
+          background: #f9fafb;
+          font-weight: 600;
+          font-size: 12px;
+          color: #6b7280;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          border-bottom: 1px solid #e5e7eb;
+        }
+
+        .table-row {
+          border-bottom: 1px solid #f3f4f6;
+          font-size: 14px;
+          color: #374151;
+          transition: background 0.2s;
+        }
+
+        .table-row:hover {
+          background: #f9fafb;
+        }
+
+        .table-cell {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .edit-btn,
+        .delete-btn {
+          padding: 6px 12px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 13px;
+          font-weight: 500;
+          margin-right: 8px;
+          transition: all 0.2s;
+        }
+
+        .edit-btn {
+          background: #f3f4f6;
+          color: #374151;
+        }
+
+        .edit-btn:hover {
+          background: #e5e7eb;
+        }
+
+        .delete-btn {
+          background: #fee2e2;
+          color: #dc2626;
+        }
+
+        .delete-btn:hover {
+          background: #fecaca;
+        }
       `}</style>
     </div>
   );

@@ -12,7 +12,7 @@ const UnitForm = ({ editingUnit, setEditingUnit, setShowCreateForm, fetchData })
   });
 
   useEffect(() => {
-    if (editingUnit) {
+    if (editingUnit && editingUnit.unit_id) {
       setFormData({
         unit_number: editingUnit.unit_number,
         site: editingUnit.site,
@@ -71,7 +71,7 @@ const UnitForm = ({ editingUnit, setEditingUnit, setShowCreateForm, fetchData })
 
     try {
       let response;
-      if (editingUnit) {
+      if (editingUnit && editingUnit.unit_id) {
         response = await apiCall(`/api/units/${editingUnit.unit_id}`, {
           method: 'PUT',
           body: JSON.stringify(unitData)

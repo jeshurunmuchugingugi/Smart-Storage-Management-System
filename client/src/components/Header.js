@@ -45,11 +45,6 @@ const Header = () => {
           >
             Services
           </Link>
-
-        
-          
-
-
           <Link 
             to="/storage" 
             style={{
@@ -61,7 +56,6 @@ const Header = () => {
           >
             Storage
           </Link>
-          
           <Link 
             to="/contact" 
             style={{
@@ -77,14 +71,13 @@ const Header = () => {
             to="/about" 
             style={{
               ...styles.navLink,
-              ...(hoveredLink === 0 ? styles.navLinkHover : {})
+              ...(hoveredLink === 4 ? styles.navLinkHover : {})
             }}
-            onMouseEnter={() => setHoveredLink(0)}
+            onMouseEnter={() => setHoveredLink(4)}
             onMouseLeave={() => setHoveredLink(null)}
           >
             About
           </Link>
-          
         </nav>
         <div style={styles.rightSection}>
           <Link to="/storage" style={styles.rentButton}>

@@ -5,100 +5,111 @@ const Payments = () => {
   const [activeTab, setActiveTab] = useState("All Payments");
   const [filteredData, setFilteredData] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [paymentsData, setPaymentsData] = useState([
-    {
-      id: "#INV-001",
-      customer: "John Kamau",
-      email: "john.kamau@email.com",
-      initials: "JK",
-      amount: "KSh 15,000",
-      method: "M-Pesa",
-      date: "18 Oct 2025",
-      status: "Paid",
-    },
-    {
-      id: "#INV-002",
-      customer: "Ann Stephanie",
-      email: "ann.stephanie@email.com",
-      initials: "AS",
-      amount: "KSh 22,500",
-      method: "Card",
-      date: "17 Oct 2025",
-      status: "Paid",
-    },
-    {
-      id: "#INV-003",
-      customer: "Martha Moraa",
-      email: "martha.moraa@email.com",
-      initials: "MM",
-      amount: "KSh 18,000",
-      method: "Bank Transfer",
-      date: "16 Oct 2025",
-      status: "Pending",
-    },
-    {
-      id: "#INV-004",
-      customer: "David Kimani",
-      email: "david.kimani@email.com",
-      initials: "DK",
-      amount: "KSh 12,500",
-      method: "M-Pesa",
-      date: "15 Oct 2025",
-      status: "Paid",
-    },
-    {
-      id: "#INV-005",
-      customer: "Grace Wanjiku",
-      email: "grace.wanjiku@email.com",
-      initials: "GW",
-      amount: "KSh 14,800",
-      method: "M-Pesa",
-      date: "14 Oct 2025",
-      status: "Pending",
-    },
-    {
-      id: "#INV-006",
-      customer: "Peter Marangi",
-      email: "peter.marangi@email.com",
-      initials: "PM",
-      amount: "KSh 25,000",
-      method: "Card",
-      date: "12 Oct 2025",
-      status: "Paid",
-    },
-    {
-      id: "#INV-007",
-      customer: "Sarah Ochieng",
-      email: "sarah.ochieng@email.com",
-      initials: "SO",
-      amount: "KSh 16,200",
-      method: "Bank Transfer",
-      date: "10 Oct 2025",
-      status: "Overdue",
-    },
-    {
-      id: "#INV-008",
-      customer: "Brian Njoroge",
-      email: "brian.njoroge@email.com",
-      initials: "BN",
-      amount: "KSh 19,500",
-      method: "M-Pesa",
-      date: "08 Oct 2025",
-      status: "Paid",
-    },
-  ]);
+  const [paymentsData, setPaymentsData] = useState([]);
+  const [bookingsData, setBookingsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPayments();
+    const interval = setInterval(fetchPayments, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const fetchPayments = async () => {
+    try {
+      const [paymentsRes, bookingsRes] = await Promise.all([
+        fetch('http://localhost:5001/api/payments'),
+        fetch('http://localhost:5001/api/bookings')
+      ]);
+      
+      if (paymentsRes.ok && bookingsRes.ok) {
+        const payments = await paymentsRes.json();
+        const bookings = await bookingsRes.json();
+        setPaymentsData(payments);
+        setBookingsData(bookings);
+      }
+    } catch (error) {
+      console.error('Error fetching payments:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getCustomerName = (bookingId) => {
+    const booking = bookingsData.find(b => b.booking_id === bookingId);
+    return booking?.customer_name || 'N/A';
+  };
+
+  const getCustomerEmail = (bookingId) => {
+    const booking = bookingsData.find(b => b.booking_id === bookingId);
+    return booking?.customer_email || 'N/A';
+  };
+
+  const getInitials = (name) => {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase();
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    return new Date(dateString).toLocaleDateString('en-GB', { 
+      day: '2-digit', 
+      month: 'short', 
+      year: 'numeric' 
+    });
+  };
+
+  const formatStatus = (status) => {
+    if (status === 'completed') return 'Paid';
+    if (status === 'pending') return 'Pending';
+    if (status === 'failed') return 'Overdue';
+    return status;
+  };
+
+  const transformedPayments = paymentsData.map(payment => {
+    const customerName = getCustomerName(payment.booking_id);
+    return {
+      id: `#PAY-${payment.payment_id}`,
+      customer: customerName,
+      email: getCustomerEmail(payment.booking_id),
+      initials: getInitials(customerName),
+      amount: `KSh ${parseFloat(payment.amount).toLocaleString()}`,
+      method: payment.payment_method || 'N/A',
+      date: formatDate(payment.payment_date),
+      status: formatStatus(payment.status),
+      receipt: payment.mpesa_receipt_number,
+      phone: payment.phone_number
+    };
+  });
+
+  const totalRevenue = paymentsData
+    .filter(p => p.status === 'completed')
+    .reduce((sum, p) => sum + parseFloat(p.amount || 0), 0);
+
+  const paidCount = paymentsData.filter(p => p.status === 'completed').length;
+
+  const pendingAmount = paymentsData
+    .filter(p => p.status === 'pending')
+    .reduce((sum, p) => sum + parseFloat(p.amount || 0), 0);
+
+  const pendingCount = paymentsData.filter(p => p.status === 'pending').length;
+
+  const overdueAmount = paymentsData
+    .filter(p => p.status === 'failed')
+    .reduce((sum, p) => sum + parseFloat(p.amount || 0), 0);
+
+  const overdueCount = paymentsData.filter(p => p.status === 'failed').length;
 
   useEffect(() => {
     if (activeTab === "All Payments") {
-      setFilteredData(paymentsData);
+      setFilteredData(transformedPayments);
     } else {
       setFilteredData(
-        paymentsData.filter(
+        transformedPayments.filter(
           (payment) => payment.status.toLowerCase() === activeTab.toLowerCase()
         )
       );
     }
-  }, [activeTab, paymentsData]);
+  }, [activeTab, paymentsData, bookingsData]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -120,8 +131,14 @@ const Payments = () => {
   };
 
   const handleDelete = (paymentId) => {
-    setPaymentsData(paymentsData.filter(payment => payment.id !== paymentId));
+    if (window.confirm('Are you sure you want to delete this payment?')) {
+      setPaymentsData(paymentsData.filter(payment => `#PAY-${payment.payment_id}` !== paymentId));
+    }
   };
+
+  if (loading) {
+    return <div style={{padding: '2rem', textAlign: 'center'}}>Loading payments...</div>;
+  }
 
   const renderStatus = (status) => {
     switch (status) {
@@ -153,23 +170,23 @@ const Payments = () => {
       <div className="summary-cards">
         <div className="card">
           <h4>Total Revenue</h4>
-          <p className="amount">KSh 2,847,500</p>
-          <span>This month</span>
+          <p className="amount">KSh {totalRevenue.toLocaleString()}</p>
+          <span>Completed payments</span>
         </div>
         <div className="card">
           <h4>Paid Invoices</h4>
-          <p className="amount">156</p>
-          <span>Last 30 days</span>
+          <p className="amount">{paidCount}</p>
+          <span>Completed transactions</span>
         </div>
         <div className="card">
           <h4>Pending Payments</h4>
-          <p className="amount">KSh 128,000</p>
-          <span>8 invoices</span>
+          <p className="amount">KSh {pendingAmount.toLocaleString()}</p>
+          <span>{pendingCount} invoices</span>
         </div>
         <div className="card">
           <h4>Overdue</h4>
-          <p className="amount">KSh 45,200</p>
-          <span>3 invoices</span>
+          <p className="amount">KSh {overdueAmount.toLocaleString()}</p>
+          <span>{overdueCount} invoices</span>
         </div>
       </div>
 
@@ -228,7 +245,14 @@ const Payments = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((payment, index) => (
+            {filteredData.length === 0 ? (
+              <tr>
+                <td colSpan="7" style={{textAlign: 'center', padding: '2rem', color: '#6b7280'}}>
+                  No payments found
+                </td>
+              </tr>
+            ) : (
+              filteredData.map((payment, index) => (
               <tr key={index}>
                 <td>{payment.id}</td>
                 <td>
@@ -259,7 +283,8 @@ const Payments = () => {
                   </button>
                 </td>
               </tr>
-            ))}
+            ))
+            )}
           </tbody>
         </table>
         <div className="pagination">

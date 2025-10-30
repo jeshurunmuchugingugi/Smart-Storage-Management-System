@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
-const AdminLogin = ({ onLogin }) => {
+const AdminLogin = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
   const [credentials, setCredentials] = useState({
     username: '',
     password: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
+  const isManagerLogin = location.pathname.includes('manager');
+  const portalTitle = isManagerLogin ? 'Manager Portal' : 'Admin Portal';
+  const portalSubtitle = isManagerLogin ? 'Sign in to view analytics' : 'Sign in to access the dashboard';
 
   const handleChange = (e) => {
     setCredentials({
@@ -20,8 +29,10 @@ const AdminLogin = ({ onLogin }) => {
     setLoading(true);
     setError('');
 
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
     try {
-      const response = await fetch('/api/admin/login', {
+      const response = await fetch(`${API_URL}/api/admin/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,17 +40,21 @@ const AdminLogin = ({ onLogin }) => {
         body: JSON.stringify(credentials),
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem('admin_token', data.access_token);
-        localStorage.setItem('admin_user', JSON.stringify(data.admin));
-        onLogin(data.admin);
-      } else {
-        setError(data.error || 'Login failed');
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({ error: 'Login failed' }));
+        setError(data.error || 'Invalid credentials');
+        setLoading(false);
+        return;
       }
+
+      const data = await response.json();
+      localStorage.setItem('admin_token', data.access_token);
+      localStorage.setItem('admin_user', JSON.stringify(data.admin));
+      login(data.admin);
+      navigate('/admin/dashboard');
     } catch (error) {
-      setError('Network error. Please try again.');
+      console.error('Login error:', error);
+      setError(`Cannot connect to server at ${API_URL}. Please ensure the backend is running.`);
     }
     setLoading(false);
   };
@@ -50,13 +65,13 @@ const AdminLogin = ({ onLogin }) => {
     <div style={styles.container}>
       <div style={styles.loginCard}>
         <div style={styles.header}>
-          <h1 style={styles.title}>Admin Portal</h1>
-          <p style={styles.subtitle}>Sign in to access the dashboard</p>
+          <h1 style={styles.title}>{portalTitle}</h1>
+          <p style={styles.subtitle}>{portalSubtitle}</p>
         </div>
         
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.inputGroup}>
-            <label style={styles.label}>Email Address</label>
+            <label style={styles.label}>Username</label>
             <input
               type="text"
               name="username"

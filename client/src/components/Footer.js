@@ -38,7 +38,9 @@ const Footer = () => {
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/bookings">My Bookings</Link></li>
               <li><a href="#calculator">Space Calculator</a></li>
-              <li><Link to="/contact">Contact</Link></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="/admin/login">Admin Portal</a></li>
+              <li><a href="/manager/login">Manager Portal</a></li>
             </ul>
           </div>
 

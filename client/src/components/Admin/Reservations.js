@@ -1,63 +1,74 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Reservations.css";
 
 const Reservations = () => {
-  const reservationsData = [
-    {
-      id: "#RSV-001",
-      customer: "John Kamau",
-      unit: "Unit A-102",
-      startDate: "Jan 15, 2025",
-      endDate: "Jul 15, 2025",
-      status: "Active",
-      amount: "KSh 25,000",
-    },
-    {
-      id: "#RSV-002",
-      customer: "Sarah Wanjiku",
-      unit: "Unit B-205",
-      startDate: "Feb 01, 2025",
-      endDate: "Aug 01, 2025",
-      status: "Active",
-      amount: "KSh 30,000",
-    },
-    {
-      id: "#RSV-003",
-      customer: "Peter Omondi",
-      unit: "Unit C-301",
-      startDate: "Oct 28, 2025",
-      endDate: "Apr 28, 2026",
-      status: "Upcoming",
-      amount: "KSh 20,000",
-    },
-    {
-      id: "#RSV-004",
-      customer: "Mary Akinyi",
-      unit: "Unit A-115",
-      startDate: "Mar 10, 2025",
-      endDate: "Sep 10, 2025",
-      status: "Active",
-      amount: "KSh 28,500",
-    },
-    {
-      id: "#RSV-005",
-      customer: "David Mutua",
-      unit: "Unit D-408",
-      startDate: "Jan 20, 2025",
-      endDate: "Jul 20, 2025",
-      status: "Active",
-      amount: "KSh 35,000",
-    },
-  ];
-
+  const [reservationsData, setReservationsData] = useState([]);
+  const [payments, setPayments] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
+  const [viewMode, setViewMode] = useState("table");
+  const [loading, setLoading] = useState(true);
 
-  const filteredReservations =
-    activeTab === "All"
-      ? reservationsData
-      : reservationsData.filter(
-          (r) => r.status.toLowerCase() === activeTab.toLowerCase()
-        );
+  useEffect(() => {
+    fetchData();
+    const interval = setInterval(fetchData, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const [bookingsRes, paymentsRes] = await Promise.all([
+        fetch('http://localhost:5000/api/bookings'),
+        fetch('http://localhost:5000/api/payments')
+      ]);
+      
+      if (bookingsRes.ok) {
+        const bookingsData = await bookingsRes.json();
+        setReservationsData(bookingsData);
+      }
+      
+      if (paymentsRes.ok) {
+        const paymentsData = await paymentsRes.json();
+        setPayments(paymentsData);
+      }
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getStatusLabel = (booking) => {
+    const today = new Date();
+    const startDate = new Date(booking.start_date);
+    const endDate = new Date(booking.end_date);
+    
+    if (booking.status === 'cancelled') return 'Cancelled';
+    if (booking.status === 'completed') return 'Expired';
+    if (today < startDate) return 'Upcoming';
+    if (today >= startDate && today <= endDate) return 'Active';
+    if (endDate - today < 7 * 24 * 60 * 60 * 1000) return 'Expiring';
+    return 'Active';
+  };
+
+  const activeCount = reservationsData.filter(r => getStatusLabel(r) === 'Active').length;
+  const upcomingCount = reservationsData.filter(r => getStatusLabel(r) === 'Upcoming').length;
+  const expiringCount = reservationsData.filter(r => {
+    const endDate = new Date(r.end_date);
+    const today = new Date();
+    const daysUntilExpiry = (endDate - today) / (1000 * 60 * 60 * 24);
+    return daysUntilExpiry > 0 && daysUntilExpiry <= 7;
+  }).length;
+  const totalRevenue = payments
+    .filter(p => p.status === 'completed')
+    .reduce((sum, p) => sum + parseFloat(p.amount || 0), 0);
+
+  const filteredReservations = activeTab === "All"
+    ? reservationsData
+    : reservationsData.filter(r => getStatusLabel(r).toLowerCase() === activeTab.toLowerCase());
+
+  if (loading) {
+    return <div className="reservations-page"><p>Loading reservations...</p></div>;
+  }
 
   return (
     <div className="reservations-page">
@@ -69,22 +80,22 @@ const Reservations = () => {
       <div className="reservations-summary">
         <div className="summary-card">
           <h4>Active Reservations</h4>
-          <p className="number">96</p>
+          <p className="number">{activeCount}</p>
           <span>Currently ongoing</span>
         </div>
         <div className="summary-card">
           <h4>Upcoming</h4>
-          <p className="number">15</p>
+          <p className="number">{upcomingCount}</p>
           <span>Starting soon</span>
         </div>
         <div className="summary-card">
           <h4>Expiring Soon</h4>
-          <p className="number">12</p>
+          <p className="number">{expiringCount}</p>
           <span>Within 7 days</span>
         </div>
         <div className="summary-card">
-          <h4>Monthly Revenue</h4>
-          <p className="number revenue">KSh 2.4M</p>
+          <h4>Total Revenue</h4>
+          <p className="number revenue">KSh {totalRevenue.toLocaleString()}</p>
           <span>From reservations</span>
         </div>
       </div>
@@ -102,12 +113,51 @@ const Reservations = () => {
           ))}
         </div>
         <div className="actions">
-          <button className="calendar-btn">📅 Calendar View</button>
+          <button 
+            className="calendar-btn" 
+            onClick={() => setViewMode(viewMode === 'table' ? 'calendar' : 'table')}
+          >
+            {viewMode === 'table' ? '📅 Calendar View' : '📋 Table View'}
+          </button>
           <button className="new-btn">+ New Reservation</button>
         </div>
       </div>
 
-      <div className="reservations-table">
+      {viewMode === 'calendar' ? (
+        <div className="calendar-view">
+          <div className="calendar-header">
+            <h3>Reservations Calendar</h3>
+          </div>
+          <div className="calendar-grid">
+            {reservationsData.map((res) => {
+              const startDate = new Date(res.start_date);
+              const endDate = new Date(res.end_date);
+              const duration = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+              
+              return (
+                <div key={res.booking_id} className="calendar-item">
+                  <div className="calendar-item-header">
+                    <span className={`status-dot ${getStatusLabel(res).toLowerCase()}`}></span>
+                    <strong>{res.customer_name || 'N/A'}</strong>
+                  </div>
+                  <div className="calendar-item-body">
+                    <p>📍 {res.unit?.unit_number || 'N/A'}</p>
+                    <p>📅 {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}</p>
+                    <p>⏱️ {duration} days</p>
+                    <p>💰 KSh {parseFloat(res.total_cost || 0).toLocaleString()}</p>
+                  </div>
+                  <div className="calendar-item-footer">
+                    <span className={`status-badge ${getStatusLabel(res).toLowerCase()}`}>
+                      {getStatusLabel(res)}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : (
+        <div className="reservations-table">
         <table>
           <thead>
             <tr>
@@ -122,19 +172,19 @@ const Reservations = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredReservations.map((res, index) => (
-              <tr key={index}>
-                <td>{res.id}</td>
-                <td>{res.customer}</td>
-                <td>{res.unit}</td>
-                <td>{res.startDate}</td>
-                <td>{res.endDate}</td>
+            {filteredReservations.map((res) => (
+              <tr key={res.booking_id}>
+                <td>#{res.booking_id}</td>
+                <td>{res.customer_name || 'N/A'}</td>
+                <td>{res.unit?.unit_number || 'N/A'}</td>
+                <td>{new Date(res.start_date).toLocaleDateString()}</td>
+                <td>{new Date(res.end_date).toLocaleDateString()}</td>
                 <td>
-                  <span className={`status ${res.status.toLowerCase()}`}>
-                    {res.status}
+                  <span className={`status ${getStatusLabel(res).toLowerCase()}`}>
+                    {getStatusLabel(res)}
                   </span>
                 </td>
-                <td>{res.amount}</td>
+                <td>KSh {parseFloat(res.total_cost || 0).toLocaleString()}</td>
                 <td>
                   <button className="view-btn">View</button>
                 </td>
@@ -143,6 +193,7 @@ const Reservations = () => {
           </tbody>
         </table>
       </div>
+      )}
     </div>
   );
 };

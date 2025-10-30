@@ -68,16 +68,15 @@ const StorageUnitsPage = ({ units, loading, onRefresh }) => {
   const storageUnits = units && units.length > 0 ? units.map(unit => ({
     id: unit.unit_id,
     name: unit.unit_number,
-    area: `${unit.size}m2` || '10m2',
+    area: `${unit.size || 10}m2`,
     price: `Ksh. ${unit.monthly_rate}/month`,
-    location: `Location: ${unit.location}`,
+    location: unit.location ? `Location: ${unit.location}` : `Site: ${unit.site}`,
     site: `Site: ${unit.site}`,
     insurance: 'Ksh. 50,000 insurance cover included. No deposit required',
     image: 'https://www.sparefoot.com/blog/wp-content/uploads/2024/08/how-much-is-a-storage-unit-hero-1334x1334.jpg',
     status: unit.status,
     features: unit.features
   })) : staticUnits;
-  console.log(storageUnits)
 
   const filteredUnits = filter === 'All' ? storageUnits : storageUnits.filter(unit => unit.area === filter);
 
@@ -128,8 +127,8 @@ const StorageUnitsPage = ({ units, loading, onRefresh }) => {
             {unit.status && (unit.status === 'available' || unit.status === 'booked') && (
               <div style={{
                 ...styles.statusBadge,
-                backgroundColor: unit.status === 'booked' ? '#fecaca' : '#fef3c7' || unit.status === 'available' ? '#dcfce7' : '#f0fdf4',
-                color: unit.status === 'booked' ? '#dc2626' : '#d97706'
+                backgroundColor: unit.status === 'booked' ? '#fecaca' : unit.status === 'available' ? '#dcfce7' : '#f0fdf4',
+                color: unit.status === 'booked' ? '#dc2626' : unit.status === 'available' ? '#166534' : '#d97706'
               }}>
                 {unit.status.toUpperCase()}
               </div>

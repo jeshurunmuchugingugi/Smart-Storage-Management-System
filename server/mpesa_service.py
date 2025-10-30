@@ -92,6 +92,10 @@ class MpesaService:
         Returns:
             dict: Response with success status, checkout_request_id, and message
         """
+        # Validate credentials
+        if not all([self.consumer_key, self.consumer_secret, self.business_short_code, self.passkey]):
+            return {'success': False, 'error': 'M-Pesa credentials not configured'}
+        
         # Step 1: Get OAuth access token for authentication
         access_token = self.get_access_token()
         if not access_token:
@@ -127,8 +131,17 @@ class MpesaService:
         try:
             # Step 6: Send POST request to M-Pesa API
             response = requests.post(url, json=payload, headers=headers)
-            response.raise_for_status()  # Raise exception for HTTP errors
+            
+            # Log response for debugging
+            print(f"M-Pesa STK Push Response Status: {response.status_code}")
+            print(f"M-Pesa STK Push Response: {response.text}")
+            
             result = response.json()  # Parse JSON response
+            
+            # Check for error response before raising for status
+            if response.status_code != 200:
+                error_msg = result.get('errorMessage', result.get('errorCode', 'STK Push failed'))
+                return {'success': False, 'error': f'M-Pesa API Error: {error_msg}'}
             
             # Step 7: Check if STK push was successfully initiated
             if result.get('ResponseCode') == '0':  # '0' means success
@@ -142,10 +155,14 @@ class MpesaService:
                 # STK push request was rejected by M-Pesa
                 return {
                     'success': False,
-                    'error': result.get('errorMessage', 'STK Push failed')
+                    'error': result.get('errorMessage', result.get('ResponseDescription', 'STK Push failed'))
                 }
-        except Exception as e:
+        except requests.exceptions.RequestException as e:
             # Handle network errors, timeouts, or other exceptions
+            print(f"M-Pesa Request Exception: {str(e)}")
+            return {'success': False, 'error': f'Request failed: {str(e)}'}
+        except Exception as e:
+            print(f"M-Pesa Unexpected Error: {str(e)}")
             return {'success': False, 'error': str(e)}
     
     def query_stk_status(self, checkout_request_id):

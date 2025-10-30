@@ -2,6 +2,7 @@ from flask_marshmallow import Marshmallow
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from marshmallow import fields, validate, ValidationError, pre_load, post_load
 from datetime import date, datetime
+from sqlalchemy import Enum  
 from models import Customer, Feature, StorageUnit, Booking, Payment, TransportationRequest, Admin
 
 ma = Marshmallow()

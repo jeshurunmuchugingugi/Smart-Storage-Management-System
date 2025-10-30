@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Payments.css";
+import { API_BASE_URL } from '../../services/api';
 
 const Payments = () => {
   const [activeTab, setActiveTab] = useState("All Payments");
@@ -18,8 +19,8 @@ const Payments = () => {
   const fetchPayments = async () => {
     try {
       const [paymentsRes, bookingsRes] = await Promise.all([
-        fetch('http://localhost:5001/api/payments'),
-        fetch('http://localhost:5001/api/bookings')
+        fetch(`${API_BASE_URL}/api/payments`),
+        fetch(`${API_BASE_URL}/api/bookings`)
       ]);
       
       if (paymentsRes.ok && bookingsRes.ok) {
@@ -65,21 +66,7 @@ const Payments = () => {
     return status;
   };
 
-  const transformedPayments = paymentsData.map(payment => {
-    const customerName = getCustomerName(payment.booking_id);
-    return {
-      id: `#PAY-${payment.payment_id}`,
-      customer: customerName,
-      email: getCustomerEmail(payment.booking_id),
-      initials: getInitials(customerName),
-      amount: `KSh ${parseFloat(payment.amount).toLocaleString()}`,
-      method: payment.payment_method || 'N/A',
-      date: formatDate(payment.payment_date),
-      status: formatStatus(payment.status),
-      receipt: payment.mpesa_receipt_number,
-      phone: payment.phone_number
-    };
-  });
+
 
   const totalRevenue = paymentsData
     .filter(p => p.status === 'completed')
@@ -99,7 +86,24 @@ const Payments = () => {
 
   const overdueCount = paymentsData.filter(p => p.status === 'failed').length;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
+    const transformedPayments = paymentsData.map(payment => {
+      const customerName = getCustomerName(payment.booking_id);
+      return {
+        id: `#PAY-${payment.payment_id}`,
+        customer: customerName,
+        email: getCustomerEmail(payment.booking_id),
+        initials: getInitials(customerName),
+        amount: `KSh ${parseFloat(payment.amount).toLocaleString()}`,
+        method: payment.payment_method || 'N/A',
+        date: formatDate(payment.payment_date),
+        status: formatStatus(payment.status),
+        receipt: payment.mpesa_receipt_number,
+        phone: payment.phone_number
+      };
+    });
+
     if (activeTab === "All Payments") {
       setFilteredData(transformedPayments);
     } else {

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Reservations.css";
+import { API_BASE_URL } from '../../services/api';
 
 const Reservations = () => {
   const [reservationsData, setReservationsData] = useState([]);
   const [payments, setPayments] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
+  const [viewMode, setViewMode] = useState('table');
   const [loading, setLoading] = useState(true);
   const [showNewForm, setShowNewForm] = useState(false);
 
@@ -17,8 +19,8 @@ const Reservations = () => {
   const fetchData = async () => {
     try {
       const [bookingsRes, paymentsRes] = await Promise.all([
-        fetch('http://localhost:5001/api/bookings'),
-        fetch('http://localhost:5001/api/payments')
+        fetch(`${API_BASE_URL}/api/bookings`),
+        fetch(`${API_BASE_URL}/api/payments`)
       ]);
       
       if (bookingsRes.ok) {
@@ -113,7 +115,19 @@ const Reservations = () => {
           ))}
         </div>
         <div className="actions">
-          <button className="new-btn" onClick={() => setShowNewForm(true)}>+ New Reservation</button>
+          <button 
+            className={viewMode === 'table' ? 'view-btn active' : 'view-btn'}
+            onClick={() => setViewMode('table')}
+          >
+            Table View
+          </button>
+          <button 
+            className={viewMode === 'calendar' ? 'view-btn active' : 'view-btn'}
+            onClick={() => setViewMode('calendar')}
+          >
+            Calendar View
+          </button>
+          <button className="new-btn">+ New Reservation</button>
         </div>
       </div>
 

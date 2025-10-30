@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Icon } from '@iconify/react';
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, PieChart, Pie, Cell, Legend } from 'recharts';
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Cell } from 'recharts';
 import Customers from './Customers';
 import Payments from './Payments';
 import Reservations from './Reservations';
 import UnitsTab from './UnitTab';
+import { API_BASE_URL } from '../../services/api';
 
 
 const AdminDashboard = () => {
@@ -22,14 +23,23 @@ const AdminDashboard = () => {
     if (!token || !admin) {
       navigate('/admin/login');
     }
+    
+    // Suppress ResizeObserver errors
+    const handleError = (e) => {
+      if (e.message.includes('ResizeObserver loop')) {
+        e.stopImmediatePropagation();
+      }
+    };
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
   }, [admin, navigate]);
 
   const fetchData = async () => {
     try {
       const [unitsRes, bookingsRes, paymentsRes] = await Promise.all([
-        fetch('http://localhost:5001/api/units'),
-        fetch('http://localhost:5001/api/bookings'),
-        fetch('http://localhost:5001/api/payments')
+        fetch(`${API_BASE_URL}/api/units`),
+        fetch(`${API_BASE_URL}/api/bookings`),
+        fetch(`${API_BASE_URL}/api/payments`)
       ]);
       
       if (unitsRes.ok) setUnits(await unitsRes.json());
@@ -44,7 +54,7 @@ const AdminDashboard = () => {
     if (!window.confirm('Are you sure you want to delete this unit?')) return;
     try {
       const token = localStorage.getItem('admin_token');
-      const response = await fetch(`http://localhost:5001/api/units/${unitId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/units/${unitId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -75,43 +85,7 @@ const AdminDashboard = () => {
   const totalUnits = units.length;
   const availableUnits = units.filter(u => u.status === 'available').length;
   const occupiedUnits = units.filter(u => u.status === 'booked').length;
-  const totalRevenue = payments.filter(p => p.status === 'completed').reduce((sum, p) => sum + parseFloat(p.amount || 0), 0);
   const pendingPayments = payments.filter(p => p.status === 'pending').reduce((sum, p) => sum + parseFloat(p.amount || 0), 0);
-
-  const [occupancyHistory, setOccupancyHistory] = useState([]);
-
-  useEffect(() => {
-    const currentAvailable = units.filter(u => u.status === 'available').length;
-    const now = new Date();
-    const currentHour = now.getHours();
-    
-    // Only update every 4 hours (0, 4, 8, 12, 16, 20)
-    if (currentHour % 4 === 0 && now.getMinutes() < 5) {
-      const timestamp = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-      
-      setOccupancyHistory(prev => {
-        const lastEntry = prev[prev.length - 1];
-        if (!lastEntry || lastEntry.time !== timestamp) {
-          const newHistory = [...prev, { time: timestamp, available: currentAvailable }];
-          return newHistory.slice(-6); // Keep last 6 data points (24 hours)
-        }
-        return prev;
-      });
-    }
-  }, [units]);
-
-  const revenueData = payments
-    .filter(p => p.status === 'completed' && p.payment_date)
-    .reduce((acc, p) => {
-      const date = new Date(p.payment_date).toLocaleDateString('en-US', { month: 'short' });
-      const existing = acc.find(item => item.month === date);
-      if (existing) {
-        existing.value += parseFloat(p.amount || 0);
-      } else {
-        acc.push({ month: date, value: parseFloat(p.amount || 0) });
-      }
-      return acc;
-    }, []);
 
   const bookingsOverTime = [
     { month: 'Jan', value: 12 },
@@ -125,16 +99,7 @@ const AdminDashboard = () => {
     { month: 'Sep', value: 96 }
   ];
 
-  const paymentMethodData = payments.reduce((acc, p) => {
-    const method = p.payment_method || 'Unknown';
-    const existing = acc.find(item => item.category === method);
-    if (existing) {
-      existing.value += 1;
-    } else {
-      acc.push({ category: method, value: 1 });
-    }
-    return acc;
-  }, []);
+
 
   const handleLogout = () => {
     localStorage.removeItem('admin_token');
@@ -241,8 +206,8 @@ const AdminDashboard = () => {
 
                 <div className="card chart-card">
                   <h3 className="card-title">Available Units - Real-time</h3>
-                  <div className="chart-container">
-                    <ResponsiveContainer width="100%" height={200}>
+                  <div className="chart-container" style={{width: '100%', height: '200px'}}>
+                    <ResponsiveContainer width="100%" height={200} debounce={100}>
                       <BarChart data={[
                         { name: 'Available', value: availableUnits },
                         { name: 'Occupied', value: occupiedUnits }
@@ -279,8 +244,8 @@ const AdminDashboard = () => {
 
                 <div className="card payment-card">
                   <h3 className="card-title">Customers by Payment Method</h3>
-                  <div className="chart-container">
-                    <ResponsiveContainer width="100%" height={200}>
+                  <div className="chart-container" style={{width: '100%', height: '200px'}}>
+                    <ResponsiveContainer width="100%" height={200} debounce={100}>
                       <BarChart 
                         data={payments.reduce((acc, p) => {
                           const method = p.payment_method || 'Unknown';
@@ -317,8 +282,8 @@ const AdminDashboard = () => {
 
                 <div className="card size-card">
                   <h3 className="card-title">Booked Units Trend</h3>
-                  <div className="chart-container">
-                    <ResponsiveContainer width="100%" height={200}>
+                  <div className="chart-container" style={{width: '100%', height: '200px'}}>
+                    <ResponsiveContainer width="100%" height={200} debounce={100}>
                       <LineChart data={bookingsOverTime}>
                         <XAxis 
                           dataKey="month" 

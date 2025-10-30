@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
 flask-bcrypt = "*"
@@ -17,6 +16,7 @@ flask-restful = "*"
 sendgrid = "==6.11.0"
 python-dotenv = "*"
 faker = "*"
+flask = "*"
 
 [dev-packages]
 

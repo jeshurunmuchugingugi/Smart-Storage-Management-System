@@ -7,13 +7,12 @@ import Customers from './Customers';
 import Payments from './Payments';
 import Reservations from './Reservations';
 import UnitsTab from './UnitTab';
-import Reports from './Reports';
+
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { logout, admin } = useAuth();
-  const isManager = admin?.role === 'manager';
-  const [activeTab, setActiveTab] = useState(isManager ? 'reports' : 'dashboard');
+  const [activeTab, setActiveTab] = useState('dashboard');
   const [units, setUnits] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [payments, setPayments] = useState([]);
@@ -134,25 +133,17 @@ const AdminDashboard = () => {
           <h2>STORELINK<br />LOGISTICS</h2>
         </div>
         <nav className="nav-menu">
-          {!isManager && (
-            <>
-              <div className={`nav-item ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>
-                <Icon icon="mdi:home" style={{fontSize: '18px'}} />
-                <span>Dashboard</span>
-              </div>
-              <div className={`nav-item ${activeTab === 'units' ? 'active' : ''}`} onClick={() => setActiveTab('units')}>
-                <Icon icon="mdi:package-variant" style={{fontSize: '18px'}} />
-                <span>Units / Storage</span>
-              </div>
-              <div className={`nav-item ${activeTab === 'reservations' ? 'active' : ''}`} onClick={() => setActiveTab('reservations')}>
-                <Icon icon="mdi:calendar" style={{fontSize: '18px'}} />
-                <span>Reservations</span>
-              </div>
-            </>
-          )}
-          <div className={`nav-item ${activeTab === 'reports' ? 'active' : ''}`} onClick={() => setActiveTab('reports')}>
-            <Icon icon="mdi:chart-bar" style={{fontSize: '18px'}} />
-            <span>{isManager ? 'Analytics' : 'Reports'}</span>
+          <div className={`nav-item ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>
+            <Icon icon="mdi:home" style={{fontSize: '18px'}} />
+            <span>Dashboard</span>
+          </div>
+          <div className={`nav-item ${activeTab === 'units' ? 'active' : ''}`} onClick={() => setActiveTab('units')}>
+            <Icon icon="mdi:package-variant" style={{fontSize: '18px'}} />
+            <span>Units / Storage</span>
+          </div>
+          <div className={`nav-item ${activeTab === 'reservations' ? 'active' : ''}`} onClick={() => setActiveTab('reservations')}>
+            <Icon icon="mdi:calendar" style={{fontSize: '18px'}} />
+            <span>Reservations</span>
           </div>
           <div className={`nav-item ${activeTab === 'payments' ? 'active' : ''}`} onClick={() => setActiveTab('payments')}>
             <Icon icon="mdi:credit-card" style={{fontSize: '18px'}} />
@@ -167,10 +158,7 @@ const AdminDashboard = () => {
 
       <div className="main-content">
         <header className="top-bar">
-          <div className="search-container">
-            <Icon icon="mdi:magnify" style={{fontSize: '18px'}} className="search-icon" />
-            <input type="search" placeholder="Search..." className="search-box" />
-          </div>
+          <div></div>
           <div className="user-actions">
             <button className="logout-btn" onClick={handleLogout}>
               <Icon icon="mdi:logout" style={{fontSize: '18px', marginRight: '8px'}} />
@@ -188,8 +176,6 @@ const AdminDashboard = () => {
             <Reservations />
           ) : activeTab === 'units' ? (
             <UnitsTab units={units} fetchData={fetchData} handleDeleteUnit={handleDeleteUnit} />
-          ) : activeTab === 'reports' ? (
-            <Reports units={units} bookings={bookings} payments={payments} />
           ) : (
             <>
               <div className="stats-grid">

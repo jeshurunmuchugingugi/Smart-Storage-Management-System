@@ -9,6 +9,7 @@ from schema import ma, storage_schema, storages_schema, feature_schema, features
 from datetime import datetime, date
 import logging
 import uuid
+import os
 from mpesa_service import MpesaService
 from functools import wraps
 
@@ -16,8 +17,9 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 # Configure CORS properly
+allowed_origins = os.getenv('CORS_ORIGINS', 'http://localhost:3000,http://127.0.0.1:3000').split(',')
 CORS(app, 
-     origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+     origins=allowed_origins,
      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
      allow_headers=["Content-Type", "Authorization", "X-CSRF-Token"],
      supports_credentials=True)
@@ -613,7 +615,6 @@ def server_error(error):
     return jsonify({"error": "Internal server error"}), 500
 
 if __name__ == '__main__':
-    import os
     try:
         with app.app_context():
             db.create_all()

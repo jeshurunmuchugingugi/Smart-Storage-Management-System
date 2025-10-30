@@ -161,7 +161,6 @@ const Payments = () => {
           <p>Manage all payment transactions and billing</p>
         </div>
         <div className="actions">
-          <input type="text" placeholder="Search payments..." />
           <button className="record-btn" onClick={() => setShowForm(!showForm)}>+ Record Payment</button>
         </div>
       </div>

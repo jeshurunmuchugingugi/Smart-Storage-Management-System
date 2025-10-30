@@ -1,6 +1,6 @@
 from flask_marshmallow import Marshmallow
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from marshmallow import fields
+from marshmallow import fields, EXCLUDE
 from models import Customer, Feature, StorageUnit, Booking, Payment, TransportationRequest
 
 ma = Marshmallow()
@@ -10,6 +10,7 @@ class CustomerSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = Customer
         load_instance = True
+        exclude = ['bookings', 'transport_requests']
 
 
 
@@ -17,6 +18,8 @@ class FeatureSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = Feature
         load_instance = True
+        exclude = ['_unit_links']
+        unknown = EXCLUDE
 
 
 class StorageUnitSchema(SQLAlchemyAutoSchema):
@@ -28,6 +31,8 @@ class StorageUnitSchema(SQLAlchemyAutoSchema):
         model = StorageUnit
         include_fk = True
         load_instance = True
+        exclude = ['_feature_links', 'bookings']
+        unknown = EXCLUDE
 
 
 class BookingSchema(SQLAlchemyAutoSchema):
@@ -56,6 +61,7 @@ class PaymentSchema(SQLAlchemyAutoSchema):
         model = Payment
         include_fk = True
         load_instance = True
+        exclude = ['booking', 'user']
 
 
 class TransportationSchema(SQLAlchemyAutoSchema):
@@ -65,6 +71,7 @@ class TransportationSchema(SQLAlchemyAutoSchema):
         model = TransportationRequest
         include_fk = True
         load_instance = True
+        exclude = ['booking', 'user']
 
 
 # ------------------------------------------------------

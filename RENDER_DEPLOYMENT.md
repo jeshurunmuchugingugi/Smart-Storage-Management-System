@@ -32,8 +32,6 @@ MPESA_CONSUMER_SECRET=<your-mpesa-secret>
 MPESA_SHORTCODE=<your-shortcode>
 MPESA_PASSKEY=<your-passkey>
 MPESA_CALLBACK_URL=https://your-backend-url.onrender.com/api/mpesa/callback
-SENDGRID_API_KEY=<your-sendgrid-key>
-SENDGRID_FROM_EMAIL=<your-verified-email>
 ```
 
 ### 4. Get Backend URL

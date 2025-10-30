@@ -21,10 +21,11 @@ import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Pricing from './components/Pricing';
 import Payment from './components/Payment';
+import { API_BASE_URL } from './services/api';
 import './App.css';
 
 const App = () => {
-  const [admin, setAdmin] = useState(null); // <-- Admin login state
+
   const [units, setUnits] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -33,7 +34,7 @@ const App = () => {
   const fetchUnits = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5001/api/units');
+      const response = await fetch(`${API_BASE_URL}/api/units`);
       if (response.ok) {
         const data = await response.json();
         setUnits(data);

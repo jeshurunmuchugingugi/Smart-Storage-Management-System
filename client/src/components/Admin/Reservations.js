@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Reservations.css";
+import { API_BASE_URL } from '../../services/api';
 
 const Reservations = () => {
   const [reservationsData, setReservationsData] = useState([]);
@@ -17,8 +18,8 @@ const Reservations = () => {
   const fetchData = async () => {
     try {
       const [bookingsRes, paymentsRes] = await Promise.all([
-        fetch('http://localhost:5001/api/bookings'),
-        fetch('http://localhost:5001/api/payments')
+        fetch(`${API_BASE_URL}/api/bookings`),
+        fetch(`${API_BASE_URL}/api/payments`)
       ]);
       
       if (bookingsRes.ok) {

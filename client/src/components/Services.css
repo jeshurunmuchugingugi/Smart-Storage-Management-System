@@ -1,0 +1,106 @@
+.servicesSection {
+  padding: 5rem 2rem;
+  background: #F8FAFC;
+}
+
+.servicesContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.servicesHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.servicesTitle {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #1A2637;
+  margin-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.titleAccent {
+  color: #FC9E3B;
+}
+
+.servicesSubtitle {
+  font-size: 1.125rem;
+  color: #6B7280;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.serviceCard {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.serviceIconWrapper {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #FC9E3B 0%, #F4A261 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+}
+
+.serviceIcon {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.serviceTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1A2637;
+  margin-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.serviceDescription {
+  color: #6B7280;
+  line-height: 1.7;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .servicesSection {
+    padding: 3rem 1rem;
+  }
+  
+  .servicesTitle {
+    font-size: 2.25rem;
+  }
+  
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .serviceCard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .servicesSubtitle {
+    font-size: 1rem;
+  }
+}

@@ -5,12 +5,18 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from flask_restful import Api, Resource
 from models import db, User, Admin, StorageUnit, Booking, Feature, Payment, TransportationRequest
 from config import Config
-from schema import ma, storage_schema, storages_schema, feature_schema, features_schema, booking_schema, bookings_schema, payment_schema, payments_schema
+from schema import (ma, storage_schema, storages_schema, feature_schema, features_schema, 
+                   booking_schema, bookings_schema, payment_schema, payments_schema,
+                   admin_login_input_schema, storage_unit_input_schema, booking_input_schema,
+                   payment_input_schema, transportation_input_schema, mpesa_stk_input_schema,
+                   mpesa_query_input_schema)
+from marshmallow import ValidationError
 from datetime import datetime, date
 import logging
 import uuid
 import os
 from mpesa_service import MpesaService
+from email_service import EmailService
 from functools import wraps
 
 app = Flask(__name__)
@@ -62,19 +68,16 @@ def role_required(allowed_roles):
 class AdminLoginResource(Resource):
     def post(self):
         try:
-            data = request.get_json()
-            if not data:
+            json_data = request.get_json()
+            if not json_data:
                 return {'error': 'No data provided'}, 400
-                
-            username = data.get('username')
-            password = data.get('password')
+            
+            # Validate input using Marshmallow
+            data = admin_login_input_schema.load(json_data)
+            
+            admin = Admin.query.filter_by(username=data['username']).first()
 
-            if not username or not password:
-                return {'error': 'Username and password required'}, 400
-
-            admin = Admin.query.filter_by(username=username).first()
-
-            if admin and admin.check_password(password):
+            if admin and admin.check_password(data['password']):
                 access_token = create_access_token(
                     identity=str(admin.admin_id),
                     additional_claims={'role': admin.role}
@@ -89,6 +92,8 @@ class AdminLoginResource(Resource):
                 }, 200
 
             return {'error': 'Invalid credentials'}, 401
+        except ValidationError as e:
+            return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
             logging.error(f"Error during admin login: {str(e)}")
             return {'error': 'Login failed'}, 500
@@ -106,45 +111,36 @@ class StorageUnitListResource(Resource):
     def post(self):
         try:
             logging.info("POST /api/units - Creating new storage unit")
-            data = request.get_json()
-            logging.info(f"Received data: {data}")
+            json_data = request.get_json()
+            logging.info(f"Received data: {json_data}")
             
-            if not data:
+            if not json_data:
                 return {'error': 'No data provided'}, 400
 
-            required_fields = ['unit_number', 'site', 'monthly_rate']
-            for field in required_fields:
-                if field not in data:
-                    return {'error': f'Missing required field: {field}'}, 400
-
-            # Convert size to float if provided, otherwise None
-            size_value = None
-            if data.get('size'):
-                try:
-                    size_value = float(data['size'])
-                except (ValueError, TypeError):
-                    size_value = None
+            # Validate input using Marshmallow
+            data = storage_unit_input_schema.load(json_data)
             
             unit = StorageUnit(
                 unit_number=data['unit_number'],
                 site=data['site'],
-                size=size_value,
+                size=data.get('size'),
                 monthly_rate=data['monthly_rate'],
-                status=data.get('status', 'available'),
+                status=data['status'],
                 location=data.get('location')
             )
 
-            if 'features' in data:
-                for feature_name in data['features']:
-                    feature = Feature.query.filter_by(name=feature_name).first()
-                    if not feature:
-                        feature = Feature(name=feature_name)
-                    unit.features.append(feature)
+            for feature_name in data['features']:
+                feature = Feature.query.filter_by(name=feature_name).first()
+                if not feature:
+                    feature = Feature(name=feature_name)
+                unit.features.append(feature)
 
             db.session.add(unit)
             db.session.commit()
             logging.info(f"Successfully created unit: {unit.unit_id}")
             return storage_schema.dump(unit), 201
+        except ValidationError as e:
+            return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
             db.session.rollback()
             logging.error(f"Error creating storage unit: {str(e)}")
@@ -165,23 +161,17 @@ class StorageUnitResource(Resource):
     def put(self, unit_id):
         try:
             unit = StorageUnit.query.get_or_404(unit_id)
-            data = request.get_json()
-            if not data:
+            json_data = request.get_json()
+            if not json_data:
                 return {'error': 'No data provided'}, 400
 
-            unit.unit_number = data.get('unit_number', unit.unit_number)
-            unit.site = data.get('site', unit.site)
+            # Validate input using Marshmallow (partial update)
+            data = storage_unit_input_schema.load(json_data, partial=True)
             
-            # Convert size to float if provided
-            if 'size' in data:
-                try:
-                    unit.size = float(data['size']) if data['size'] else None
-                except (ValueError, TypeError):
-                    unit.size = None
-            
-            unit.monthly_rate = data.get('monthly_rate', unit.monthly_rate)
-            unit.status = data.get('status', unit.status)
-            unit.location = data.get('location', unit.location)
+            # Update fields
+            for field in ['unit_number', 'site', 'size', 'monthly_rate', 'status', 'location']:
+                if field in data:
+                    setattr(unit, field, data[field])
 
             if 'features' in data:
                 unit.features.clear()
@@ -193,6 +183,8 @@ class StorageUnitResource(Resource):
 
             db.session.commit()
             return storage_schema.dump(unit), 200
+        except ValidationError as e:
+            return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
             db.session.rollback()
             logging.error(f"Error updating storage unit {unit_id}: {str(e)}")
@@ -248,27 +240,12 @@ class BookingListResource(Resource):
 
     def post(self):
         try:
-            data = request.get_json()
-            if not data:
+            json_data = request.get_json()
+            if not json_data:
                 return {'error': 'No data provided'}, 400
 
-            required_fields = ['unit_id', 'customer_name', 'customer_email', 'customer_phone', 'start_date', 'end_date', 'total_cost']
-            for field in required_fields:
-                if field not in data:
-                    return {'error': f'Missing required field: {field}'}, 400
-
-            # Parse dates
-            try:
-                start_date = datetime.strptime(data['start_date'], '%Y-%m-%d').date()
-                end_date = datetime.strptime(data['end_date'], '%Y-%m-%d').date()
-            except ValueError as e:
-                return {'error': f'Invalid date format: {str(e)}'}, 400
-
-            # Validate dates
-            if start_date >= end_date:
-                return {'error': 'End date must be after start date'}, 400
-            if start_date < date.today():
-                return {'error': 'Start date cannot be in the past'}, 400
+            # Validate input using Marshmallow
+            data = booking_input_schema.load(json_data)
 
             # Check if unit exists and is available
             unit = StorageUnit.query.get(data['unit_id'])
@@ -282,10 +259,10 @@ class BookingListResource(Resource):
                 customer_name=data['customer_name'].strip(),
                 customer_email=data['customer_email'].strip(),
                 customer_phone=data['customer_phone'].strip(),
-                start_date=start_date,
-                end_date=end_date,
-                total_cost=float(data['total_cost']),
-                status=data.get('status', 'pending')
+                start_date=data['start_date'],
+                end_date=data['end_date'],
+                total_cost=data['total_cost'],
+                status=data['status']
             )
             
             # Update unit status to booked
@@ -311,6 +288,8 @@ class BookingListResource(Resource):
             db.session.commit()
             
             return result, 201
+        except ValidationError as e:
+            return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
             db.session.rollback()
             logging.error(f"Error creating booking: {str(e)}")
@@ -338,14 +317,12 @@ class PaymentListResource(Resource):
 
     def post(self):
         try:
-            data = request.get_json(force=True)
-            if not data:
+            json_data = request.get_json(force=True)
+            if not json_data:
                 return {'error': 'No data provided'}, 400
             
-            required_fields = ['booking_id', 'amount']
-            for field in required_fields:
-                if field not in data:
-                    return {'error': f'Missing required field: {field}'}, 400
+            # Validate input using Marshmallow
+            data = payment_input_schema.load(json_data)
             
             # Check if booking exists
             booking = Booking.query.get(data['booking_id'])
@@ -355,20 +332,19 @@ class PaymentListResource(Resource):
             payment = Payment(
                 booking_id=data['booking_id'],
                 amount=data['amount'],
-                payment_method=data.get('payment_method', 'pending'),
-                status=data.get('status', 'pending')
+                payment_method=data['payment_method'],
+                status=data['status']
             )
             
             # Update booking status to 'paid' when payment is completed
-            if data.get('status') == 'completed':
+            if data['status'] == 'completed':
                 booking.status = 'paid'
             
             db.session.add(payment)
             db.session.commit()
             return payment_schema.dump(payment), 201
-        except (ValueError, TypeError):
-            db.session.rollback()
-            return {'error': 'Invalid JSON data'}, 400
+        except ValidationError as e:
+            return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
             db.session.rollback()
             logging.error(f"Error creating payment: {str(e)}")
@@ -378,39 +354,28 @@ class PaymentListResource(Resource):
 class TransportationResource(Resource):
     def post(self):
         try:
-            data = request.get_json()
-            if not data:
+            json_data = request.get_json()
+            if not json_data:
                 return {'error': 'No data provided'}, 400
             
-            required_fields = ['booking_id', 'customer_name', 'pickup_address', 'pickup_date', 'pickup_time']
-            for field in required_fields:
-                if field not in data or not data[field]:
-                    return {'error': f'Missing required field: {field}'}, 400
-            
-            # Parse dates and times
-            try:
-                pickup_date = datetime.strptime(data['pickup_date'], '%Y-%m-%d').date()
-                pickup_time = datetime.strptime(data['pickup_time'], '%H:%M').time()
-            except ValueError as e:
-                return {'error': f'Invalid date/time format: {str(e)}'}, 400
-            
-            # Validate pickup date
-            if pickup_date < date.today():
-                return {'error': 'Pickup date cannot be in the past'}, 400
+            # Validate input using Marshmallow
+            data = transportation_input_schema.load(json_data)
             
             transport = TransportationRequest(
                 booking_id=data['booking_id'],
                 customer_name=data['customer_name'].strip(),
                 pickup_address=data['pickup_address'].strip(),
-                pickup_date=pickup_date,
-                pickup_time=pickup_time,
-                distance=float(data['distance']) if data.get('distance') else None,
-                special_instructions=data.get('special_instructions', '').strip(),
-                status=data.get('status', 'pending')
+                pickup_date=data['pickup_date'],
+                pickup_time=data['pickup_time'],
+                distance=data.get('distance'),
+                special_instructions=data['special_instructions'].strip(),
+                status=data['status']
             )
             db.session.add(transport)
             db.session.commit()
             return {'message': 'Transportation request created', 'request_id': transport.request_id}, 201
+        except ValidationError as e:
+            return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
             db.session.rollback()
             logging.error(f"Error creating transportation request: {str(e)}")
@@ -421,14 +386,12 @@ class MpesaSTKPushResource(Resource):
     def post(self):
         """Initiate M-Pesa STK Push payment"""
         try:
-            data = request.get_json()
-            if not data:
+            json_data = request.get_json()
+            if not json_data:
                 return {'error': 'No data provided'}, 400
             
-            required_fields = ['booking_id', 'phone_number', 'amount']
-            for field in required_fields:
-                if field not in data:
-                    return {'error': f'Missing required field: {field}'}, 400
+            # Validate input using Marshmallow
+            data = mpesa_stk_input_schema.load(json_data)
             
             # Validate booking exists
             booking = Booking.query.get(data['booking_id'])
@@ -479,6 +442,8 @@ class MpesaSTKPushResource(Resource):
             else:
                 return {'error': result.get('error')}, 400
                 
+        except ValidationError as e:
+            return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
             db.session.rollback()
             logging.error(f"Error initiating M-Pesa payment: {str(e)}")
@@ -532,16 +497,19 @@ class MpesaQueryResource(Resource):
     def post(self):
         """Query M-Pesa payment status"""
         try:
-            data = request.get_json()
-            checkout_request_id = data.get('checkout_request_id')
+            json_data = request.get_json()
+            if not json_data:
+                return {'error': 'No data provided'}, 400
             
-            if not checkout_request_id:
-                return {'error': 'checkout_request_id required'}, 400
+            # Validate input using Marshmallow
+            data = mpesa_query_input_schema.load(json_data)
             
             mpesa = MpesaService()
-            result = mpesa.query_stk_status(checkout_request_id)
+            result = mpesa.query_stk_status(data['checkout_request_id'])
             
             return result, 200
+        except ValidationError as e:
+            return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
             logging.error(f"Error querying M-Pesa status: {str(e)}")
             return {'error': str(e)}, 500

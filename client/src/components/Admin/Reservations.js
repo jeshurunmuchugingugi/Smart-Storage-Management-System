@@ -5,6 +5,7 @@ const Reservations = () => {
   const [reservationsData, setReservationsData] = useState([]);
   const [payments, setPayments] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
+  const [viewMode, setViewMode] = useState('table');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -112,6 +113,18 @@ const Reservations = () => {
           ))}
         </div>
         <div className="actions">
+          <button 
+            className={viewMode === 'table' ? 'view-btn active' : 'view-btn'}
+            onClick={() => setViewMode('table')}
+          >
+            Table View
+          </button>
+          <button 
+            className={viewMode === 'calendar' ? 'view-btn active' : 'view-btn'}
+            onClick={() => setViewMode('calendar')}
+          >
+            Calendar View
+          </button>
           <button className="new-btn">+ New Reservation</button>
         </div>
       </div>

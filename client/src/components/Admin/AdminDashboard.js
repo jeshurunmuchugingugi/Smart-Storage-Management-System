@@ -43,12 +43,22 @@ const AdminDashboard = () => {
   const handleDeleteUnit = async (unitId) => {
     if (!window.confirm('Are you sure you want to delete this unit?')) return;
     try {
-      const response = await fetch(`http://localhost:5001/api/units/${unitId}`, { method: 'DELETE' });
+      const token = localStorage.getItem('admin_token');
+      const response = await fetch(`http://localhost:5001/api/units/${unitId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       if (response.ok) {
-        fetchData();
         alert('Unit deleted successfully');
+        fetchData();
+      } else {
+        const error = await response.json().catch(() => ({ error: 'Failed to delete unit' }));
+        alert(`Error: ${error.error}`);
       }
     } catch (error) {
+      alert('Failed to delete unit. Please try again.');
       console.error('Failed to delete unit:', error);
     }
   };

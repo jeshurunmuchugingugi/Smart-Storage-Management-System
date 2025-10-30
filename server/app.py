@@ -90,7 +90,10 @@ class StorageUnitListResource(Resource):
     @role_required(['admin'])
     def post(self):
         try:
+            logging.info("POST /api/units - Creating new storage unit")
             data = request.get_json()
+            logging.info(f"Received data: {data}")
+            
             if not data:
                 return {'error': 'No data provided'}, 400
 
@@ -113,9 +116,7 @@ class StorageUnitListResource(Resource):
                 size=size_value,
                 monthly_rate=data['monthly_rate'],
                 status=data.get('status', 'available'),
-                location=data.get('location'),
-                image_url=data.get('image_url'),
-                cloudinary_public_id=data.get('cloudinary_public_id')
+                location=data.get('location')
             )
 
             if 'features' in data:
@@ -127,11 +128,13 @@ class StorageUnitListResource(Resource):
 
             db.session.add(unit)
             db.session.commit()
+            logging.info(f"Successfully created unit: {unit.unit_id}")
             return storage_schema.dump(unit), 201
         except Exception as e:
             db.session.rollback()
             logging.error(f"Error creating storage unit: {str(e)}")
-            return {'error': 'Failed to create storage unit'}, 500
+            logging.exception("Full traceback:")
+            return {'error': f'Failed to create storage unit: {str(e)}'}, 500
 
 
 class StorageUnitResource(Resource):
@@ -164,14 +167,6 @@ class StorageUnitResource(Resource):
             unit.monthly_rate = data.get('monthly_rate', unit.monthly_rate)
             unit.status = data.get('status', unit.status)
             unit.location = data.get('location', unit.location)
-            
-            # Handle image update
-            if 'image_url' in data:
-                # Delete old image if exists
-                if unit.cloudinary_public_id:
-                    delete_image(unit.cloudinary_public_id)
-                unit.image_url = data.get('image_url')
-                unit.cloudinary_public_id = data.get('cloudinary_public_id')
 
             if 'features' in data:
                 unit.features.clear()
@@ -192,9 +187,6 @@ class StorageUnitResource(Resource):
     def delete(self, unit_id):
         try:
             unit = StorageUnit.query.get_or_404(unit_id)
-            # Delete image from Cloudinary if exists
-            if unit.cloudinary_public_id:
-                delete_image(unit.cloudinary_public_id)
             db.session.delete(unit)
             db.session.commit()
             return {"message": "Storage unit deleted successfully"}, 200
@@ -537,39 +529,6 @@ class MpesaQueryResource(Resource):
             return result, 200
         except Exception as e:
             logging.error(f"Error querying M-Pesa status: {str(e)}")
-            return {'error': str(e)}, 500
-
-
-class ImageUploadResource(Resource):
-    @role_required(['admin'])
-    def post(self):
-        """Upload image to Cloudinary"""
-        try:
-            if 'file' not in request.files:
-                return {'error': 'No file provided'}, 400
-            
-            file = request.files['file']
-            if file.filename == '':
-                return {'error': 'No file selected'}, 400
-            
-            # Validate file type
-            allowed_extensions = {'png', 'jpg', 'jpeg', 'webp'}
-            if not ('.' in file.filename and file.filename.rsplit('.', 1)[1].lower() in allowed_extensions):
-                return {'error': 'Invalid file type. Only PNG, JPG, JPEG, WEBP allowed'}, 400
-            
-            # Upload to Cloudinary
-            result = upload_image(file)
-            
-            if result.get('success'):
-                return {
-                    'success': True,
-                    'url': result.get('url'),
-                    'public_id': result.get('public_id')
-                }, 200
-            else:
-                return {'error': result.get('error')}, 500
-        except Exception as e:
-            logging.error(f"Error uploading image: {str(e)}")
             return {'error': str(e)}, 500
 
 

@@ -14,7 +14,7 @@ const About = () => {
     {
       icon: 'mdi:shield-check',
       title: 'Secure & Safe',
-      description: '24/7 surveillance and climate-controlled environment'
+      description: '24/7 surveillance '
     },
     {
       icon: 'mdi:clock-fast',

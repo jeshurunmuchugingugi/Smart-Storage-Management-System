@@ -78,30 +78,6 @@ const Header = () => {
           >
             About
           </Link>
-          <Link 
-            to="/admin/login" 
-            style={{
-              ...styles.navLink,
-              ...(hoveredLink === 5 ? styles.navLinkHover : {})
-            }}
-            onMouseEnter={() => setHoveredLink(5)}
-            onMouseLeave={() => setHoveredLink(null)}
-          >
-            <Icon icon="mdi:shield-account" style={{fontSize: '1.1rem', marginRight: '0.25rem'}} />
-            Admin
-          </Link>
-          <Link 
-            to="/manager/login" 
-            style={{
-              ...styles.navLink,
-              ...(hoveredLink === 6 ? styles.navLinkHover : {})
-            }}
-            onMouseEnter={() => setHoveredLink(6)}
-            onMouseLeave={() => setHoveredLink(null)}
-          >
-            <Icon icon="mdi:chart-line" style={{fontSize: '1.1rem', marginRight: '0.25rem'}} />
-            Manager
-          </Link>
         </nav>
         <div style={styles.rightSection}>
           <Link to="/storage" style={styles.rentButton}>

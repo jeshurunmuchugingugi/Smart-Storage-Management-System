@@ -10,7 +10,6 @@ from datetime import datetime, date
 import logging
 import uuid
 from mpesa_service import MpesaService
-from email_service import EmailService
 from functools import wraps
 
 app = Flask(__name__)
@@ -28,7 +27,6 @@ ma.init_app(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
 api = Api(app)
-email_service = EmailService()
 
 # Role-based access control decorator
 def role_required(allowed_roles):
@@ -105,7 +103,9 @@ class StorageUnitListResource(Resource):
                 size=data.get('size'),
                 monthly_rate=data['monthly_rate'],
                 status=data.get('status', 'available'),
-                location=data.get('location')
+                location=data.get('location'),
+                image_url=data.get('image_url'),
+                cloudinary_public_id=data.get('cloudinary_public_id')
             )
 
             if 'features' in data:
@@ -147,6 +147,14 @@ class StorageUnitResource(Resource):
             unit.monthly_rate = data.get('monthly_rate', unit.monthly_rate)
             unit.status = data.get('status', unit.status)
             unit.location = data.get('location', unit.location)
+            
+            # Handle image update
+            if 'image_url' in data:
+                # Delete old image if exists
+                if unit.cloudinary_public_id:
+                    delete_image(unit.cloudinary_public_id)
+                unit.image_url = data.get('image_url')
+                unit.cloudinary_public_id = data.get('cloudinary_public_id')
 
             if 'features' in data:
                 unit.features.clear()
@@ -167,6 +175,9 @@ class StorageUnitResource(Resource):
     def delete(self, unit_id):
         try:
             unit = StorageUnit.query.get_or_404(unit_id)
+            # Delete image from Cloudinary if exists
+            if unit.cloudinary_public_id:
+                delete_image(unit.cloudinary_public_id)
             db.session.delete(unit)
             db.session.commit()
             return {"message": "Storage unit deleted successfully"}, 200
@@ -274,18 +285,6 @@ class BookingListResource(Resource):
             }
             
             db.session.commit()
-            
-            # Send booking confirmation email
-            email_data = {
-                'booking_id': booking.booking_id,
-                'customer_name': booking.customer_name,
-                'customer_email': booking.customer_email,
-                'unit_number': unit.unit_number,
-                'start_date': booking.start_date.isoformat(),
-                'end_date': booking.end_date.isoformat(),
-                'total_cost': float(booking.total_cost)
-            }
-            email_service.send_booking_confirmation(email_data)
             
             return result, 201
         except Exception as e:
@@ -491,17 +490,6 @@ class MpesaCallbackResource(Resource):
                     booking = Booking.query.get(payment.booking_id)
                     if booking:
                         booking.status = 'paid'
-                        
-                        # Send payment receipt email
-                        email_data = {
-                            'booking_id': booking.booking_id,
-                            'customer_name': booking.customer_name,
-                            'customer_email': booking.customer_email,
-                            'amount': float(payment.amount),
-                            'payment_method': 'M-Pesa',
-                            'receipt_number': mpesa_receipt
-                        }
-                        email_service.send_payment_receipt(email_data)
                 else:
                     # Payment failed
                     payment.status = 'failed'
@@ -532,6 +520,39 @@ class MpesaQueryResource(Resource):
             return result, 200
         except Exception as e:
             logging.error(f"Error querying M-Pesa status: {str(e)}")
+            return {'error': str(e)}, 500
+
+
+class ImageUploadResource(Resource):
+    @role_required(['admin'])
+    def post(self):
+        """Upload image to Cloudinary"""
+        try:
+            if 'file' not in request.files:
+                return {'error': 'No file provided'}, 400
+            
+            file = request.files['file']
+            if file.filename == '':
+                return {'error': 'No file selected'}, 400
+            
+            # Validate file type
+            allowed_extensions = {'png', 'jpg', 'jpeg', 'webp'}
+            if not ('.' in file.filename and file.filename.rsplit('.', 1)[1].lower() in allowed_extensions):
+                return {'error': 'Invalid file type. Only PNG, JPG, JPEG, WEBP allowed'}, 400
+            
+            # Upload to Cloudinary
+            result = upload_image(file)
+            
+            if result.get('success'):
+                return {
+                    'success': True,
+                    'url': result.get('url'),
+                    'public_id': result.get('public_id')
+                }, 200
+            else:
+                return {'error': result.get('error')}, 500
+        except Exception as e:
+            logging.error(f"Error uploading image: {str(e)}")
             return {'error': str(e)}, 500
 
 
@@ -592,12 +613,17 @@ def server_error(error):
     return jsonify({"error": "Internal server error"}), 500
 
 if __name__ == '__main__':
+    import os
     try:
         with app.app_context():
             db.create_all()
             print("Database initialized successfully")
-        print("Starting server on http://localhost:5001")
-        app.run(debug=True, port=5001, host='0.0.0.0')
+        
+        port = int(os.getenv('FLASK_PORT', 5001))
+        host = os.getenv('FLASK_HOST', '0.0.0.0')
+        print(f"Starting server on http://localhost:{port}")
+        print(f"Make sure frontend is configured to connect to port {port}")
+        app.run(debug=True, port=port, host=host)
     except Exception as e:
         print(f"Failed to start server: {str(e)}")
         exit(1)

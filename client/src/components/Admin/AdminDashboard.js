@@ -49,9 +49,12 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 3000);
+    let interval;
+    if (activeTab === 'reports' || activeTab === 'payments' || activeTab === 'customers') {
+      interval = setInterval(fetchData, 5000);
+    }
     return () => clearInterval(interval);
-  }, []);
+  }, [activeTab]);
 
   const totalUnits = units.length;
   const availableUnits = units.filter(u => u.status === 'available').length;
@@ -145,19 +148,19 @@ const AdminDashboard = () => {
                 <Icon icon="mdi:calendar" style={{fontSize: '18px'}} />
                 <span>Reservations</span>
               </div>
-              <div className={`nav-item ${activeTab === 'payments' ? 'active' : ''}`} onClick={() => setActiveTab('payments')}>
-                <Icon icon="mdi:credit-card" style={{fontSize: '18px'}} />
-                <span>Payments</span>
-              </div>
-              <div className={`nav-item ${activeTab === 'customers' ? 'active' : ''}`} onClick={() => setActiveTab('customers')}>
-                <Icon icon="mdi:account-group" style={{fontSize: '18px'}} />
-                <span>Customers</span>
-              </div>
             </>
           )}
           <div className={`nav-item ${activeTab === 'reports' ? 'active' : ''}`} onClick={() => setActiveTab('reports')}>
             <Icon icon="mdi:chart-bar" style={{fontSize: '18px'}} />
-            <span>{isManager ? 'Analytics Dashboard' : 'Reports'}</span>
+            <span>{isManager ? 'Analytics' : 'Reports'}</span>
+          </div>
+          <div className={`nav-item ${activeTab === 'payments' ? 'active' : ''}`} onClick={() => setActiveTab('payments')}>
+            <Icon icon="mdi:credit-card" style={{fontSize: '18px'}} />
+            <span>Payments</span>
+          </div>
+          <div className={`nav-item ${activeTab === 'customers' ? 'active' : ''}`} onClick={() => setActiveTab('customers')}>
+            <Icon icon="mdi:account-group" style={{fontSize: '18px'}} />
+            <span>Customers</span>
           </div>
         </nav>
       </div>

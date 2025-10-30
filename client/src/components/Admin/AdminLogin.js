@@ -29,8 +29,10 @@ const AdminLogin = () => {
     setLoading(true);
     setError('');
 
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
     try {
-      const response = await fetch('http://localhost:5001/api/admin/login', {
+      const response = await fetch(`${API_URL}/api/admin/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,7 +54,7 @@ const AdminLogin = () => {
       navigate('/admin/dashboard');
     } catch (error) {
       console.error('Login error:', error);
-      setError('Cannot connect to server. Please ensure the backend is running on port 5001.');
+      setError(`Cannot connect to server at ${API_URL}. Please ensure the backend is running.`);
     }
     setLoading(false);
   };

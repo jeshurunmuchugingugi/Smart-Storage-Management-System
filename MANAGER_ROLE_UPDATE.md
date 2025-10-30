@@ -23,15 +23,16 @@ Manager role has been updated to be **view-only** with focus on analytics and re
 - 📊 **Focus on reporting and analytics**
 
 ### 3. **Manager Dashboard**
-- Opens directly to **Reports/Analytics** tab
-- Only shows "Analytics Dashboard" in sidebar
+- Opens directly to **Analytics** tab
+- Sidebar shows only 3 tabs:
+  - 📊 **Analytics** - Dynamic charts and reports
+  - 💳 **Payments** - Real-time payment data
+  - 👥 **Customers** - Customer information
 - No access to:
   - Dashboard tab
   - Units tab
   - Reservations tab
-  - Payments tab
-  - Customers tab
-- Full access to dynamic charts and visualizations
+- All 3 tabs have real-time updates (every 5 seconds)
 
 ---
 
@@ -66,26 +67,34 @@ Manager role has been updated to be **view-only** with focus on analytics and re
 
 ## 📊 **Manager Dashboard Features**
 
-When logged in as manager, you see:
+When logged in as manager, you see 3 tabs:
 
-### **Analytics Dashboard Tab**
+### **1. Analytics Tab** (Default)
 - 📈 Revenue Trend (Area Chart)
 - 🥧 Booking Status Distribution (Pie Chart)
 - 📊 Payment Methods (Bar Chart)
 - 🥧 Unit Status (Pie Chart)
 - 📈 Bookings Over Time (Line Chart)
 - 💰 Payment Status Distribution (Bar Chart)
+- Key Metrics: Total Revenue, Completed Payments, Pending Payments, Occupancy Rate
 
-### **Key Metrics Cards**
-- Total Revenue
-- Completed Payments
-- Pending Payments
-- Occupancy Rate
+### **2. Payments Tab**
+- View all payment transactions
+- Real-time payment status updates
+- Filter by status (completed, pending, failed)
+- Payment method breakdown
+- Transaction details
+
+### **3. Customers Tab**
+- View all customer information
+- Customer booking history
+- Contact details
+- Real-time customer data
 
 ### **Real-Time Updates**
-- Data refreshes every 5 seconds
-- Live indicator shows real-time status
-- Last updated timestamp
+- All 3 tabs refresh every 5 seconds
+- Live data synchronization
+- No manual refresh needed
 
 ---
 
@@ -115,9 +124,11 @@ When logged in as manager, you see:
 ```
 1. Go to http://localhost:3000/manager/login
 2. Login: manager / manager123
-3. See: Only "Analytics Dashboard" tab
-4. View dynamic charts and metrics
-5. Cannot create/edit/delete anything
+3. See: 3 tabs only (Analytics, Payments, Customers)
+4. Default opens to Analytics tab
+5. View dynamic charts and real-time data
+6. Cannot create/edit/delete anything
+7. All tabs update every 5 seconds
 ```
 
 ---
@@ -137,14 +148,19 @@ When logged in as manager, you see:
 ## ✅ **Summary**
 
 **Manager Role is now:**
-- 📊 Analytics-focused
+- 📊 Analytics-focused (3 tabs only)
 - 👁️ View-only access
 - 📈 Dynamic charts and reporting
+- 💳 Real-time payment monitoring
+- 👥 Customer data access
 - 🚫 No create/edit/delete permissions
+- 🔄 Auto-refresh every 5 seconds
 
 **Perfect for:**
 - Business analysts
 - Report viewers
+- Financial managers (payment monitoring)
+- Customer service managers
 - Stakeholders who need insights but not control
 
 ---

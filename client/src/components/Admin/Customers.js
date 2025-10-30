@@ -3,7 +3,6 @@ import './Customers.css';
 import AddCustomer from './AddCustomer';
 
 const Customers = () => {
-  const [viewMode, setViewMode] = useState('Grid');
   const [showAddForm, setShowAddForm] = useState(false);
   const [customers, setCustomers] = useState([
     {
@@ -116,21 +115,6 @@ const Customers = () => {
             <p>View and manage all your customers</p>
           </div>
           <div className="header-right">
-            <input type="text" placeholder="Search..." className="search-input" />
-            <div className="view-toggle">
-              <button 
-                className={viewMode === 'Grid' ? 'active' : ''}
-                onClick={() => setViewMode('Grid')}
-              >
-                Grid
-              </button>
-              <button 
-                className={viewMode === 'List' ? 'active' : ''}
-                onClick={() => setViewMode('List')}
-              >
-                List
-              </button>
-            </div>
             <button className="add-customer-btn" onClick={() => setShowAddForm(true)}>+ Add Customer</button>
           </div>
         </div>

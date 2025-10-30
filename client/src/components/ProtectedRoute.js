@@ -3,12 +3,15 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, admin } = useAuth();
+  const { isAuthenticated } = useAuth();
+  const token = localStorage.getItem('admin_token');
+  const adminData = localStorage.getItem('admin_user');
   
-  console.log('ProtectedRoute: isAuthenticated:', isAuthenticated);
-  console.log('ProtectedRoute: admin:', admin);
+  if (!isAuthenticated || !token || !adminData) {
+    return <Navigate to="/admin/login" replace />;
+  }
   
-  return isAuthenticated ? children : <Navigate to="/admin/login" replace />;
+  return children;
 };
 
 export default ProtectedRoute;

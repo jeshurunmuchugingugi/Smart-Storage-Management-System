@@ -116,41 +116,7 @@ const Reservations = () => {
         </div>
       </div>
 
-      {viewMode === 'calendar' ? (
-        <div className="calendar-view">
-          <div className="calendar-header">
-            <h3>Reservations Calendar</h3>
-          </div>
-          <div className="calendar-grid">
-            {reservationsData.map((res) => {
-              const startDate = new Date(res.start_date);
-              const endDate = new Date(res.end_date);
-              const duration = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-              
-              return (
-                <div key={res.booking_id} className="calendar-item">
-                  <div className="calendar-item-header">
-                    <span className={`status-dot ${getStatusLabel(res).toLowerCase()}`}></span>
-                    <strong>{res.customer_name || 'N/A'}</strong>
-                  </div>
-                  <div className="calendar-item-body">
-                    <p>📍 {res.unit?.unit_number || 'N/A'}</p>
-                    <p>📅 {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}</p>
-                    <p>⏱️ {duration} days</p>
-                    <p>💰 KSh {parseFloat(res.total_cost || 0).toLocaleString()}</p>
-                  </div>
-                  <div className="calendar-item-footer">
-                    <span className={`status-badge ${getStatusLabel(res).toLowerCase()}`}>
-                      {getStatusLabel(res)}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      ) : (
-        <div className="reservations-table">
+      <div className="reservations-table">
         <table>
           <thead>
             <tr>
@@ -186,7 +152,6 @@ const Reservations = () => {
           </tbody>
         </table>
       </div>
-      )}
     </div>
   );
 };

@@ -11,6 +11,7 @@ import logging
 import uuid
 import os
 from mpesa_service import MpesaService
+from email_service import EmailService
 from functools import wraps
 
 app = Flask(__name__)

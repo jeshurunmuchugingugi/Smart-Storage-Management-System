@@ -1,7 +1,7 @@
 """Migration script to convert database to 2NF"""
 from app import app, db
 from models import Customer, Booking, TransportationRequest
-from sqlalchemy import text, Index
+from sqlalchemy import Column, Integer, ForeignKey, Index, inspect, Table, MetaData
 from datetime import datetime
 
 with app.app_context():
@@ -25,19 +25,25 @@ with app.app_context():
     
     db.session.commit()
     
-    # Add customer_id columns if not exist
-    with db.engine.connect() as conn:
-        try:
-            conn.execute(text("ALTER TABLE booking ADD COLUMN customer_id INTEGER"))
-            conn.commit()
-        except Exception:
-            pass
-        
-        try:
-            conn.execute(text("ALTER TABLE transportationrequest ADD COLUMN customer_id INTEGER"))
-            conn.commit()
-        except Exception:
-            pass
+    # Add customer_id columns using DDL
+    inspector = inspect(db.engine)
+    metadata = MetaData()
+    
+    booking_columns = [col['name'] for col in inspector.get_columns('booking')]
+    if 'customer_id' not in booking_columns:
+        booking_table = Table('booking', metadata, autoload_with=db.engine)
+        customer_id_col = Column('customer_id', Integer, ForeignKey('customer.customer_id', ondelete='CASCADE'))
+        with db.engine.begin() as conn:
+            conn.execute(db.schema.AddColumn('booking', customer_id_col))
+        print("✓ Added customer_id to booking table")
+    
+    transport_columns = [col['name'] for col in inspector.get_columns('transportationrequest')]
+    if 'customer_id' not in transport_columns:
+        transport_table = Table('transportationrequest', metadata, autoload_with=db.engine)
+        customer_id_col = Column('customer_id', Integer, ForeignKey('customer.customer_id', ondelete='CASCADE'))
+        with db.engine.begin() as conn:
+            conn.execute(db.schema.AddColumn('transportationrequest', customer_id_col))
+        print("✓ Added customer_id to transportationrequest table")
     
     # Update bookings with customer_id
     all_bookings = Booking.query.all()
@@ -57,10 +63,17 @@ with app.app_context():
     
     db.session.commit()
     
-    # Create indexes
-    with db.engine.connect() as conn:
-        conn.execute(text("CREATE INDEX IF NOT EXISTS idx_customer_email ON customer(email)"))
-        conn.execute(text("CREATE INDEX IF NOT EXISTS idx_booking_customer ON booking(customer_id)"))
-        conn.commit()
+    # Create indexes using ORM
+    existing_indexes = {idx['name'] for idx in inspector.get_indexes('customer')}
+    if 'idx_customer_email' not in existing_indexes:
+        idx = Index('idx_customer_email', Customer.email)
+        idx.create(db.engine)
+        print("✓ Created index on customer.email")
+    
+    booking_indexes = {idx['name'] for idx in inspector.get_indexes('booking')}
+    if 'idx_booking_customer' not in booking_indexes:
+        idx = Index('idx_booking_customer', Booking.customer_id)
+        idx.create(db.engine)
+        print("✓ Created index on booking.customer_id")
     
     print("✓ Migration completed!")

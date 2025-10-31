@@ -15,9 +15,9 @@ python-dotenv = "==1.0.0"
 requests = "==2.31.0"
 sendgrid = "==6.11.0"
 Faker = "==33.1.0"
-gunicorn = "*"
 psycopg2-binary = "*"
 sqlalchemy-serializer = "*"
+gunicorn = "*"
 
 [dev-packages]
 

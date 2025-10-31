@@ -1,8 +1,8 @@
 """initial migrations
 
-Revision ID: 2e0e5b430ef2
+Revision ID: 280d5c49036c
 Revises: 
-Create Date: 2025-10-30 20:53:14.748066
+Create Date: 2025-10-31 19:51:50.529868
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2e0e5b430ef2'
+revision = '280d5c49036c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,7 +50,7 @@ def upgrade():
     sa.Column('site', sa.String(length=50), nullable=False),
     sa.Column('size', sa.Numeric(precision=5, scale=2), nullable=True),
     sa.Column('monthly_rate', sa.Numeric(precision=8, scale=2), nullable=False),
-    sa.Column('status', sa.Enum('available', 'booked', name='unit_status'), nullable=False),
+    sa.Column('status', sa.String(length=20), nullable=False),
     sa.Column('location', sa.String(length=100), nullable=True),
     sa.PrimaryKeyConstraint('unit_id')
     )
@@ -75,8 +75,8 @@ def upgrade():
     sa.Column('customer_phone', sa.String(length=20), nullable=True),
     sa.Column('start_date', sa.Date(), nullable=False),
     sa.Column('end_date', sa.Date(), nullable=False),
-    sa.Column('status', sa.Enum('pending', 'paid', 'active', 'completed', 'cancelled', name='booking_status'), nullable=False),
-    sa.Column('approval_status', sa.Enum('pending_approval', 'approved', 'rejected', name='approval_status'), nullable=False),
+    sa.Column('status', sa.String(length=20), nullable=False),
+    sa.Column('approval_status', sa.String(length=20), nullable=False),
     sa.Column('total_cost', sa.Numeric(precision=8, scale=2), nullable=False),
     sa.Column('booking_date', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['customer_id'], ['customer.customer_id'], ondelete='CASCADE'),
@@ -98,7 +98,7 @@ def upgrade():
     sa.Column('amount', sa.Numeric(precision=10, scale=2), nullable=False),
     sa.Column('payment_method', sa.String(length=30), nullable=True),
     sa.Column('payment_date', sa.DateTime(), nullable=True),
-    sa.Column('status', sa.Enum('pending', 'completed', 'failed', name='payment_status'), nullable=True),
+    sa.Column('status', sa.String(length=20), nullable=True),
     sa.Column('transaction_id', sa.String(length=200), nullable=True),
     sa.Column('mpesa_receipt_number', sa.String(length=100), nullable=True),
     sa.Column('checkout_request_id', sa.String(length=100), nullable=True),
@@ -118,7 +118,7 @@ def upgrade():
     sa.Column('pickup_date', sa.Date(), nullable=False),
     sa.Column('pickup_time', sa.Time(), nullable=False),
     sa.Column('distance', sa.Numeric(precision=8, scale=2), nullable=True),
-    sa.Column('status', sa.Enum('pending', 'scheduled', 'completed', 'cancelled', name='transport_status'), nullable=True),
+    sa.Column('status', sa.String(length=20), nullable=True),
     sa.Column('special_instructions', sa.Text(), nullable=True),
     sa.ForeignKeyConstraint(['booking_id'], ['booking.booking_id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['customer_id'], ['customer.customer_id'], ondelete='CASCADE'),

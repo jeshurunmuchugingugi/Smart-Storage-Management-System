@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "306252f51f9cd4b409a43a7483cabd2f2c28a35fec9bc3a55c7c209c881a73b1"
+            "sha256": "f1fc04f234d2dd17c5f377264b5ee7ee6e5d0d1319b8a76ca2a5ee5df796adb5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -661,6 +661,13 @@
             "index": "pypi",
             "markers": "python_version >= '3.7'",
             "version": "==2.0.31"
+        },
+        "sqlalchemy-serializer": {
+            "hashes": [
+                "sha256:5e1f83fc6d8a4f7618100c1b9a6af949498210756b974527ec3c8c1ec7e1300f"
+            ],
+            "index": "pypi",
+            "version": "==1.4.12"
         },
         "starkbank-ecdsa": {
             "hashes": [

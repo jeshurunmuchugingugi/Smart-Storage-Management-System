@@ -30,7 +30,7 @@ def init_database():
             db.session.commit()
             print("✓ Sample features added")
         
-        print("\n✅ Database initialization complete!")
+        print("\nDatabase initialization complete!")
         print("You can now start the server with: gunicorn app:app")
 
 if __name__ == '__main__':

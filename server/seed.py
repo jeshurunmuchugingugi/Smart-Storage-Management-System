@@ -16,9 +16,6 @@ def seed_data():
     with app.app_context():
         print("Seeding database...")
 
-        # ---------------------------
-        # Clear all existing data
-        # ---------------------------
         db.session.query(Payment).delete()
         db.session.query(TransportationRequest).delete()
         db.session.query(Booking).delete()
@@ -28,9 +25,6 @@ def seed_data():
         db.session.query(User).delete()
         db.session.query(Admin).delete()
 
-        # ---------------------------
-        # Admin accounts
-        # ---------------------------
         admin = Admin(username="admin", email="admin@storage.com", role="admin")
         admin.set_password("admin123")
         manager = Admin(username="manager", email="manager@storage.com", role="manager")
@@ -39,9 +33,6 @@ def seed_data():
         db.session.add_all([admin, manager])
         print("Created admins: admin/admin123 & manager/manager123")
 
-        # ---------------------------
-        # Users
-        # ---------------------------
         users = []
         for _ in range(10):
             user = User(
@@ -52,9 +43,6 @@ def seed_data():
             users.append(user)
         db.session.add_all(users)
 
-        # ---------------------------
-        # Features
-        # ---------------------------
         feature_names = [
             "24/7 Access",
             "Climate Control",
@@ -64,10 +52,6 @@ def seed_data():
         ]
         features = [Feature(name=name) for name in feature_names]
         db.session.add_all(features)
-
-        # ---------------------------
-        # Storage Units
-        # ---------------------------
         units = []
         size_options = [10, 15, 20, 25, 30]
         for i in range(10):
@@ -83,18 +67,12 @@ def seed_data():
         db.session.add_all(units)
         db.session.commit()
 
-        # ---------------------------
-        # Unit-Feature Links
-        # ---------------------------
         for unit in units:
             selected_features = random.sample(features, random.randint(1, 3))
             for feature in selected_features:
                 db.session.add(UnitFeatureLink(unit_id=unit.unit_id, feature_id=feature.feature_id))
         db.session.commit()
 
-        # ---------------------------
-        # Bookings
-        # ---------------------------
         bookings = []
         for _ in range(15):
             user = random.choice(users)
@@ -113,9 +91,6 @@ def seed_data():
             db.session.add(booking)
         db.session.commit()
 
-        # ---------------------------
-        # Payments (M-Pesa only)
-        # ---------------------------
         for booking in bookings:
             if booking.status in ["active", "completed", "paid"]:
                 payment = Payment(
@@ -129,9 +104,6 @@ def seed_data():
                 db.session.add(payment)
         db.session.commit()
 
-        # ---------------------------
-        # Transportation Requests
-        # ---------------------------
         for _ in range(8):
             booking = random.choice(bookings)
             request = TransportationRequest(

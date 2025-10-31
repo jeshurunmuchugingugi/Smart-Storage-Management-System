@@ -1,4 +1,6 @@
 {
     "python-envs.defaultEnvManager": "ms-python.python:pyenv",
-    "python-envs.pythonProjects": []
+    "python-envs.pythonProjects": [],
+    "workbench.colorTheme": "Default Dark Modern",
+    "editor.fontSize": 12
 }

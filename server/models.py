@@ -1,12 +1,15 @@
 from datetime import datetime, date
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy_serializer import SerializerMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
 
-class User(db.Model):
+class User(db.Model, SerializerMixin):
+    serialize_rules = ('-password_hash', '-bookings.user', '-payments.user', '-transport_requests.user')
+    serialize_types = ((datetime, lambda x: x.isoformat()), (date, lambda x: x.isoformat()))
     __tablename__ = "user"
 
     user_id = db.Column(db.Integer, primary_key=True)
@@ -35,7 +38,9 @@ class User(db.Model):
         return f"<User {self.username}>"
 
 
-class Admin(db.Model):
+class Admin(db.Model, SerializerMixin):
+    serialize_rules = ('-password_hash',)
+    serialize_types = ((datetime, lambda x: x.isoformat()), (date, lambda x: x.isoformat()))
     __tablename__ = "admin"
 
     admin_id = db.Column(db.Integer, primary_key=True)
@@ -58,7 +63,9 @@ class Admin(db.Model):
         return f"<Admin {self.username}>"
 
 
-class Customer(db.Model):
+class Customer(db.Model, SerializerMixin):
+    serialize_rules = ('-bookings.customer', '-transport_requests.customer')
+    serialize_types = ((datetime, lambda x: x.isoformat()), (date, lambda x: x.isoformat()))
     __tablename__ = "customer"
 
     customer_id = db.Column(db.Integer, primary_key=True)
@@ -78,7 +85,9 @@ class Customer(db.Model):
         return f"<Customer {self.name}>"
 
 
-class Feature(db.Model):
+class Feature(db.Model, SerializerMixin):
+    serialize_rules = ('-_unit_links', '-units._feature_links')
+    serialize_types = ((datetime, lambda x: x.isoformat()), (date, lambda x: x.isoformat()))
     __tablename__ = "feature"
 
     feature_id = db.Column(db.Integer, primary_key=True)
@@ -93,7 +102,9 @@ class Feature(db.Model):
         return f"<Feature {self.name}>"
 
 
-class UnitFeatureLink(db.Model):
+class UnitFeatureLink(db.Model, SerializerMixin):
+    serialize_rules = ('-_unit', '-_feature')
+    serialize_types = ((datetime, lambda x: x.isoformat()), (date, lambda x: x.isoformat()))
     __tablename__ = "unit_feature_link"
 
     unit_id = db.Column(db.Integer, db.ForeignKey("storageunit.unit_id", ondelete="CASCADE"), primary_key=True)
@@ -103,7 +114,9 @@ class UnitFeatureLink(db.Model):
     _feature = db.relationship("Feature", back_populates="_unit_links")
 
 
-class StorageUnit(db.Model):
+class StorageUnit(db.Model, SerializerMixin):
+    serialize_rules = ('-bookings.unit', '-_feature_links')
+    serialize_types = ((datetime, lambda x: x.isoformat()), (date, lambda x: x.isoformat()))
     __tablename__ = "storageunit"
 
     unit_id = db.Column(db.Integer, primary_key=True)
@@ -126,7 +139,9 @@ class StorageUnit(db.Model):
         return f"<StorageUnit {self.unit_number} ({self.status})>"
 
 
-class Booking(db.Model):
+class Booking(db.Model, SerializerMixin):
+    serialize_rules = ('-user.bookings', '-unit.bookings', '-customer.bookings', '-payment.booking', '-transport_requests.booking', '-customer', '-unit')
+    serialize_types = ((datetime, lambda x: x.isoformat()), (date, lambda x: x.isoformat()))
     __tablename__ = "booking"
 
     booking_id = db.Column(db.Integer, primary_key=True)
@@ -166,7 +181,9 @@ class Booking(db.Model):
         return f"<Booking {self.booking_id} - {self.status}>"
 
 
-class Payment(db.Model):
+class Payment(db.Model, SerializerMixin):
+    serialize_rules = ('-booking.payment', '-user.payments')
+    serialize_types = ((datetime, lambda x: x.isoformat()), (date, lambda x: x.isoformat()))
     __tablename__ = "payment"
 
     payment_id = db.Column(db.Integer, primary_key=True)
@@ -197,7 +214,9 @@ class Payment(db.Model):
         self.status = 'completed' if callback_data.get('result_code') == 0 else 'failed'
 
 
-class TransportationRequest(db.Model):
+class TransportationRequest(db.Model, SerializerMixin):
+    serialize_rules = ('-booking.transport_requests', '-user.transport_requests', '-customer.transport_requests')
+    serialize_types = ((datetime, lambda x: x.isoformat()), (date, lambda x: x.isoformat()))
     __tablename__ = "transportationrequest"
 
     request_id = db.Column(db.Integer, primary_key=True)

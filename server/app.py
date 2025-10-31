@@ -3,20 +3,16 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_restful import Api, Resource
-from models import db, User, Admin, StorageUnit, Booking, Feature, Payment, TransportationRequest
+from models import db, User, Admin, Customer, StorageUnit, Booking, Feature, Payment, TransportationRequest
 from config import Config
-from schema import (ma, storage_schema, storages_schema, feature_schema, features_schema, 
-                   booking_schema, bookings_schema, payment_schema, payments_schema,
-                   admin_login_input_schema, storage_unit_input_schema, booking_input_schema,
-                   payment_input_schema, transportation_input_schema, mpesa_stk_input_schema,
-                   mpesa_query_input_schema)
-from marshmallow import ValidationError
+from schema import (validate_admin_login, validate_storage_unit, validate_booking,
+                   validate_payment, validate_transportation, validate_mpesa_stk,
+                   validate_mpesa_query)
 from datetime import datetime, date
 import logging
 import uuid
 import os
 from mpesa_service import MpesaService
-from email_service import EmailService
 from functools import wraps
 
 app = Flask(__name__)
@@ -31,25 +27,10 @@ CORS(app,
      supports_credentials=True)
 
 db.init_app(app)
-ma.init_app(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
 api = Api(app)
-email_service = EmailService()
 
-# Role-based access control decorator
-def role_required(allowed_roles):
-    def decorator(fn):
-        @wraps(fn)
-        @jwt_required()
-        def wrapper(*args, **kwargs):
-            admin_id = get_jwt_identity()
-            admin = Admin.query.get(admin_id)
-            if not admin or admin.role not in allowed_roles:
-                return {'error': 'Access denied. Insufficient permissions.'}, 403
-            return fn(*args, **kwargs)
-        return wrapper
-    return decorator
 
 # Role-based access control decorator
 def role_required(allowed_roles):
@@ -72,8 +53,8 @@ class AdminLoginResource(Resource):
             if not json_data:
                 return {'error': 'No data provided'}, 400
             
-            # Validate input using Marshmallow
-            data = admin_login_input_schema.load(json_data)
+            # Validate input
+            data = validate_admin_login(json_data)
             
             admin = Admin.query.filter_by(username=data['username']).first()
 
@@ -102,7 +83,7 @@ class StorageUnitListResource(Resource):
     def get(self):
         try:
             units = StorageUnit.query.all()
-            return storages_schema.dump(units), 200
+            return [unit.to_dict() for unit in units], 200
         except Exception as e:
             logging.error(f"Error fetching storage units: {str(e)}")
             return {'error': 'Failed to fetch storage units'}, 500
@@ -117,8 +98,8 @@ class StorageUnitListResource(Resource):
             if not json_data:
                 return {'error': 'No data provided'}, 400
 
-            # Validate input using Marshmallow
-            data = storage_unit_input_schema.load(json_data)
+            # Validate input
+            data = validate_storage_unit(json_data)
             
             unit = StorageUnit(
                 unit_number=data['unit_number'],
@@ -138,7 +119,7 @@ class StorageUnitListResource(Resource):
             db.session.add(unit)
             db.session.commit()
             logging.info(f"Successfully created unit: {unit.unit_id}")
-            return storage_schema.dump(unit), 201
+            return unit.to_dict(), 201
         except ValidationError as e:
             return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
@@ -152,7 +133,7 @@ class StorageUnitResource(Resource):
     def get(self, unit_id):
         try:
             unit = StorageUnit.query.get_or_404(unit_id)
-            return storage_schema.dump(unit), 200
+            return unit.to_dict(), 200
         except Exception as e:
             logging.error(f"Error fetching storage unit {unit_id}: {str(e)}")
             return {'error': 'Storage unit not found'}, 404
@@ -165,8 +146,8 @@ class StorageUnitResource(Resource):
             if not json_data:
                 return {'error': 'No data provided'}, 400
 
-            # Validate input using Marshmallow (partial update)
-            data = storage_unit_input_schema.load(json_data, partial=True)
+            # Validate input (partial update)
+            data = validate_storage_unit(json_data, partial=True)
             
             # Update fields
             for field in ['unit_number', 'site', 'size', 'monthly_rate', 'status', 'location']:
@@ -182,7 +163,7 @@ class StorageUnitResource(Resource):
                     unit.features.append(feature)
 
             db.session.commit()
-            return storage_schema.dump(unit), 200
+            return unit.to_dict(), 200
         except ValidationError as e:
             return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
@@ -207,7 +188,7 @@ class FeatureListResource(Resource):
     def get(self):
         try:
             features = Feature.query.all()
-            return features_schema.dump(features), 200
+            return [feature.to_dict() for feature in features], 200
         except Exception as e:
             logging.error(f"Error fetching features: {str(e)}")
             return {'error': 'Failed to fetch features'}, 500
@@ -221,7 +202,7 @@ class FeatureListResource(Resource):
             feature = Feature(name=data['name'])
             db.session.add(feature)
             db.session.commit()
-            return feature_schema.dump(feature), 201
+            return feature.to_dict(), 201
         except Exception as e:
             db.session.rollback()
             logging.error(f"Error creating feature: {str(e)}")
@@ -233,7 +214,7 @@ class BookingListResource(Resource):
     def get(self):
         try:
             bookings = Booking.query.all()
-            return bookings_schema.dump(bookings), 200
+            return [booking.to_dict() for booking in bookings], 200
         except Exception as e:
             logging.error(f"Error fetching bookings: {str(e)}")
             return {'error': 'Failed to fetch bookings'}, 500
@@ -244,8 +225,8 @@ class BookingListResource(Resource):
             if not json_data:
                 return {'error': 'No data provided'}, 400
 
-            # Validate input using Marshmallow
-            data = booking_input_schema.load(json_data)
+            # Validate input
+            data = validate_booking(json_data)
 
             # Check if unit exists and is available
             unit = StorageUnit.query.get(data['unit_id'])
@@ -254,8 +235,20 @@ class BookingListResource(Resource):
             if unit.status != 'available':
                 return {'error': 'Storage unit is not available'}, 400
 
+            # Create or find customer
+            customer = Customer.query.filter_by(email=data['customer_email']).first()
+            if not customer:
+                customer = Customer(
+                    name=data['customer_name'].strip(),
+                    email=data['customer_email'].strip(),
+                    phone=data['customer_phone'].strip()
+                )
+                db.session.add(customer)
+                db.session.flush()  # Get customer_id
+
             booking = Booking(
                 unit_id=data['unit_id'],
+                customer_id=customer.customer_id,
                 customer_name=data['customer_name'].strip(),
                 customer_email=data['customer_email'].strip(),
                 customer_phone=data['customer_phone'].strip(),
@@ -264,17 +257,18 @@ class BookingListResource(Resource):
                 total_cost=data['total_cost'],
                 status=data['status']
             )
-            
+
             # Update unit status to booked
             unit.status = 'booked'
-            
+
             db.session.add(booking)
             db.session.add(unit)
             db.session.flush()  # Get the booking_id before commit
-            
+
             result = {
                 'booking_id': booking.booking_id,
                 'unit_id': booking.unit_id,
+                'customer_id': customer.customer_id,
                 'customer_name': booking.customer_name,
                 'customer_email': booking.customer_email,
                 'customer_phone': booking.customer_phone,
@@ -284,12 +278,12 @@ class BookingListResource(Resource):
                 'status': booking.status,
                 'booking_date': booking.booking_date.isoformat()
             }
-            
+
             db.session.commit()
-            
+
             return result, 201
         except ValidationError as e:
-            return {'error': 'Validation failed', 'messages': e.messages}, 400
+            return {'error': 'Validation failed', 'messages': str(e)}, 400
         except Exception as e:
             db.session.rollback()
             logging.error(f"Error creating booking: {str(e)}")
@@ -300,7 +294,7 @@ class BookingResource(Resource):
     def get(self, booking_id):
         try:
             booking = Booking.query.get_or_404(booking_id)
-            return booking_schema.dump(booking), 200
+            return booking.to_dict(), 200
         except Exception as e:
             logging.error(f"Error fetching booking {booking_id}: {str(e)}")
             return {'error': 'Booking not found'}, 404
@@ -310,7 +304,7 @@ class PaymentListResource(Resource):
     def get(self):
         try:
             payments = Payment.query.all()
-            return payments_schema.dump(payments), 200
+            return [payment.to_dict() for payment in payments], 200
         except Exception as e:
             logging.error(f"Error fetching payments: {str(e)}")
             return {'error': 'Failed to fetch payments'}, 500
@@ -321,8 +315,8 @@ class PaymentListResource(Resource):
             if not json_data:
                 return {'error': 'No data provided'}, 400
             
-            # Validate input using Marshmallow
-            data = payment_input_schema.load(json_data)
+            # Validate input
+            data = validate_payment(json_data)
             
             # Check if booking exists
             booking = Booking.query.get(data['booking_id'])
@@ -342,7 +336,7 @@ class PaymentListResource(Resource):
             
             db.session.add(payment)
             db.session.commit()
-            return payment_schema.dump(payment), 201
+            return payment.to_dict(), 201
         except ValidationError as e:
             return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
@@ -358,8 +352,8 @@ class TransportationResource(Resource):
             if not json_data:
                 return {'error': 'No data provided'}, 400
             
-            # Validate input using Marshmallow
-            data = transportation_input_schema.load(json_data)
+            # Validate input
+            data = validate_transportation(json_data)
             
             transport = TransportationRequest(
                 booking_id=data['booking_id'],
@@ -390,8 +384,8 @@ class MpesaSTKPushResource(Resource):
             if not json_data:
                 return {'error': 'No data provided'}, 400
             
-            # Validate input using Marshmallow
-            data = mpesa_stk_input_schema.load(json_data)
+            # Validate input
+            data = validate_mpesa_stk(json_data)
             
             # Validate booking exists
             booking = Booking.query.get(data['booking_id'])
@@ -500,19 +494,80 @@ class MpesaQueryResource(Resource):
             json_data = request.get_json()
             if not json_data:
                 return {'error': 'No data provided'}, 400
-            
-            # Validate input using Marshmallow
-            data = mpesa_query_input_schema.load(json_data)
-            
+
+            # Validate input
+            data = validate_mpesa_query(json_data)
+
             mpesa = MpesaService()
             result = mpesa.query_stk_status(data['checkout_request_id'])
-            
+
             return result, 200
         except ValidationError as e:
             return {'error': 'Validation failed', 'messages': e.messages}, 400
         except Exception as e:
             logging.error(f"Error querying M-Pesa status: {str(e)}")
             return {'error': str(e)}, 500
+
+
+class CustomerListResource(Resource):
+    @role_required(['admin'])
+    def get(self):
+        try:
+            customers = Customer.query.all()
+            return [customer.to_dict() for customer in customers], 200
+        except Exception as e:
+            logging.error(f"Error fetching customers: {str(e)}")
+            return {'error': 'Failed to fetch customers'}, 500
+
+
+class CustomerResource(Resource):
+    @role_required(['admin'])
+    def get(self, customer_id):
+        try:
+            customer = Customer.query.get_or_404(customer_id)
+            customer_data = customer.to_dict()
+
+            # Add booking and payment summary
+            active_bookings = [b for b in customer.bookings if b.status in ['pending', 'paid', 'active']]
+            completed_bookings = [b for b in customer.bookings if b.status == 'completed']
+
+            customer_data['active_bookings_count'] = len(active_bookings)
+            customer_data['completed_bookings_count'] = len(completed_bookings)
+            customer_data['total_bookings'] = len(customer.bookings)
+
+            return customer_data, 200
+        except Exception as e:
+            logging.error(f"Error fetching customer {customer_id}: {str(e)}")
+            return {'error': 'Customer not found'}, 404
+
+    @role_required(['admin'])
+    def delete(self, customer_id):
+        try:
+            customer = Customer.query.get_or_404(customer_id)
+
+            # Check if customer has active bookings
+            active_bookings = [b for b in customer.bookings if b.status in ['pending', 'paid', 'active']]
+            if active_bookings:
+                return {'error': 'Cannot delete customer with active bookings. Customer must vacate all units first.'}, 400
+
+            # Check if customer has unpaid payments
+            unpaid_payments = []
+            for booking in customer.bookings:
+                if booking.payment and booking.payment.status != 'completed':
+                    unpaid_payments.append(booking.payment)
+
+            if unpaid_payments:
+                return {'error': 'Cannot delete customer with outstanding payments. All payments must be settled.'}, 400
+
+            # Safe to delete - all bookings completed and payments settled
+            db.session.delete(customer)
+            db.session.commit()
+
+            return {'message': 'Customer deleted successfully'}, 200
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f"Error deleting customer {customer_id}: {str(e)}")
+            return {'error': 'Failed to delete customer'}, 500
 
 
 api.add_resource(AdminLoginResource, '/api/admin/login')
@@ -526,6 +581,8 @@ api.add_resource(TransportationResource, '/api/transportation')
 api.add_resource(MpesaSTKPushResource, '/api/mpesa/stkpush')
 api.add_resource(MpesaCallbackResource, '/api/mpesa/callback')
 api.add_resource(MpesaQueryResource, '/api/mpesa/query')
+api.add_resource(CustomerListResource, '/api/customers')
+api.add_resource(CustomerResource, '/api/customers/<int:customer_id>')
 
 @app.before_request
 def handle_preflight():

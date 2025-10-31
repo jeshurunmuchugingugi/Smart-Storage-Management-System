@@ -15,12 +15,12 @@ Manager role has been updated to be **view-only** with focus on analytics and re
   - `/manager/login` → "Manager Portal"
 
 ### 2. **Manager Permissions (Updated)**
-- ✅ View all data (units, bookings, payments)
-- ✅ Access analytics dashboard with dynamic charts
-- ❌ **Cannot create** units
-- ❌ **Cannot edit** units
-- ❌ **Cannot delete** units
-- 📊 **Focus on reporting and analytics**
+-  View all data (units, bookings, payments)
+- Access analytics dashboard with dynamic charts
+-  **Cannot create** units
+-  **Cannot edit** units
+-  **Cannot delete** units
+-  **Focus on reporting and analytics**
 
 ### 3. **Manager Dashboard**
 - Opens directly to **Reports/Analytics** tab
@@ -35,7 +35,7 @@ Manager role has been updated to be **view-only** with focus on analytics and re
 
 ---
 
-## 🎯 **Role Comparison**
+##  **Role Comparison**
 
 | Feature | Admin | Manager | User |
 |---------|-------|---------|------|

@@ -4,7 +4,7 @@ services:
     env: python
     region: oregon
     buildCommand: "pip install -r requirements.txt && python init_db.py"
-    startCommand: "gunicorn app:app"
+    startCommand: "python -m gunicorn app:app"
     envVars:
       - key: FLASK_PORT
         value: 10000

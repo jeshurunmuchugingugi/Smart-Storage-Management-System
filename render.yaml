@@ -2,9 +2,9 @@ services:
   # Backend API
   - type: web
     name: storage-backend
-    runtime: python
-    buildCommand: "pip install -r server/requirements.txt && python server/init_db.py"
-    startCommand: "cd server && gunicorn app:app"
+    env: python
+    buildCommand: "pip install -r server/requirements.txt"
+    startCommand: "cd server && python -m gunicorn app:app"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
@@ -30,7 +30,7 @@ services:
   # Frontend React App
   - type: web
     name: storage-frontend
-    runtime: node
+    env: node
     buildCommand: "cd client && npm install && npm run build"
     startCommand: "cd client && npx serve -s build -l 3000"
     envVars:

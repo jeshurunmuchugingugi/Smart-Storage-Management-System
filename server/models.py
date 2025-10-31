@@ -1,16 +1,9 @@
 from datetime import datetime, date
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.associationproxy import association_proxy
-from sqlalchemy import Enum
 from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
-
-booking_status_enum = Enum("pending", "paid", "active", "completed", "cancelled", name="booking_status")
-approval_status_enum = Enum("pending_approval", "approved", "rejected", name="approval_status")
-payment_status_enum = Enum("pending", "completed", "failed", name="payment_status")
-transport_status_enum = Enum("pending", "scheduled", "completed", "cancelled", name="transport_status")
-unit_status_enum = Enum("available", "booked", name="unit_status")
 
 
 class User(db.Model):
@@ -118,7 +111,7 @@ class StorageUnit(db.Model):
     site = db.Column(db.String(50), nullable=False)
     size = db.Column(db.Numeric(5, 2), nullable=True)  # Size in square meters
     monthly_rate = db.Column(db.Numeric(8, 2), nullable=False)
-    status = db.Column(unit_status_enum, default="available", nullable=False)
+    status = db.Column(db.String(20), default="available", nullable=False)
     location = db.Column(db.String(100))
 
     bookings = db.relationship("Booking", back_populates="unit", cascade="all, delete-orphan")
@@ -147,8 +140,8 @@ class Booking(db.Model):
     # Booking details
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)
-    status = db.Column(booking_status_enum, default="pending", nullable=False)
-    approval_status = db.Column(approval_status_enum, default="pending_approval", nullable=False)
+    status = db.Column(db.String(20), default="pending", nullable=False)
+    approval_status = db.Column(db.String(20), default="pending_approval", nullable=False)
     total_cost = db.Column(db.Numeric(8, 2), nullable=False)
     booking_date = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -183,7 +176,7 @@ class Payment(db.Model):
     amount = db.Column(db.Numeric(10, 2), nullable=False)
     payment_method = db.Column(db.String(30))
     payment_date = db.Column(db.DateTime, default=datetime.utcnow)
-    status = db.Column(payment_status_enum, default="pending")
+    status = db.Column(db.String(20), default="pending")
     transaction_id = db.Column(db.String(200))
     # M-Pesa specific fields
     mpesa_receipt_number = db.Column(db.String(100))
@@ -216,7 +209,7 @@ class TransportationRequest(db.Model):
     pickup_date = db.Column(db.Date, nullable=False)
     pickup_time = db.Column(db.Time, nullable=False)
     distance = db.Column(db.Numeric(8, 2))
-    status = db.Column(transport_status_enum, default="pending")
+    status = db.Column(db.String(20), default="pending")
     special_instructions = db.Column(db.Text)
 
     booking = db.relationship("Booking", back_populates="transport_requests")

@@ -1,5 +1,6 @@
   // This handles both creating and editing a unit.
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../../services/api';
 
 const UnitForm = ({ editingUnit, setEditingUnit, setShowCreateForm, fetchData }) => {
   const [formData, setFormData] = useState({
@@ -72,12 +73,12 @@ const UnitForm = ({ editingUnit, setEditingUnit, setShowCreateForm, fetchData })
     try {
       let response;
       if (editingUnit && editingUnit.unit_id) {
-        response = await apiCall(`http://localhost:5001/api/units/${editingUnit.unit_id}`, {
+        response = await apiCall(`${API_BASE_URL}/api/units/${editingUnit.unit_id}`, {
           method: 'PUT',
           body: JSON.stringify(unitData)
         });
       } else {
-        response = await apiCall('http://localhost:5001/api/units', {
+        response = await apiCall(`${API_BASE_URL}/api/units`, {
           method: 'POST',
           body: JSON.stringify(unitData)
         });

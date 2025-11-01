@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../../services/api';
 import './Customers.css';
 
 const Customers = () => {
@@ -41,7 +42,7 @@ const Customers = () => {
 
     try {
       const token = localStorage.getItem('admin_token');
-      const response = await fetch(`/api/customers/${customerId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/customers/${customerId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

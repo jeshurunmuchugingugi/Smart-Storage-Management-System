@@ -1,5 +1,6 @@
 // src/components/BookingsList.js
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../services/api';
 
 const BookingsList = () => {
   const [bookings, setBookings] = useState([]);
@@ -11,7 +12,7 @@ const BookingsList = () => {
 
   const fetchBookings = async () => {
     try {
-      const response = await fetch('/api/bookings');
+      const response = await fetch(`${API_BASE_URL}/api/bookings`);
       const data = await response.json();
       setBookings(Array.isArray(data) ? data : []);
       setLoading(false);

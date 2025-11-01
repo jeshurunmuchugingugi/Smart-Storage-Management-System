@@ -19,7 +19,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 # Configure CORS properly
-allowed_origins = os.getenv('CORS_ORIGINS', 'https://smart-storage-management-sys-git-5b2bd5-amos-kipkorirs-projects.vercel.app/').split(',')
+allowed_origins = os.getenv('CORS_ORIGINS', 'https://smart-storage-management-sys-git-5b2bd5-amos-kipkorirs-projects.vercel.app').split(',')
 CORS(app, 
      origins=allowed_origins,
      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],

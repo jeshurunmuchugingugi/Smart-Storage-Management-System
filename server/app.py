@@ -638,9 +638,9 @@ if __name__ == '__main__':
             db.create_all()
             print("Database initialized successfully")
         
-        port = int(os.getenv('FLASK_PORT', 5001))
-        host = os.getenv('FLASK_HOST', '0.0.0.0')
-        print(f"Starting server on http://localhost:{port}")
+        port = int(os.getenv('PORT', 5001))
+        host = os.getenv('HOST', '0.0.0.0')
+        print(f"Starting server on port {port}")
         print(f"Make sure frontend is configured to connect to port {port}")
         app.run(debug=True, port=port, host=host)
     except Exception as e:

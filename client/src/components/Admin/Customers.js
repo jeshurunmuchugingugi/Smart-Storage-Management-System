@@ -11,7 +11,7 @@ const Customers = () => {
     const fetchCustomers = async () => {
       try {
         const token = localStorage.getItem('admin_token');
-        const response = await fetch('/api/customers', {
+        const response = await fetch(`${API_BASE_URL}/api/customers`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

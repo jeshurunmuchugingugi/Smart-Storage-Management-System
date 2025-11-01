@@ -19,7 +19,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 # Configure CORS properly
-allowed_origins = os.getenv('CORS_ORIGINS', 'http://localhost:3000,http://127.0.0.1:3000').split(',')
+allowed_origins = os.getenv('CORS_ORIGINS', 'https://smart-storage-management-system-frontend.onrender.com').split(',')
 CORS(app, 
      origins=allowed_origins,
      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],

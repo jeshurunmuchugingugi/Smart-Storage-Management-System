@@ -588,7 +588,9 @@ api.add_resource(CustomerResource, '/api/customers/<int:customer_id>')
 def handle_preflight():
     if request.method == "OPTIONS":
         response = jsonify({})
-        response.headers.add("Access-Control-Allow-Origin", "http://localhost:3000")
+        origin = request.origin
+        if origin and origin in allowed_origins:
+            response.headers.add("Access-Control-Allow-Origin", origin)
         response.headers.add('Access-Control-Allow-Headers', "Content-Type,Authorization,X-CSRF-Token")
         response.headers.add('Access-Control-Allow-Methods', "GET,PUT,POST,DELETE,OPTIONS")
         response.headers.add('Access-Control-Allow-Credentials', "true")
@@ -599,7 +601,9 @@ def get_csrf_token():
     """Generate a simple CSRF token for form submissions"""
     token = str(uuid.uuid4())
     response = jsonify({'csrfToken': token})
-    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+    origin = request.origin
+    if origin and origin in allowed_origins:
+        response.headers.add('Access-Control-Allow-Origin', origin)
     response.headers.add('Access-Control-Allow-Credentials', 'true')
     return response, 200
 

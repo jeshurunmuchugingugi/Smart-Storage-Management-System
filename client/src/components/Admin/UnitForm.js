@@ -39,7 +39,7 @@ const UnitForm = ({ editingUnit, setEditingUnit, setShowCreateForm, fetchData })
       // retry logic if 401
       if (response.status === 401 && token) {
         try {
-          const refreshResponse = await fetch('/api/admin/refresh-token', {
+          const refreshResponse = await fetch(`${API_BASE_URL}/api/admin/refresh-token`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${token}` }
           });

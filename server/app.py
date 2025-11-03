@@ -109,11 +109,12 @@ class StorageUnitListResource(Resource):
                 location=data.get('location')
             )
 
-            for feature_name in data['features']:
-                feature = Feature.query.filter_by(name=feature_name).first()
-                if not feature:
-                    feature = Feature(name=feature_name)
-                unit.features.append(feature)
+            # Skip features processing
+            # for feature_name in data['features']:
+            #     feature = Feature.query.filter_by(name=feature_name).first()
+            #     if not feature:
+            #         feature = Feature(name=feature_name)
+            #     unit.features.append(feature)
 
             db.session.add(unit)
             db.session.commit()

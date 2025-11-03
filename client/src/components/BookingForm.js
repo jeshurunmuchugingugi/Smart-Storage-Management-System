@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Header from './Header';
+import { API_BASE_URL } from '../services/api';
 
 const BookingForm = ({ units = [] }) => {
   const { unitId } = useParams();
@@ -36,7 +37,7 @@ const BookingForm = ({ units = [] }) => {
 
   const fetchCsrfToken = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/csrf-token', {
+      const response = await fetch(`${API_BASE_URL}/api/csrf-token`, {
         credentials: 'include'
       });
       if (response.ok) {
@@ -50,7 +51,7 @@ const BookingForm = ({ units = [] }) => {
 
   const fetchUnit = async () => {
     try {
-      const response = await fetch(`http://localhost:5001/api/units/${unitId}`);
+      const response = await fetch(`${API_BASE_URL}/api/units/${unitId}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -130,7 +131,7 @@ const BookingForm = ({ units = [] }) => {
         status: 'pending'
       };
 
-      const response = await fetch('http://localhost:5001/api/bookings', {
+      const response = await fetch(`${API_BASE_URL}/api/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -145,7 +146,7 @@ const BookingForm = ({ units = [] }) => {
         
         // Create pending payment record
         try {
-          await fetch('http://localhost:5001/api/payments', {
+          await fetch(`${API_BASE_URL}/api/payments`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -166,7 +167,7 @@ const BookingForm = ({ units = [] }) => {
         // Create transportation request if pickup details are provided
         if (formData.pickup_address && formData.pickup_address.trim()) {
           try {
-            await fetch('http://localhost:5001/api/transportation', {
+            await fetch(`${API_BASE_URL}/api/transportation`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

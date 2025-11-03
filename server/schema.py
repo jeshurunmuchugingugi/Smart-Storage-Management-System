@@ -14,7 +14,7 @@ class AdminLoginInputSchema(ma.Schema):
 class StorageUnitInputSchema(ma.Schema):
     unit_number = fields.Str(required=True, validate=validate.Length(min=1, max=20))
     site = fields.Str(required=True, validate=validate.Length(min=1, max=50))
-    size = fields.Float(allow_none=True, validate=validate.Range(min=0))
+    size = fields.Str(allow_none=True, validate=validate.Length(max=50))
     monthly_rate = fields.Float(required=True, validate=validate.Range(min=0))
     status = fields.Str(validate=validate.OneOf(['available', 'booked']), load_default='available')
     location = fields.Str(validate=validate.Length(max=100), allow_none=True)
@@ -82,7 +82,7 @@ class FeatureSchema(SQLAlchemyAutoSchema):
 class StorageUnitSchema(SQLAlchemyAutoSchema):
     features = fields.Nested(FeatureSchema, many=True)
     monthly_rate = fields.Float()
-    size = fields.Float()
+    size = fields.Str()
 
     class Meta:
         model = StorageUnit

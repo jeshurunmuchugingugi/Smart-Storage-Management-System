@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Reservations.css";
+import { API_BASE_URL } from '../../services/api';
 
 const Reservations = () => {
   const [reservationsData, setReservationsData] = useState([]);
@@ -7,6 +8,7 @@ const Reservations = () => {
   const [activeTab, setActiveTab] = useState("All");
   const [viewMode, setViewMode] = useState('table');
   const [loading, setLoading] = useState(true);
+  const [showNewForm, setShowNewForm] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -17,8 +19,8 @@ const Reservations = () => {
   const fetchData = async () => {
     try {
       const [bookingsRes, paymentsRes] = await Promise.all([
-        fetch('http://localhost:5001/api/bookings'),
-        fetch('http://localhost:5001/api/payments')
+        fetch(`${API_BASE_URL}/api/bookings`),
+        fetch(`${API_BASE_URL}/api/payments`)
       ]);
       
       if (bookingsRes.ok) {
@@ -129,41 +131,17 @@ const Reservations = () => {
         </div>
       </div>
 
-      {viewMode === 'calendar' ? (
-        <div className="calendar-view">
-          <div className="calendar-header">
-            <h3>Reservations Calendar</h3>
-          </div>
-          <div className="calendar-grid">
-            {reservationsData.map((res) => {
-              const startDate = new Date(res.start_date);
-              const endDate = new Date(res.end_date);
-              const duration = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-              
-              return (
-                <div key={res.booking_id} className="calendar-item">
-                  <div className="calendar-item-header">
-                    <span className={`status-dot ${getStatusLabel(res).toLowerCase()}`}></span>
-                    <strong>{res.customer_name || 'N/A'}</strong>
-                  </div>
-                  <div className="calendar-item-body">
-                    <p>📍 {res.unit?.unit_number || 'N/A'}</p>
-                    <p>📅 {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}</p>
-                    <p>⏱️ {duration} days</p>
-                    <p>💰 KSh {parseFloat(res.total_cost || 0).toLocaleString()}</p>
-                  </div>
-                  <div className="calendar-item-footer">
-                    <span className={`status-badge ${getStatusLabel(res).toLowerCase()}`}>
-                      {getStatusLabel(res)}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
+      {showNewForm && (
+        <div className="modal-overlay" onClick={() => setShowNewForm(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3>New Reservation</h3>
+            <p>Redirect to booking page or add form here</p>
+            <button onClick={() => setShowNewForm(false)}>Close</button>
           </div>
         </div>
-      ) : (
-        <div className="reservations-table">
+      )}
+
+      <div className="reservations-table">
         <table>
           <thead>
             <tr>
@@ -199,7 +177,6 @@ const Reservations = () => {
           </tbody>
         </table>
       </div>
-      )}
     </div>
   );
 };

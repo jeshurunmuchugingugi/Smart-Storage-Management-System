@@ -7,6 +7,7 @@ import Customers from './Customers';
 import Payments from './Payments';
 import Reservations from './Reservations';
 import UnitsTab from './UnitTab';
+import { API_BASE_URL } from '../../services/api';
 
 
 const AdminDashboard = () => {
@@ -36,9 +37,9 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     try {
       const [unitsRes, bookingsRes, paymentsRes] = await Promise.all([
-        fetch('http://localhost:5001/api/units'),
-        fetch('http://localhost:5001/api/bookings'),
-        fetch('http://localhost:5001/api/payments')
+        fetch(`${API_BASE_URL}/api/units`),
+        fetch(`${API_BASE_URL}/api/bookings`),
+        fetch(`${API_BASE_URL}/api/payments`)
       ]);
       
       if (unitsRes.ok) setUnits(await unitsRes.json());
@@ -53,7 +54,7 @@ const AdminDashboard = () => {
     if (!window.confirm('Are you sure you want to delete this unit?')) return;
     try {
       const token = localStorage.getItem('admin_token');
-      const response = await fetch(`http://localhost:5001/api/units/${unitId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/units/${unitId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

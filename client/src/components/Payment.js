@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import Header from './Header';
+import { API_BASE_URL } from '../services/api';
 
 const Payment = () => {
   const { bookingId } = useParams();
@@ -13,13 +14,9 @@ const Payment = () => {
   const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  useEffect(() => {
-    fetchBooking();
-  }, [bookingId]);
-
-  const fetchBooking = async () => {
+  const fetchBooking = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:5001/api/bookings/${bookingId}`);
+      const response = await fetch(`${API_BASE_URL}/api/bookings/${bookingId}`);
       if (response.ok) {
         const data = await response.json();
         setBooking(data);
@@ -29,7 +26,13 @@ const Payment = () => {
       console.error('Error fetching booking:', error);
       setLoading(false);
     }
-  };
+  }, [bookingId]);
+
+  useEffect(() => {
+    fetchBooking();
+  }, [fetchBooking]);
+
+
 
   const handlePayment = async () => {
     setProcessing(true);
@@ -42,7 +45,7 @@ const Payment = () => {
         }
 
         // Initiate M-Pesa STK Push
-        const response = await fetch('http://localhost:5001/api/mpesa/stkpush', {
+        const response = await fetch(`${API_BASE_URL}/api/mpesa/stkpush`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -68,7 +71,7 @@ const Payment = () => {
             attempts++;
             
             try {
-              const statusResponse = await fetch('http://localhost:5001/api/payments');
+              const statusResponse = await fetch(`${API_BASE_URL}/api/payments`);
               const payments = await statusResponse.json();
               const payment = payments.find(p => p.checkout_request_id === checkoutRequestId);
               
@@ -98,7 +101,7 @@ const Payment = () => {
         }
       } else {
         // Card payment (existing logic)
-        const response = await fetch('http://localhost:5001/api/payments', {
+        const response = await fetch(`${API_BASE_URL}/api/payments`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

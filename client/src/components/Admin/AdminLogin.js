@@ -108,7 +108,7 @@ const AdminLogin = () => {
               />
               Remember me
             </label>
-            <a href="#" style={styles.forgotLink}>Forgot password?</a>
+            <button type="button" style={{...styles.forgotLink, background: 'none', border: 'none', cursor: 'pointer'}}>Forgot password?</button>
           </div>
           
           {error && <div style={styles.error}>{error}</div>}
@@ -121,7 +121,7 @@ const AdminLogin = () => {
         
         <div style={styles.footer}>
           <p style={styles.footerText}>
-            Don't have an account? <a href="#" style={styles.contactLink}>Contact IT Admin</a>
+            Don't have an account? <button type="button" style={{...styles.contactLink, background: 'none', border: 'none', cursor: 'pointer'}}>Contact IT Admin</button>
           </p>
           <p style={styles.copyright}>
             © 2025 storelink logistics. All rights reserved.

@@ -10,7 +10,7 @@ const UnitsTab = ({ units, fetchData, handleDeleteUnit }) => {
 
   return (
     <div>
-      <div className="section-header">
+      <div className="section-header">\
         <h2>Storage Units Management</h2>
         {admin?.role === 'admin' && (
           <button onClick={() => setShowCreateForm(true)} className="create-btn">
